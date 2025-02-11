@@ -11,6 +11,90 @@ const schema = a.schema({
     .model({
       content: a.string(),
     }).authorization(allow => [allow.owner()]),
+
+    
+    InformeTasacion: a
+    .model({
+      fechaTasacion: a.date(),
+      serviceDesk: a.string(),
+      tipoTasacion: a.string(),
+      pisos: a.string(),
+      tipo: a.string(),
+      entidadBancaria: a.string(),
+      tipoTopologia: a.string(),
+      ubicacion: a.string(),
+      ubicacionTerreno: a.string(),
+      propietario: a.string(),
+      nombreSolicitante: a.string(),
+      apellidoSolicitante: a.string(),
+      condominio: a.string(),
+      direccionInmueble: a.string(),
+      bloque: a.string(),
+      etapa: a.string(),
+      manzana: a.string(),
+      edificioNo: a.string(),
+      tipoEdificio: a.string(),
+      numeroTitulo: a.string(),
+      constanciaVenta: a.string(),
+      designacionCatastral: a.string(),
+      libroNo: a.string(),
+      folioNo: a.string(),
+      parcela: a.string(),
+      solar: a.string(),
+      manzanaLegal: a.string(),
+      dc: a.string(),
+      localidad: a.string(),
+      desarrollo: a.string(),
+      tipologiaVecindario: a.string(),
+      claseSocial: a.string(),
+
+      aceras: a.boolean(),
+      contenes: a.boolean(),
+      callesAsfaltadas: a.boolean(),
+      alcantarillado: a.boolean(),
+      aguaPotable: a.boolean(),
+      alumbradoElectrico: a.boolean(),
+      telecomunicaciones: a.boolean(),
+      transportePublico: a.boolean(),
+      otrosInfraestructura: a.boolean(),
+
+      area: a.integer(),
+      forma: a.string(),
+      topografia: a.string(),
+      edad: a.string(),
+      nivelEdificacion: a.integer(),
+
+      descripcionInterior: a.string(),
+      terminacionPisosInteriores: a.string(),
+      terminacionPisosExteriores: a.string(),
+      terminacionHuellas: a.string(),
+      terminacionMuros: a.string(),
+      terminacionRevestimiento: a.string(),
+      terminacionPuertaPrincipal: a.string(),
+      terminacionPuertasInteriores: a.string(),
+      terminacionPuertasCloset: a.string(),
+      terminacionGabinetes: a.string(),
+      terminacionTopeCocina: a.string(),
+      terminacionTecho: a.string(),
+      terminacionCornisa: a.string(),
+      terminacionPlafones: a.string(),
+      terminacionVentanas: a.string(),
+      terminacionPasamanos: a.string(),
+
+      areaBasicoTerreno: a.float(),
+      costoMetroBasicoTerreno: a.float(),
+      areaBasicoConstruccion: a.float(),
+      costoMetroBasicoConstruccion: a.float(),
+      montoDepreciacion: a.float(),
+      montoMejoras: a.float(),
+      depreciacionMejoras: a.float(),
+      valorInmueble: a.float(),
+
+      comentario: a.string(),
+    })
+    .authorization((allow) => [allow.owner()]), // Restricts access to record owners
+
+    
 });
 
 export type Schema = ClientSchema<typeof schema>;
