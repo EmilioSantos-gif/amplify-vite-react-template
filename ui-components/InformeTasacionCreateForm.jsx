@@ -507,96 +507,14 @@ export default function InformeTasacionCreateForm(props) {
 
 
 
-<TextField
+      <TextField
+        id="manzana"
         label="Manzana"
         isRequired={false}
         isReadOnly={false}
-        value={manzana}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana: value,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.manzana ?? value;
-          }
-          if (errors.manzana?.hasError) {
-            runValidationTasks("manzana", value);
-          }
-          setManzana(value);
-        }}
-        onBlur={() => runValidationTasks("manzana", manzana)}
+        value={formData.manzana}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("manzana", formData.manzana)}
         errorMessage={errors.manzana?.errorMessage}
         hasError={errors.manzana?.hasError}
         {...getOverrideProps(overrides, "manzana")}
