@@ -664,6 +664,206 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "dc")}
       ></TextField>
 
+</Grid>
+
+      <Heading
+        level={4}>
+          Características del Sector
+      </Heading>
+
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        gap="1rem"
+      >
+
+      <TextField
+        label="Localidad"
+        isRequired={false}
+        isReadOnly={false}
+        value={localidad}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad: value,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.localidad ?? value;
+          }
+          if (errors.localidad?.hasError) {
+            runValidationTasks("localidad", value);
+          }
+          setLocalidad(value);
+        }}
+        onBlur={() => runValidationTasks("localidad", localidad)}
+        errorMessage={errors.localidad?.errorMessage}
+        hasError={errors.localidad?.hasError}
+        {...getOverrideProps(overrides, "localidad")}
+      ></TextField>
+      <TextField
+        label="Desarrollo"
+        isRequired={false}
+        isReadOnly={false}
+        value={desarrollo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo: value,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.desarrollo ?? value;
+          }
+          if (errors.desarrollo?.hasError) {
+            runValidationTasks("desarrollo", value);
+          }
+          setDesarrollo(value);
+        }}
+        onBlur={() => runValidationTasks("desarrollo", desarrollo)}
+        errorMessage={errors.desarrollo?.errorMessage}
+        hasError={errors.desarrollo?.hasError}
+        {...getOverrideProps(overrides, "desarrollo")}
+      ></TextField>
 
 
       <Flex
