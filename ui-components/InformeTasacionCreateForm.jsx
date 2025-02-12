@@ -804,6 +804,203 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "aguaPotable")}
       ></SwitchField>
 
+<SwitchField
+        labelPosition="end"
+        label="Alumbrado electrico"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={alumbradoElectrico}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico: value,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.alumbradoElectrico ?? value;
+          }
+          if (errors.alumbradoElectrico?.hasError) {
+            runValidationTasks("alumbradoElectrico", value);
+          }
+          setAlumbradoElectrico(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("alumbradoElectrico", alumbradoElectrico)
+        }
+        errorMessage={errors.alumbradoElectrico?.errorMessage}
+        hasError={errors.alumbradoElectrico?.hasError}
+        {...getOverrideProps(overrides, "alumbradoElectrico")}
+      ></SwitchField>
+      <SwitchField
+        labelPosition="end"
+        label="Telecomunicaciones"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={telecomunicaciones}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones: value,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.telecomunicaciones ?? value;
+          }
+          if (errors.telecomunicaciones?.hasError) {
+            runValidationTasks("telecomunicaciones", value);
+          }
+          setTelecomunicaciones(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("telecomunicaciones", telecomunicaciones)
+        }
+        errorMessage={errors.telecomunicaciones?.errorMessage}
+        hasError={errors.telecomunicaciones?.hasError}
+        {...getOverrideProps(overrides, "telecomunicaciones")}
+      ></SwitchField>
+
+      
+
       </Grid>
 
       <Flex
