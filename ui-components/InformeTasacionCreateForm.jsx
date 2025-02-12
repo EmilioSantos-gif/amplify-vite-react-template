@@ -1143,196 +1143,30 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "terminacionVentanas")}
       ></TextField>
       <TextField
+        id="terminacionPasamanos"
         label="Terminacion pasamanos"
         isRequired={false}
         isReadOnly={false}
-        value={terminacionPasamanos}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos: value,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.terminacionPasamanos ?? value;
-          }
-          if (errors.terminacionPasamanos?.hasError) {
-            runValidationTasks("terminacionPasamanos", value);
-          }
-          setTerminacionPasamanos(value);
-        }}
+        value={formData.terminacionPasamanos}
+        onChange={handleFieldChange}
         onBlur={() =>
-          runValidationTasks("terminacionPasamanos", terminacionPasamanos)
+          runValidationTasks("terminacionPasamanos", formData.terminacionPasamanos)
         }
         errorMessage={errors.terminacionPasamanos?.errorMessage}
         hasError={errors.terminacionPasamanos?.hasError}
         {...getOverrideProps(overrides, "terminacionPasamanos")}
       ></TextField>
       <TextField
+        id="areaBasicoTerreno"
         label="Area basico terreno"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={areaBasicoTerreno}
-        onChange={(e) => {
-          let value = isNaN(parseFloat(e.target.value))
-            ? e.target.value
-            : parseFloat(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno: value,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.areaBasicoTerreno ?? value;
-          }
-          if (errors.areaBasicoTerreno?.hasError) {
-            runValidationTasks("areaBasicoTerreno", value);
-          }
-          setAreaBasicoTerreno(value);
-        }}
+        value={formData.areaBasicoTerreno}
+        onChange={handleFieldChange}
         onBlur={() =>
-          runValidationTasks("areaBasicoTerreno", areaBasicoTerreno)
+          runValidationTasks("areaBasicoTerreno", formData.areaBasicoTerreno)
         }
         errorMessage={errors.areaBasicoTerreno?.errorMessage}
         hasError={errors.areaBasicoTerreno?.hasError}
