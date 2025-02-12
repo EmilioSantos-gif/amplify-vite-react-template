@@ -818,11 +818,25 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "alumbradoElectrico")}
       ></SwitchField>
       <SwitchField
+        id="telecomunicaciones"
         labelPosition="end"
         label="Telecomunicaciones"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={telecomunicaciones}
+        isChecked={formData.telecomunicaciones}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("telecomunicaciones", formData.telecomunicaciones)}
+        errorMessage={errors.telecomunicaciones?.errorMessage}
+        hasError={errors.telecomunicaciones?.hasError}
+        {...getOverrideProps(overrides, "telecomunicaciones")}
+      ></SwitchField>
+
+<SwitchField
+        labelPosition="end"
+        label="Transporte publico"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={transportePublico}
         onChange={(e) => {
           let value = e.target.checked;
           if (onChange) {
@@ -865,8 +879,8 @@ export default function InformeTasacionCreateForm(props) {
               alcantarillado,
               aguaPotable,
               alumbradoElectrico,
-              telecomunicaciones: value,
-              transportePublico,
+              telecomunicaciones,
+              transportePublico: value,
               otrosInfraestructura,
               area,
               forma,
@@ -900,19 +914,116 @@ export default function InformeTasacionCreateForm(props) {
               comentario,
             };
             const result = onChange(modelFields);
-            value = result?.telecomunicaciones ?? value;
+            value = result?.transportePublico ?? value;
           }
-          if (errors.telecomunicaciones?.hasError) {
-            runValidationTasks("telecomunicaciones", value);
+          if (errors.transportePublico?.hasError) {
+            runValidationTasks("transportePublico", value);
           }
-          setTelecomunicaciones(value);
+          setTransportePublico(value);
         }}
         onBlur={() =>
-          runValidationTasks("telecomunicaciones", telecomunicaciones)
+          runValidationTasks("transportePublico", transportePublico)
         }
-        errorMessage={errors.telecomunicaciones?.errorMessage}
-        hasError={errors.telecomunicaciones?.hasError}
-        {...getOverrideProps(overrides, "telecomunicaciones")}
+        errorMessage={errors.transportePublico?.errorMessage}
+        hasError={errors.transportePublico?.hasError}
+        {...getOverrideProps(overrides, "transportePublico")}
+      ></SwitchField>
+      <SwitchField
+        labelPosition="end"
+        label="Otra infraestructura"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={otrosInfraestructura}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura: value,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.otrosInfraestructura ?? value;
+          }
+          if (errors.otrosInfraestructura?.hasError) {
+            runValidationTasks("otrosInfraestructura", value);
+          }
+          setOtrosInfraestructura(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("otrosInfraestructura", otrosInfraestructura)
+        }
+        errorMessage={errors.otrosInfraestructura?.errorMessage}
+        hasError={errors.otrosInfraestructura?.hasError}
+        {...getOverrideProps(overrides, "otrosInfraestructura")}
       ></SwitchField>
 
       
