@@ -1087,190 +1087,28 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "terminacionTopeCocina")}
       ></TextField>
       <TextField
+        id="terminacionTecho"
         label="Terminacion techo"
         isRequired={false}
         isReadOnly={false}
-        value={terminacionTecho}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho: value,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.terminacionTecho ?? value;
-          }
-          if (errors.terminacionTecho?.hasError) {
-            runValidationTasks("terminacionTecho", value);
-          }
-          setTerminacionTecho(value);
-        }}
-        onBlur={() => runValidationTasks("terminacionTecho", terminacionTecho)}
+        value={formData.terminacionTecho}
+        onChange={handleFieldChange}
+        onBlur={() =>
+          runValidationTasks("terminacionTecho", formData.terminacionTecho)
+        }
         errorMessage={errors.terminacionTecho?.errorMessage}
         hasError={errors.terminacionTecho?.hasError}
         {...getOverrideProps(overrides, "terminacionTecho")}
       ></TextField>
       <TextField
+        id="terminacionCornisa"
         label="Terminacion cornisa"
         isRequired={false}
         isReadOnly={false}
-        value={terminacionCornisa}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa: value,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.terminacionCornisa ?? value;
-          }
-          if (errors.terminacionCornisa?.hasError) {
-            runValidationTasks("terminacionCornisa", value);
-          }
-          setTerminacionCornisa(value);
-        }}
+        value={formData.terminacionCornisa}
+        onChange={handleFieldChange}
         onBlur={() =>
-          runValidationTasks("terminacionCornisa", terminacionCornisa)
+          runValidationTasks("terminacionCornisa", formData.terminacionCornisa)
         }
         errorMessage={errors.terminacionCornisa?.errorMessage}
         hasError={errors.terminacionCornisa?.hasError}
