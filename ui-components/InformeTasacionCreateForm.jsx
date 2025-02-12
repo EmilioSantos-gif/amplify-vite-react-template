@@ -750,192 +750,28 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "aceras")}
       ></SwitchField>
 
-<SwitchField
+      <SwitchField
+        id="contenes"
         labelPosition="end"
         label="Contenes"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={contenes}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes: value,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.contenes ?? value;
-          }
-          if (errors.contenes?.hasError) {
-            runValidationTasks("contenes", value);
-          }
-          setContenes(value);
-        }}
-        onBlur={() => runValidationTasks("contenes", contenes)}
+        isChecked={formData.contenes}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("contenes", formData.contenes)}
         errorMessage={errors.contenes?.errorMessage}
         hasError={errors.contenes?.hasError}
         {...getOverrideProps(overrides, "contenes")}
       ></SwitchField>
       <SwitchField
+        id="callesAsfaltadas"
         labelPosition="end"
         label="Calles asfaltadas"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={callesAsfaltadas}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas: value,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.callesAsfaltadas ?? value;
-          }
-          if (errors.callesAsfaltadas?.hasError) {
-            runValidationTasks("callesAsfaltadas", value);
-          }
-          setCallesAsfaltadas(value);
-        }}
-        onBlur={() => runValidationTasks("callesAsfaltadas", callesAsfaltadas)}
+        isChecked={formData.callesAsfaltadas}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("callesAsfaltadas", formData.callesAsfaltadas)}
         errorMessage={errors.callesAsfaltadas?.errorMessage}
         hasError={errors.callesAsfaltadas?.hasError}
         {...getOverrideProps(overrides, "callesAsfaltadas")}
