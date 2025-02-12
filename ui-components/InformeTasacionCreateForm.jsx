@@ -479,95 +479,13 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "tipoTopologia")}
       ></TextField>
       <TextField
+        id="ubicacion"
         label="Ubicacion"
         isRequired={false}
         isReadOnly={false}
-        value={ubicacion}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion: value,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.ubicacion ?? value;
-          }
-          if (errors.ubicacion?.hasError) {
-            runValidationTasks("ubicacion", value);
-          }
-          setUbicacion(value);
-        }}
-        onBlur={() => runValidationTasks("ubicacion", ubicacion)}
+        value={formData.ubicacion}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("ubicacion", formData.ubicacion)}
         errorMessage={errors.ubicacion?.errorMessage}
         hasError={errors.ubicacion?.hasError}
         {...getOverrideProps(overrides, "ubicacion")}
