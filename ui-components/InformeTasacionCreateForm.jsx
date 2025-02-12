@@ -1221,199 +1221,31 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "costoMetroBasicoConstruccion")}
       ></TextField>
       <TextField
+        id="montoDepreciacion"
         label="Monto depreciacion"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={montoDepreciacion}
-        onChange={(e) => {
-          let value = isNaN(parseFloat(e.target.value))
-            ? e.target.value
-            : parseFloat(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion: value,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.montoDepreciacion ?? value;
-          }
-          if (errors.montoDepreciacion?.hasError) {
-            runValidationTasks("montoDepreciacion", value);
-          }
-          setMontoDepreciacion(value);
-        }}
+        value={formData.montoDepreciacion}
+        onChange={handleFieldChange}
         onBlur={() =>
-          runValidationTasks("montoDepreciacion", montoDepreciacion)
+          runValidationTasks("montoDepreciacion", formData.montoDepreciacion)
         }
         errorMessage={errors.montoDepreciacion?.errorMessage}
         hasError={errors.montoDepreciacion?.hasError}
         {...getOverrideProps(overrides, "montoDepreciacion")}
       ></TextField>
       <TextField
+        id="montoMejoras"
         label="Monto mejoras"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={montoMejoras}
-        onChange={(e) => {
-          let value = isNaN(parseFloat(e.target.value))
-            ? e.target.value
-            : parseFloat(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras: value,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.montoMejoras ?? value;
-          }
-          if (errors.montoMejoras?.hasError) {
-            runValidationTasks("montoMejoras", value);
-          }
-          setMontoMejoras(value);
-        }}
-        onBlur={() => runValidationTasks("montoMejoras", montoMejoras)}
+        value={formData.montoMejoras}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("montoMejoras", formData.montoMejoras)}
         errorMessage={errors.montoMejoras?.errorMessage}
         hasError={errors.montoMejoras?.hasError}
         {...getOverrideProps(overrides, "montoMejoras")}
