@@ -777,6 +777,197 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "callesAsfaltadas")}
       ></SwitchField>
 
+<SwitchField
+        labelPosition="end"
+        label="Alcantarillado"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={alcantarillado}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado: value,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.alcantarillado ?? value;
+          }
+          if (errors.alcantarillado?.hasError) {
+            runValidationTasks("alcantarillado", value);
+          }
+          setAlcantarillado(value);
+        }}
+        onBlur={() => runValidationTasks("alcantarillado", alcantarillado)}
+        errorMessage={errors.alcantarillado?.errorMessage}
+        hasError={errors.alcantarillado?.hasError}
+        {...getOverrideProps(overrides, "alcantarillado")}
+      ></SwitchField>
+      <SwitchField
+        labelPosition="end"
+        label="Agua potable"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={aguaPotable}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable: value,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.aguaPotable ?? value;
+          }
+          if (errors.aguaPotable?.hasError) {
+            runValidationTasks("aguaPotable", value);
+          }
+          setAguaPotable(value);
+        }}
+        onBlur={() => runValidationTasks("aguaPotable", aguaPotable)}
+        errorMessage={errors.aguaPotable?.errorMessage}
+        hasError={errors.aguaPotable?.hasError}
+        {...getOverrideProps(overrides, "aguaPotable")}
+      ></SwitchField>
+
       </Grid>
 
       <Flex
