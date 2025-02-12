@@ -384,96 +384,14 @@ export default function InformeTasacionCreateForm(props) {
 
 
 
-<TextField
+      <TextField
+        id="tipoTopologia"
         label="Tipo topologia"
         isRequired={false}
         isReadOnly={false}
-        value={tipoTopologia}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia: value,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.tipoTopologia ?? value;
-          }
-          if (errors.tipoTopologia?.hasError) {
-            runValidationTasks("tipoTopologia", value);
-          }
-          setTipoTopologia(value);
-        }}
-        onBlur={() => runValidationTasks("tipoTopologia", tipoTopologia)}
+        value={formData.tipoTopologia}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("tipoTopologia", formData.tipoTopologia)}
         errorMessage={errors.tipoTopologia?.errorMessage}
         hasError={errors.tipoTopologia?.hasError}
         {...getOverrideProps(overrides, "tipoTopologia")}
