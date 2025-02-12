@@ -778,96 +778,14 @@ export default function InformeTasacionCreateForm(props) {
       ></SwitchField>
 
 <SwitchField
+        id="alcantarillado"
         labelPosition="end"
         label="Alcantarillado"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={alcantarillado}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado: value,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.alcantarillado ?? value;
-          }
-          if (errors.alcantarillado?.hasError) {
-            runValidationTasks("alcantarillado", value);
-          }
-          setAlcantarillado(value);
-        }}
-        onBlur={() => runValidationTasks("alcantarillado", alcantarillado)}
+        isChecked={formData.alcantarillado}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("alcantarillado", formData.alcantarillado)}
         errorMessage={errors.alcantarillado?.errorMessage}
         hasError={errors.alcantarillado?.hasError}
         {...getOverrideProps(overrides, "alcantarillado")}
