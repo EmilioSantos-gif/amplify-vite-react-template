@@ -845,98 +845,14 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "transportePublico")}
       ></SwitchField>
       <SwitchField
+        id="otrosInfraestructura"
         labelPosition="end"
         label="Otra infraestructura"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={otrosInfraestructura}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura: value,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.otrosInfraestructura ?? value;
-          }
-          if (errors.otrosInfraestructura?.hasError) {
-            runValidationTasks("otrosInfraestructura", value);
-          }
-          setOtrosInfraestructura(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("otrosInfraestructura", otrosInfraestructura)
-        }
+        isChecked={formData.otrosInfraestructura}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("otrosInfraestructura", formData.otrosInfraestructura)}
         errorMessage={errors.otrosInfraestructura?.errorMessage}
         hasError={errors.otrosInfraestructura?.hasError}
         {...getOverrideProps(overrides, "otrosInfraestructura")}
