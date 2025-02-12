@@ -409,189 +409,25 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "ubicacion")}
       ></TextField>
       <TextField
+        id="ubicacionTerreno"
         label="Ubicacion terreno"
         isRequired={false}
         isReadOnly={false}
-        value={ubicacionTerreno}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno: value,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.ubicacionTerreno ?? value;
-          }
-          if (errors.ubicacionTerreno?.hasError) {
-            runValidationTasks("ubicacionTerreno", value);
-          }
-          setUbicacionTerreno(value);
-        }}
-        onBlur={() => runValidationTasks("ubicacionTerreno", ubicacionTerreno)}
+        value={formData.ubicacionTerreno}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("ubicacionTerreno", formData.ubicacionTerreno)}
         errorMessage={errors.ubicacionTerreno?.errorMessage}
         hasError={errors.ubicacionTerreno?.hasError}
         {...getOverrideProps(overrides, "ubicacionTerreno")}
       ></TextField>
       <TextField
+        id="propietario"
         label="Propietario"
         isRequired={false}
         isReadOnly={false}
-        value={propietario}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario: value,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.propietario ?? value;
-          }
-          if (errors.propietario?.hasError) {
-            runValidationTasks("propietario", value);
-          }
-          setPropietario(value);
-        }}
-        onBlur={() => runValidationTasks("propietario", propietario)}
+        value={formData.propietario}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("propietario", formData.propietario)}
         errorMessage={errors.propietario?.errorMessage}
         hasError={errors.propietario?.hasError}
         {...getOverrideProps(overrides, "propietario")}
