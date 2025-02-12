@@ -14,6 +14,10 @@ import { generateClient } from "aws-amplify/api";
 import { createInformeTasacion } from "./graphql/mutations";
 const client = generateClient();
 export default function InformeTasacionCreateForm(props) {
+  const titleHeadingLevel = 3;
+  const sectionsHeadingLevel = titleHeadingLevel + 1;
+  const subSectionsHeadingLevel = sectionsHeadingLevel + 1;
+
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -557,7 +561,7 @@ export default function InformeTasacionCreateForm(props) {
       {...getOverrideProps(overrides, "InformeTasacionCreateForm")}
       {...rest}
     >
-      <Heading>Datos de la Tasación</Heading>
+      <Heading level={titleHeadingLevel} >Datos de la Tasación</Heading>
 
       <TextField
         label="Fecha tasacion"
