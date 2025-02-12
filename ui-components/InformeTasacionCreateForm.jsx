@@ -507,6 +507,958 @@ export default function InformeTasacionCreateForm(props) {
 
 
 
+<TextField
+        label="Manzana"
+        isRequired={false}
+        isReadOnly={false}
+        value={manzana}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana: value,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.manzana ?? value;
+          }
+          if (errors.manzana?.hasError) {
+            runValidationTasks("manzana", value);
+          }
+          setManzana(value);
+        }}
+        onBlur={() => runValidationTasks("manzana", manzana)}
+        errorMessage={errors.manzana?.errorMessage}
+        hasError={errors.manzana?.hasError}
+        {...getOverrideProps(overrides, "manzana")}
+      ></TextField>
+      <TextField
+        label="Edificio no"
+        isRequired={false}
+        isReadOnly={false}
+        value={edificioNo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo: value,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.edificioNo ?? value;
+          }
+          if (errors.edificioNo?.hasError) {
+            runValidationTasks("edificioNo", value);
+          }
+          setEdificioNo(value);
+        }}
+        onBlur={() => runValidationTasks("edificioNo", edificioNo)}
+        errorMessage={errors.edificioNo?.errorMessage}
+        hasError={errors.edificioNo?.hasError}
+        {...getOverrideProps(overrides, "edificioNo")}
+      ></TextField>
+      <TextField
+        label="Tipo edificio"
+        isRequired={false}
+        isReadOnly={false}
+        value={tipoEdificio}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio: value,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.tipoEdificio ?? value;
+          }
+          if (errors.tipoEdificio?.hasError) {
+            runValidationTasks("tipoEdificio", value);
+          }
+          setTipoEdificio(value);
+        }}
+        onBlur={() => runValidationTasks("tipoEdificio", tipoEdificio)}
+        errorMessage={errors.tipoEdificio?.errorMessage}
+        hasError={errors.tipoEdificio?.hasError}
+        {...getOverrideProps(overrides, "tipoEdificio")}
+      ></TextField>
+
+      <Heading
+        level={4}>
+        Aspectos Legales
+      </Heading> 
+
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        gap="1rem"
+      >
+      <TextField
+        label="Número de certificación de título"
+        isRequired={false}
+        isReadOnly={false}
+        value={numeroTitulo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo: value,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.numeroTitulo ?? value;
+          }
+          if (errors.numeroTitulo?.hasError) {
+            runValidationTasks("numeroTitulo", value);
+          }
+          setNumeroTitulo(value);
+        }}
+        onBlur={() => runValidationTasks("numeroTitulo", numeroTitulo)}
+        errorMessage={errors.numeroTitulo?.errorMessage}
+        hasError={errors.numeroTitulo?.hasError}
+        {...getOverrideProps(overrides, "numeroTitulo")}
+      ></TextField>
+      <TextField
+        label="Constancia venta"
+        isRequired={false}
+        isReadOnly={false}
+        value={constanciaVenta}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta: value,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.constanciaVenta ?? value;
+          }
+          if (errors.constanciaVenta?.hasError) {
+            runValidationTasks("constanciaVenta", value);
+          }
+          setConstanciaVenta(value);
+        }}
+        onBlur={() => runValidationTasks("constanciaVenta", constanciaVenta)}
+        errorMessage={errors.constanciaVenta?.errorMessage}
+        hasError={errors.constanciaVenta?.hasError}
+        {...getOverrideProps(overrides, "constanciaVenta")}
+      ></TextField>
+      <TextField
+        label="Designacion catastral"
+        isRequired={false}
+        isReadOnly={false}
+        value={designacionCatastral}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral: value,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.designacionCatastral ?? value;
+          }
+          if (errors.designacionCatastral?.hasError) {
+            runValidationTasks("designacionCatastral", value);
+          }
+          setDesignacionCatastral(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("designacionCatastral", designacionCatastral)
+        }
+        errorMessage={errors.designacionCatastral?.errorMessage}
+        hasError={errors.designacionCatastral?.hasError}
+        {...getOverrideProps(overrides, "designacionCatastral")}
+      ></TextField>
+      <TextField
+        label="Libro no"
+        isRequired={false}
+        isReadOnly={false}
+        value={libroNo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo: value,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.libroNo ?? value;
+          }
+          if (errors.libroNo?.hasError) {
+            runValidationTasks("libroNo", value);
+          }
+          setLibroNo(value);
+        }}
+        onBlur={() => runValidationTasks("libroNo", libroNo)}
+        errorMessage={errors.libroNo?.errorMessage}
+        hasError={errors.libroNo?.hasError}
+        {...getOverrideProps(overrides, "libroNo")}
+      ></TextField>
+      <TextField
+        label="Folio no"
+        isRequired={false}
+        isReadOnly={false}
+        value={folioNo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo: value,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.folioNo ?? value;
+          }
+          if (errors.folioNo?.hasError) {
+            runValidationTasks("folioNo", value);
+          }
+          setFolioNo(value);
+        }}
+        onBlur={() => runValidationTasks("folioNo", folioNo)}
+        errorMessage={errors.folioNo?.errorMessage}
+        hasError={errors.folioNo?.hasError}
+        {...getOverrideProps(overrides, "folioNo")}
+      ></TextField>
+      <TextField
+        label="Parcela"
+        isRequired={false}
+        isReadOnly={false}
+        value={parcela}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela: value,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.parcela ?? value;
+          }
+          if (errors.parcela?.hasError) {
+            runValidationTasks("parcela", value);
+          }
+          setParcela(value);
+        }}
+        onBlur={() => runValidationTasks("parcela", parcela)}
+        errorMessage={errors.parcela?.errorMessage}
+        hasError={errors.parcela?.hasError}
+        {...getOverrideProps(overrides, "parcela")}
+      ></TextField>
+      <TextField
+        label="Solar"
+        isRequired={false}
+        isReadOnly={false}
+        value={solar}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar: value,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+            };
+            const result = onChange(modelFields);
+            value = result?.solar ?? value;
+          }
+          if (errors.solar?.hasError) {
+            runValidationTasks("solar", value);
+          }
+          setSolar(value);
+        }}
+        onBlur={() => runValidationTasks("solar", solar)}
+        errorMessage={errors.solar?.errorMessage}
+        hasError={errors.solar?.hasError}
+        {...getOverrideProps(overrides, "solar")}
+      ></TextField>
 
 
       <Flex
