@@ -714,95 +714,13 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "tipologiaVecindario")}
       ></TextField>
       <TextField
+        id="claseSocial"
         label="Clase social"
         isRequired={false}
         isReadOnly={false}
-        value={claseSocial}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial: value,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.claseSocial ?? value;
-          }
-          if (errors.claseSocial?.hasError) {
-            runValidationTasks("claseSocial", value);
-          }
-          setClaseSocial(value);
-        }}
-        onBlur={() => runValidationTasks("claseSocial", claseSocial)}
+        value={formData.claseSocial}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("claseSocial", formData.claseSocial)}
         errorMessage={errors.claseSocial?.errorMessage}
         hasError={errors.claseSocial?.hasError}
         {...getOverrideProps(overrides, "claseSocial")}
