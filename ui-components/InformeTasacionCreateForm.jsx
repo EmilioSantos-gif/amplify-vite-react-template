@@ -106,6 +106,7 @@ export default function InformeTasacionCreateForm(props) {
 
   const [formData, setFormData] = React.useState(initialValues);
   const [area, setArea] = React.useState(initialValues.area);
+  const [forma, setForma] = React.useState(initialValues.forma);
 
   const [errors, setErrors] = React.useState({});
 
@@ -980,7 +981,7 @@ export default function InformeTasacionCreateForm(props) {
         label="Forma"
         isRequired={false}
         isReadOnly={false}
-        value={forma}
+        value={formData.forma}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -1063,7 +1064,7 @@ export default function InformeTasacionCreateForm(props) {
           if (errors.forma?.hasError) {
             runValidationTasks("forma", value);
           }
-          setForma(value);
+          setFormData({ ...formData, forma: value });
         }}
         onBlur={() => runValidationTasks("forma", forma)}
         errorMessage={errors.forma?.errorMessage}
