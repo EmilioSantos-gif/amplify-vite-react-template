@@ -701,98 +701,14 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "desarrollo")}
       ></TextField>
 
-<TextField
+      <TextField
+        id="tipologiaVecindario"
         label="Tipologia vecindario"
         isRequired={false}
         isReadOnly={false}
-        value={tipologiaVecindario}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario: value,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.tipologiaVecindario ?? value;
-          }
-          if (errors.tipologiaVecindario?.hasError) {
-            runValidationTasks("tipologiaVecindario", value);
-          }
-          setTipologiaVecindario(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("tipologiaVecindario", tipologiaVecindario)
-        }
+        value={formData.tipologiaVecindario}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("tipologiaVecindario", formData.tipologiaVecindario)}
         errorMessage={errors.tipologiaVecindario?.errorMessage}
         hasError={errors.tipologiaVecindario?.hasError}
         {...getOverrideProps(overrides, "tipologiaVecindario")}
