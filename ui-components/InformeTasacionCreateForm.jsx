@@ -105,6 +105,7 @@ export default function InformeTasacionCreateForm(props) {
   } = props;
 
   const [formData, setFormData] = React.useState(initialValues);
+  const [area, setArea] = React.useState(initialValues.area);
 
   const [errors, setErrors] = React.useState({});
 
@@ -968,7 +969,7 @@ export default function InformeTasacionCreateForm(props) {
           if (errors.area?.hasError) {
             runValidationTasks("area", value);
           }
-          setArea(value);
+          setFormData({ ...formData, area: value });
         }}
         onBlur={() => runValidationTasks("area", area)}
         errorMessage={errors.area?.errorMessage}
