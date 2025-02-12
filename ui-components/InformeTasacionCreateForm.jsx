@@ -832,98 +832,14 @@ export default function InformeTasacionCreateForm(props) {
       ></SwitchField>
 
 <SwitchField
+        id="transportePublico"
         labelPosition="end"
         label="Transporte publico"
         defaultChecked={false}
         isDisabled={false}
-        isChecked={transportePublico}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico: value,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.transportePublico ?? value;
-          }
-          if (errors.transportePublico?.hasError) {
-            runValidationTasks("transportePublico", value);
-          }
-          setTransportePublico(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("transportePublico", transportePublico)
-        }
+        isChecked={formData.transportePublico}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("transportePublico", formData.transportePublico)}
         errorMessage={errors.transportePublico?.errorMessage}
         hasError={errors.transportePublico?.hasError}
         {...getOverrideProps(overrides, "transportePublico")}
