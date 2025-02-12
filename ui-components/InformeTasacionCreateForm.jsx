@@ -433,193 +433,25 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "propietario")}
       ></TextField>
       <TextField
+        id="nombreSolicitante"
         label="Nombre solicitante"
         isRequired={false}
         isReadOnly={false}
-        value={nombreSolicitante}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante: value,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.nombreSolicitante ?? value;
-          }
-          if (errors.nombreSolicitante?.hasError) {
-            runValidationTasks("nombreSolicitante", value);
-          }
-          setNombreSolicitante(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("nombreSolicitante", nombreSolicitante)
-        }
+        value={formData.nombreSolicitante}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("nombreSolicitante", formData.nombreSolicitante)}
         errorMessage={errors.nombreSolicitante?.errorMessage}
         hasError={errors.nombreSolicitante?.hasError}
         {...getOverrideProps(overrides, "nombreSolicitante")}
       ></TextField>
       <TextField
+        id="apellidoSolicitante"
         label="Apellido solicitante"
         isRequired={false}
         isReadOnly={false}
-        value={apellidoSolicitante}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante: value,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.apellidoSolicitante ?? value;
-          }
-          if (errors.apellidoSolicitante?.hasError) {
-            runValidationTasks("apellidoSolicitante", value);
-          }
-          setApellidoSolicitante(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("apellidoSolicitante", apellidoSolicitante)
-        }
+        value={formData.apellidoSolicitante}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("apellidoSolicitante", formData.apellidoSolicitante)}
         errorMessage={errors.apellidoSolicitante?.errorMessage}
         hasError={errors.apellidoSolicitante?.hasError}
         {...getOverrideProps(overrides, "apellidoSolicitante")}
