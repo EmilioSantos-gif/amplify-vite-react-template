@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import { Heading, SelectField, useAuthenticator } from '@aws-amplify/ui-react';
+import { Heading, SelectField, useAuthenticator, Grid, Card} from '@aws-amplify/ui-react';
 
 import { TodoCreateForm, InformeTasacionCreateForm } from '../ui-components';
 
@@ -26,7 +26,55 @@ function App() {
     client.models.Todo.delete({id});
   }
 
-  return <InformeTasacionCreateForm />;
-}
+  return (
+    <Grid
+      paddingLeft="0"
+      paddingTop="0"
+      templateColumns="1fr 1fr 1fr"  // Sidebar (nav) + Main content
+      templateRows="1fr 3fr 1fr"  // Header, Main, Footer
+      gap="1rem"
+      height="100vh" // Full viewport height
+      padding="1rem"
+    >
+      {/* Navigation */}
 
+      <Card
+        paddingTop="0"
+        rowStart="1"
+        rowEnd="-1"
+        columnStart="1"
+        columnEnd="2">
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+          </ul>
+        </nav>
+      </Card>
+
+      {/* Header */}
+      <Card
+        columnStart="2"
+        columnEnd="-1">
+        <h1>Header</h1>
+      </Card>
+
+
+      {/* Main Content */}
+      <Card
+        columnStart="2"
+        columnEnd="-1">
+        <InformeTasacionCreateForm />
+      </Card>
+
+      {/* Footer */}
+      <Card
+        columnStart="2"
+        columnEnd="-1">
+        <p>Footer</p>
+      </Card>
+    </Grid>
+  );
+}
 export default App;

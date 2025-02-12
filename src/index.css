@@ -5,17 +5,20 @@ body {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     /*height: 100vh;*/
     width: 100vw;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
+
+/* 
 main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-}
+} */
 
-button {
+
+/* button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -26,18 +29,20 @@ button {
     cursor: pointer;
     transition: border-color 0.25s;
     color: white;
-}
+} */
 
-button:hover {
+
+/* button:hover {
     border-color: #646cff;
 }
 
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
-ul {
+
+/* ul {
     padding-inline-start: 0;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -50,18 +55,101 @@ ul {
     background-color: black;
     border-radius: 8px;
     overflow: auto;
-}
+} */
 
-li {
+
+/* li {
     background-color: white;
     padding: 8px;
-}
+} */
 
-li:hover {
+
+/* li:hover {
     background: #dadbf9;
 }
 
 a {
     font-weight: 800;
     text-decoration: none;
+} */
+
+
+/* Sidebar General */
+
+nav {
+    background-color: #f7f8fa;
+    /* Color de fondo similar a Amplify */
+    padding: 1rem;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra ligera */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+/* Estilo de la lista */
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Espaciado entre elementos */
+
+nav li {
+    margin: 0.5rem 0;
+}
+
+
+/* Estilo de los enlaces */
+
+nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #374151;
+    /* Color similar a Amplify */
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+/* Hover: Cambio de color */
+
+nav a:hover {
+    background-color: #e5e7eb;
+    /* Fondo más oscuro en hover */
+}
+
+
+/* Estilo del enlace activo */
+
+nav a.active {
+    background-color: #ff9900;
+    /* Naranja Amplify */
+    color: #ffffff;
+    /* Texto blanco */
+}
+
+
+/* Responsive para móviles */
+
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: auto;
+    }
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
 }

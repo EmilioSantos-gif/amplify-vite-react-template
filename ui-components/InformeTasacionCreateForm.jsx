@@ -287,6 +287,9 @@ export default function InformeTasacionCreateForm(props) {
     >
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
+      <Heading level={sectionsHeadingLevel}>Aspectos Legales</Heading>
+
+
       <TextField
         id="fechaTasacion"
         label="Fecha tasacion"
@@ -414,6 +417,10 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.ubicacionTerreno?.hasError}
         {...getOverrideProps(overrides, "ubicacionTerreno")}
       ></TextField>
+
+      <Heading level={sectionsHeadingLevel}>Aspectos del Solicitante</Heading>
+
+
       <TextField
         id="propietario"
         label="Propietario"
@@ -945,6 +952,10 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.nivelEdificacion?.hasError}
         {...getOverrideProps(overrides, "nivelEdificacion")}
       ></TextField>
+
+      <Heading level={sectionsHeadingLevel}>Distribución Interior</Heading>
+
+
       <TextField
         id="descripcionInterior"
         label="Descripcion interior"
@@ -957,6 +968,9 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.descripcionInterior?.hasError}
         {...getOverrideProps(overrides, "descripcionInterior")}
       ></TextField>
+
+    <Heading level={sectionsHeadingLevel}>Terminaciones</Heading>
+
       <TextField
         id="terminacionPisosInteriores"
         label="Terminacion pisos interiores"
