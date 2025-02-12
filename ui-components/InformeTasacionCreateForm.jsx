@@ -1006,100 +1006,13 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "terminacionMuros")}
       ></TextField>
       <TextField
+        id="terminacionRevestimiento"
         label="Terminacion revestimiento"
         isRequired={false}
         isReadOnly={false}
-        value={terminacionRevestimiento}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento: value,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.terminacionRevestimiento ?? value;
-          }
-          if (errors.terminacionRevestimiento?.hasError) {
-            runValidationTasks("terminacionRevestimiento", value);
-          }
-          setTerminacionRevestimiento(value);
-        }}
-        onBlur={() =>
-          runValidationTasks(
-            "terminacionRevestimiento",
-            terminacionRevestimiento
-          )
-        }
+        value={formData.terminacionRevestimiento}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("terminacionRevestimiento", formData.terminacionRevestimiento)}
         errorMessage={errors.terminacionRevestimiento?.errorMessage}
         hasError={errors.terminacionRevestimiento?.hasError}
         {...getOverrideProps(overrides, "terminacionRevestimiento")}
