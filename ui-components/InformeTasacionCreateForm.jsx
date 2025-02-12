@@ -602,189 +602,25 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "manzana")}
       ></TextField>
       <TextField
+        id="edificioNo"
         label="Edificio no"
         isRequired={false}
         isReadOnly={false}
-        value={edificioNo}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo: value,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.edificioNo ?? value;
-          }
-          if (errors.edificioNo?.hasError) {
-            runValidationTasks("edificioNo", value);
-          }
-          setEdificioNo(value);
-        }}
-        onBlur={() => runValidationTasks("edificioNo", edificioNo)}
+        value={formData.edificioNo}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("edificioNo", formData.edificioNo)}
         errorMessage={errors.edificioNo?.errorMessage}
         hasError={errors.edificioNo?.hasError}
         {...getOverrideProps(overrides, "edificioNo")}
       ></TextField>
       <TextField
+        id="tipoEdificio"
         label="Tipo edificio"
         isRequired={false}
         isReadOnly={false}
-        value={tipoEdificio}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio: value,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.tipoEdificio ?? value;
-          }
-          if (errors.tipoEdificio?.hasError) {
-            runValidationTasks("tipoEdificio", value);
-          }
-          setTipoEdificio(value);
-        }}
-        onBlur={() => runValidationTasks("tipoEdificio", tipoEdificio)}
+        value={formData.tipoEdificio}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("tipoEdificio", formData.tipoEdificio)}
         errorMessage={errors.tipoEdificio?.errorMessage}
         hasError={errors.tipoEdificio?.hasError}
         {...getOverrideProps(overrides, "tipoEdificio")}
@@ -800,95 +636,13 @@ export default function InformeTasacionCreateForm(props) {
         gap="1rem"
       >
       <TextField
+        id="numeroTitulo"
         label="Número de certificación de título"
         isRequired={false}
         isReadOnly={false}
-        value={numeroTitulo}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo: value,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.numeroTitulo ?? value;
-          }
-          if (errors.numeroTitulo?.hasError) {
-            runValidationTasks("numeroTitulo", value);
-          }
-          setNumeroTitulo(value);
-        }}
-        onBlur={() => runValidationTasks("numeroTitulo", numeroTitulo)}
+        value={formData.numeroTitulo}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("numeroTitulo", formData.numeroTitulo)}
         errorMessage={errors.numeroTitulo?.errorMessage}
         hasError={errors.numeroTitulo?.hasError}
         {...getOverrideProps(overrides, "numeroTitulo")}
