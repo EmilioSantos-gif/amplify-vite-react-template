@@ -931,100 +931,16 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "edad")}
       ></TextField>
 
-<TextField
+      <TextField
+        id="nivelEdificacion"
         label="Nivel edificacion"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={nivelEdificacion}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion: value,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-            };
-            const result = onChange(modelFields);
-            value = result?.nivelEdificacion ?? value;
-          }
-          if (errors.nivelEdificacion?.hasError) {
-            runValidationTasks("nivelEdificacion", value);
-          }
-          setNivelEdificacion(value);
-        }}
-        onBlur={() => runValidationTasks("nivelEdificacion", nivelEdificacion)}
+        value={formData.nivelEdificacion}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("nivelEdificacion", formData.nivelEdificacion)}
         errorMessage={errors.nivelEdificacion?.errorMessage}
         hasError={errors.nivelEdificacion?.hasError}
         {...getOverrideProps(overrides, "nivelEdificacion")}
