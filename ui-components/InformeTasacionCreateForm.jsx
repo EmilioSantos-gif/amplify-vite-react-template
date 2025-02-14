@@ -7,7 +7,8 @@ import {
   Grid,
   SwitchField,
   TextField,
-  Heading,
+  TextAreaField,
+  Heading
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
@@ -287,8 +288,74 @@ export default function InformeTasacionCreateForm(props) {
     >
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
-      <Heading level={sectionsHeadingLevel}>Aspectos Legales</Heading>
+      <TextField
+        id="condominio"
+        label="Condominio"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.condominio}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("condominio", formData.condominio)}
+        errorMessage={errors.condominio?.errorMessage}
+        hasError={errors.condominio?.hasError}
+        {...getOverrideProps(overrides, "condominio")}
+      ></TextField>
+      <TextField
+        id="bloque"
+        label="Bloque"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.bloque}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("bloque", formData.bloque)}
+        errorMessage={errors.bloque?.errorMessage}
+        hasError={errors.bloque?.hasError}
+        {...getOverrideProps(overrides, "bloque")}
+      ></TextField>
 
+<TextField
+        id="pisos"
+        label="Pisos"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.pisos}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("pisos", formData.pisos)}
+        errorMessage={errors.pisos?.errorMessage}
+        hasError={errors.pisos?.hasError}
+        {...getOverrideProps(overrides, "pisos")}
+      ></TextField>
+
+      <TextField
+        id="tipo"
+        label="Tipo"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.tipo}
+        onChange={handleFieldChange}
+        onBlur={() => runValidationTasks("tipo", formData.tipo)}
+        errorMessage={errors.tipo?.errorMessage}
+        hasError={errors.tipo?.hasError}
+        {...getOverrideProps(overrides, "tipo")}
+      ></TextField>
+
+      <TextField
+        id="entidadBancaria"
+        label="Entidad bancaria"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.entidadBancaria}
+        onChange={handleFieldChange}
+        onBlur={() =>
+          runValidationTasks("entidadBancaria", formData.entidadBancaria)
+        }
+        errorMessage={errors.entidadBancaria?.errorMessage}
+        hasError={errors.entidadBancaria?.hasError}
+        {...getOverrideProps(overrides, "entidadBancaria")}
+      ></TextField>
+      <Heading level={sectionsHeadingLevel}>Generalidades</Heading>
+
+      <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
 
       <TextField
         id="fechaTasacion"
@@ -336,62 +403,7 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "tipoTasacion")}
       ></TextField>
 
-      <TextField
-        id="pisos"
-        label="Pisos"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.pisos}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("pisos", formData.pisos)}
-        errorMessage={errors.pisos?.errorMessage}
-        hasError={errors.pisos?.hasError}
-        {...getOverrideProps(overrides, "pisos")}
-      ></TextField>
-
-      <TextField
-        id="tipo"
-        label="Tipo"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.tipo}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("tipo", formData.tipo)}
-        errorMessage={errors.tipo?.errorMessage}
-        hasError={errors.tipo?.hasError}
-        {...getOverrideProps(overrides, "tipo")}
-      ></TextField>
-
-      <TextField
-        id="entidadBancaria"
-        label="Entidad bancaria"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.entidadBancaria}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("entidadBancaria", formData.entidadBancaria)
-        }
-        errorMessage={errors.entidadBancaria?.errorMessage}
-        hasError={errors.entidadBancaria?.hasError}
-        {...getOverrideProps(overrides, "entidadBancaria")}
-      ></TextField>
-
-      <TextField
-        id="tipoTopologia"
-        label="Tipo topologia"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.tipoTopologia}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("tipoTopologia", formData.tipoTopologia)
-        }
-        errorMessage={errors.tipoTopologia?.errorMessage}
-        hasError={errors.tipoTopologia?.hasError}
-        {...getOverrideProps(overrides, "tipoTopologia")}
-      ></TextField>
-      <TextField
+<TextField
         id="ubicacion"
         label="Ubicacion"
         isRequired={false}
@@ -403,23 +415,10 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.ubicacion?.hasError}
         {...getOverrideProps(overrides, "ubicacion")}
       ></TextField>
-      <TextField
-        id="ubicacionTerreno"
-        label="Ubicacion terreno"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.ubicacionTerreno}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("ubicacionTerreno", formData.ubicacionTerreno)
-        }
-        errorMessage={errors.ubicacionTerreno?.errorMessage}
-        hasError={errors.ubicacionTerreno?.hasError}
-        {...getOverrideProps(overrides, "ubicacionTerreno")}
-      ></TextField>
+
+      </Grid>
 
       <Heading level={sectionsHeadingLevel}>Aspectos del Solicitante</Heading>
-
 
       <TextField
         id="propietario"
@@ -433,52 +432,44 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.propietario?.hasError}
         {...getOverrideProps(overrides, "propietario")}
       ></TextField>
-      <TextField
-        id="nombreSolicitante"
-        label="Nombre solicitante"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.nombreSolicitante}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("nombreSolicitante", formData.nombreSolicitante)
-        }
-        errorMessage={errors.nombreSolicitante?.errorMessage}
-        hasError={errors.nombreSolicitante?.hasError}
-        {...getOverrideProps(overrides, "nombreSolicitante")}
-      ></TextField>
-      <TextField
-        id="apellidoSolicitante"
-        label="Apellido solicitante"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.apellidoSolicitante}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks(
-            "apellidoSolicitante",
-            formData.apellidoSolicitante
-          )
-        }
-        errorMessage={errors.apellidoSolicitante?.errorMessage}
-        hasError={errors.apellidoSolicitante?.hasError}
-        {...getOverrideProps(overrides, "apellidoSolicitante")}
-      ></TextField>
-      <TextField
-        id="condominio"
-        label="Condominio"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.condominio}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("condominio", formData.condominio)}
-        errorMessage={errors.condominio?.errorMessage}
-        hasError={errors.condominio?.hasError}
-        {...getOverrideProps(overrides, "condominio")}
-      ></TextField>
-      <TextField
+
+      <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
+        <TextField
+          id="nombreSolicitante"
+          label="Nombre solicitante"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.nombreSolicitante}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("nombreSolicitante", formData.nombreSolicitante)
+          }
+          errorMessage={errors.nombreSolicitante?.errorMessage}
+          hasError={errors.nombreSolicitante?.hasError}
+          {...getOverrideProps(overrides, "nombreSolicitante")}
+        ></TextField>
+        <TextField
+          id="apellidoSolicitante"
+          label="Apellido solicitante"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.apellidoSolicitante}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks(
+              "apellidoSolicitante",
+              formData.apellidoSolicitante
+            )
+          }
+          errorMessage={errors.apellidoSolicitante?.errorMessage}
+          hasError={errors.apellidoSolicitante?.hasError}
+          {...getOverrideProps(overrides, "apellidoSolicitante")}
+        ></TextField>
+      </Grid>
+      
+      <TextAreaField
         id="direccionInmueble"
-        label="Direccion inmueble"
+        label="Dirección inmueble"
         isRequired={false}
         isReadOnly={false}
         value={formData.direccionInmueble}
@@ -489,72 +480,66 @@ export default function InformeTasacionCreateForm(props) {
         errorMessage={errors.direccionInmueble?.errorMessage}
         hasError={errors.direccionInmueble?.hasError}
         {...getOverrideProps(overrides, "direccionInmueble")}
-      ></TextField>
-      <TextField
-        id="bloque"
-        label="Bloque"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.bloque}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("bloque", formData.bloque)}
-        errorMessage={errors.bloque?.errorMessage}
-        hasError={errors.bloque?.hasError}
-        {...getOverrideProps(overrides, "bloque")}
-      ></TextField>
-      <TextField
-        id="etapa"
-        label="Etapa"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.etapa}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("etapa", formData.etapa)}
-        errorMessage={errors.etapa?.errorMessage}
-        hasError={errors.etapa?.hasError}
-        {...getOverrideProps(overrides, "etapa")}
-      ></TextField>
+      />
 
-      <TextField
-        id="manzana"
-        label="Manzana"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.manzana}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("manzana", formData.manzana)}
-        errorMessage={errors.manzana?.errorMessage}
-        hasError={errors.manzana?.hasError}
-        {...getOverrideProps(overrides, "manzana")}
-      ></TextField>
-      <TextField
-        id="edificioNo"
-        label="Edificio no"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.edificioNo}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("edificioNo", formData.edificioNo)}
-        errorMessage={errors.edificioNo?.errorMessage}
-        hasError={errors.edificioNo?.hasError}
-        {...getOverrideProps(overrides, "edificioNo")}
-      ></TextField>
-      <TextField
-        id="tipoEdificio"
-        label="Tipo edificio"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.tipoEdificio}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("tipoEdificio", formData.tipoEdificio)}
-        errorMessage={errors.tipoEdificio?.errorMessage}
-        hasError={errors.tipoEdificio?.hasError}
-        {...getOverrideProps(overrides, "tipoEdificio")}
-      ></TextField>
+      <Flex
+        direction="row">
+          <TextField
+            id="etapa"
+            label="Etapa"
+            isRequired={false}
+            isReadOnly={false}
+            value={formData.etapa}
+            onChange={handleFieldChange}
+            onBlur={() => runValidationTasks("etapa", formData.etapa)}
+            errorMessage={errors.etapa?.errorMessage}
+            hasError={errors.etapa?.hasError}
+            {...getOverrideProps(overrides, "etapa")}
+          ></TextField>
 
+        <TextField
+          id="manzana"
+          label="Manzana"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.manzana}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("manzana", formData.manzana)}
+          errorMessage={errors.manzana?.errorMessage}
+          hasError={errors.manzana?.hasError}
+          {...getOverrideProps(overrides, "manzana")}
+        ></TextField>
+
+  
+        <TextField
+          id="edificioNo"
+          label="Edificio No."
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.edificioNo}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("edificioNo", formData.edificioNo)}
+          errorMessage={errors.edificioNo?.errorMessage}
+          hasError={errors.edificioNo?.hasError}
+          {...getOverrideProps(overrides, "edificioNo")}
+        ></TextField>
+        <TextField
+          id="tipoEdificio"
+          label="Tipo edificio"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.tipoEdificio}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("tipoEdificio", formData.tipoEdificio)}
+          errorMessage={errors.tipoEdificio?.errorMessage}
+          hasError={errors.tipoEdificio?.hasError}
+          {...getOverrideProps(overrides, "tipoEdificio")}
+        ></TextField>
+        
+      </Flex>
       <Heading level={4}>Aspectos Legales</Heading>
 
-      <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
+      <Grid templateColumns="2fr 1fr" gap="1rem">
         <TextField
           id="numeroTitulo"
           label="Número de certificación de título"
@@ -583,6 +568,13 @@ export default function InformeTasacionCreateForm(props) {
           hasError={errors.constanciaVenta?.hasError}
           {...getOverrideProps(overrides, "constanciaVenta")}
         ></TextField>
+
+      </Grid>
+
+      <Grid
+        templateColumns="repeat(3, 1fr)"
+        gap="1rem"
+      >
         <TextField
           id="designacionCatastral"
           label="Designacion catastral"
@@ -624,6 +616,13 @@ export default function InformeTasacionCreateForm(props) {
           hasError={errors.folioNo?.hasError}
           {...getOverrideProps(overrides, "folioNo")}
         ></TextField>
+
+      </Grid>
+
+      <Grid
+        templateColumns="repeat(4, 1fr)"
+        gap="1rem"
+      >
         <TextField
           id="parcela"
           label="Parcela"
@@ -866,7 +865,7 @@ export default function InformeTasacionCreateForm(props) {
         <SwitchField
           id="otrosInfraestructura"
           labelPosition="end"
-          label="Otra infraestructura"
+          label="Otras"
           defaultChecked={false}
           isDisabled={false}
           isChecked={formData.otrosInfraestructura}
@@ -884,34 +883,36 @@ export default function InformeTasacionCreateForm(props) {
       </Grid>
 
       <Heading level={4}>Características del Terreno y Mejoras</Heading>
+
       <Heading level={5}>Terreno</Heading>
 
-      <TextField
-        id="area"
-        label="Area"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.area}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("area", formData.area)}
-        errorMessage={errors.area?.errorMessage}
-        hasError={errors.area?.hasError}
-        {...getOverrideProps(overrides, "area")}
-      ></TextField>
-      <TextField
-        id="forma"
-        label="Forma"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.forma}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("forma", formData.forma)}
-        errorMessage={errors.forma?.errorMessage}
-        hasError={errors.forma?.hasError}
-        {...getOverrideProps(overrides, "forma")}
-      ></TextField>
+      <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+        <TextField
+          id="area"
+          label="Area"
+          isRequired={false}
+          isReadOnly={false}
+          type="number"
+          step="any"
+          value={formData.area}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("area", formData.area)}
+          errorMessage={errors.area?.errorMessage}
+          hasError={errors.area?.hasError}
+          {...getOverrideProps(overrides, "area")}
+        ></TextField>
+        <TextField
+          id="forma"
+          label="Forma"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.forma}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("forma", formData.forma)}
+          errorMessage={errors.forma?.errorMessage}
+          hasError={errors.forma?.hasError}
+          {...getOverrideProps(overrides, "forma")}
+        ></TextField>
 
       <TextField
         id="topografia"
@@ -925,38 +926,75 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.topografia?.hasError}
         {...getOverrideProps(overrides, "topografia")}
       ></TextField>
-      <TextField
-        id="edad"
-        label="Edad"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.edad}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("edad", formData.edad)}
-        errorMessage={errors.edad?.errorMessage}
-        hasError={errors.edad?.hasError}
-        {...getOverrideProps(overrides, "edad")}
-      ></TextField>
+      </Grid>
 
       <TextField
-        id="nivelEdificacion"
-        label="Nivel edificacion"
+        id="ubicacionTerreno"
+        label="Ubicacion Terreno"
         isRequired={false}
         isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.nivelEdificacion}
+        value={formData.ubicacionTerreno}
         onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("nivelEdificacion", formData.nivelEdificacion)}
-        errorMessage={errors.nivelEdificacion?.errorMessage}
-        hasError={errors.nivelEdificacion?.hasError}
-        {...getOverrideProps(overrides, "nivelEdificacion")}
+        onBlur={() =>
+          runValidationTasks("ubicacionTerreno", formData.ubicacionTerreno)
+        }
+        errorMessage={errors.ubicacionTerreno?.errorMessage}
+        hasError={errors.ubicacionTerreno?.hasError}
+        {...getOverrideProps(overrides, "ubicacionTerreno")}
       ></TextField>
+
+      <Heading level={5}>Topología y Altimetría</Heading>
+
+      <TextField
+        id="tipoTopologia"
+        label="Tipo"
+        isRequired={false}
+        isReadOnly={false}
+        value={formData.tipoTopologia}
+        onChange={handleFieldChange}
+        onBlur={() =>
+          runValidationTasks("tipoTopologia", formData.tipoTopologia)
+        }
+        errorMessage={errors.tipoTopologia?.errorMessage}
+        hasError={errors.tipoTopologia?.hasError}
+        {...getOverrideProps(overrides, "tipoTopologia")}
+      ></TextField>
+
+      <Grid templateColumns="1fr 1fr" gap="1rem">
+        <TextField
+          id="edad"
+          label="Edad"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.edad}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("edad", formData.edad)}
+          errorMessage={errors.edad?.errorMessage}
+          hasError={errors.edad?.hasError}
+          {...getOverrideProps(overrides, "edad")}
+        ></TextField>
+
+        <TextField
+          id="nivelEdificacion"
+          label="Nivel edificacion"
+          isRequired={false}
+          isReadOnly={false}
+          type="number"
+          step="any"
+          value={formData.nivelEdificacion}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("nivelEdificacion", formData.nivelEdificacion)}
+          errorMessage={errors.nivelEdificacion?.errorMessage}
+          hasError={errors.nivelEdificacion?.hasError}
+          {...getOverrideProps(overrides, "nivelEdificacion")}
+        ></TextField>
+
+      </Grid>
+
 
       <Heading level={sectionsHeadingLevel}>Distribución Interior</Heading>
 
-
-      <TextField
+      <TextAreaField
         id="descripcionInterior"
         label="Descripcion interior"
         isRequired={false}
@@ -967,209 +1005,216 @@ export default function InformeTasacionCreateForm(props) {
         errorMessage={errors.descripcionInterior?.errorMessage}
         hasError={errors.descripcionInterior?.hasError}
         {...getOverrideProps(overrides, "descripcionInterior")}
-      ></TextField>
+      ></TextAreaField>
 
     <Heading level={sectionsHeadingLevel}>Terminaciones</Heading>
 
-      <TextField
-        id="terminacionPisosInteriores"
-        label="Terminacion pisos interiores"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPisosInteriores}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionPisosInteriores", formData.terminacionPisosInteriores)}
-        errorMessage={errors.terminacionPisosInteriores?.errorMessage}
-        hasError={errors.terminacionPisosInteriores?.hasError}
-        {...getOverrideProps(overrides, "terminacionPisosInteriores")}
-      ></TextField>
-      <TextField
-        id="terminacionPisosExteriores"
-        label="Terminacion pisos exteriores"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPisosExteriores}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionPisosExteriores", formData.terminacionPisosExteriores)}
-        errorMessage={errors.terminacionPisosExteriores?.errorMessage}
-        hasError={errors.terminacionPisosExteriores?.hasError}
-        {...getOverrideProps(overrides, "terminacionPisosExteriores")}
-      ></TextField>
-      <TextField
-        id="terminacionHuellas"
-        label="Terminacion huellas"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionHuellas}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionHuellas", formData.terminacionHuellas)}
-        errorMessage={errors.terminacionHuellas?.errorMessage}
-        hasError={errors.terminacionHuellas?.hasError}
-        {...getOverrideProps(overrides, "terminacionHuellas")}
-      ></TextField>
-      <TextField
-        id="terminacionMuros"
-        label="Terminacion muros"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionMuros}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionMuros", formData.terminacionMuros)}
-        errorMessage={errors.terminacionMuros?.errorMessage}
-        hasError={errors.terminacionMuros?.hasError}
-        {...getOverrideProps(overrides, "terminacionMuros")}
-      ></TextField>
-      <TextField
-        id="terminacionRevestimiento"
-        label="Terminacion revestimiento"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionRevestimiento}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionRevestimiento", formData.terminacionRevestimiento)}
-        errorMessage={errors.terminacionRevestimiento?.errorMessage}
-        hasError={errors.terminacionRevestimiento?.hasError}
-        {...getOverrideProps(overrides, "terminacionRevestimiento")}
-      ></TextField>
-      <TextField
-        id="terminacionPuertaPrincipal"
-        label="Terminacion puerta principal"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPuertaPrincipal}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionPuertaPrincipal", formData.terminacionPuertaPrincipal)}
-        errorMessage={errors.terminacionPuertaPrincipal?.errorMessage}
-        hasError={errors.terminacionPuertaPrincipal?.hasError}
-        {...getOverrideProps(overrides, "terminacionPuertaPrincipal")}
-      ></TextField>
-      <TextField
-        id="terminacionPuertasInteriores"
-        label="Terminacion puertas interiores"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPuertasInteriores}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("terminacionPuertasInteriores", formData.terminacionPuertasInteriores)}
-        errorMessage={errors.terminacionPuertasInteriores?.errorMessage}
-        hasError={errors.terminacionPuertasInteriores?.hasError}
-        {...getOverrideProps(overrides, "terminacionPuertasInteriores")}
-      ></TextField>
-      <TextField
-        id="terminacionPuertasCloset"
-        label="Terminacion puertas closet"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPuertasCloset}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionPuertasCloset", formData.terminacionPuertasCloset)
-        }
-        errorMessage={errors.terminacionPuertasCloset?.errorMessage}
-        hasError={errors.terminacionPuertasCloset?.hasError}
-        {...getOverrideProps(overrides, "terminacionPuertasCloset")}
-      ></TextField>
-      <TextField
-        id="terminacionGabinetes"
-        label="Terminacion gabinetes"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionGabinetes}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionGabinetes", formData.terminacionGabinetes)
-        }
-        errorMessage={errors.terminacionGabinetes?.errorMessage}
-        hasError={errors.terminacionGabinetes?.hasError}
-        {...getOverrideProps(overrides, "terminacionGabinetes")}
-      ></TextField>
+    <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
 
+        <TextField
+          id="terminacionPisosInteriores"
+          label="Pisos interiores"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPisosInteriores}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionPisosInteriores", formData.terminacionPisosInteriores)}
+          errorMessage={errors.terminacionPisosInteriores?.errorMessage}
+          hasError={errors.terminacionPisosInteriores?.hasError}
+          {...getOverrideProps(overrides, "terminacionPisosInteriores")}
+        ></TextField>
+        <TextField
+          id="terminacionPisosExteriores"
+          label="Pisos exteriores"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPisosExteriores}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionPisosExteriores", formData.terminacionPisosExteriores)}
+          errorMessage={errors.terminacionPisosExteriores?.errorMessage}
+          hasError={errors.terminacionPisosExteriores?.hasError}
+          {...getOverrideProps(overrides, "terminacionPisosExteriores")}
+        ></TextField>
+        <TextField
+          id="terminacionHuellas"
+          label="Hellas"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionHuellas}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionHuellas", formData.terminacionHuellas)}
+          errorMessage={errors.terminacionHuellas?.errorMessage}
+          hasError={errors.terminacionHuellas?.hasError}
+          {...getOverrideProps(overrides, "terminacionHuellas")}
+        ></TextField>
+        <TextField
+          id="terminacionMuros"
+          label="Muros"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionMuros}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionMuros", formData.terminacionMuros)}
+          errorMessage={errors.terminacionMuros?.errorMessage}
+          hasError={errors.terminacionMuros?.hasError}
+          {...getOverrideProps(overrides, "terminacionMuros")}
+        ></TextField>
+        <TextField
+          id="terminacionRevestimiento"
+          label="Revestimiento"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionRevestimiento}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionRevestimiento", formData.terminacionRevestimiento)}
+          errorMessage={errors.terminacionRevestimiento?.errorMessage}
+          hasError={errors.terminacionRevestimiento?.hasError}
+          {...getOverrideProps(overrides, "terminacionRevestimiento")}
+        ></TextField>
+        <TextField
+          id="terminacionPuertaPrincipal"
+          label="Puerta principal"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPuertaPrincipal}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionPuertaPrincipal", formData.terminacionPuertaPrincipal)}
+          errorMessage={errors.terminacionPuertaPrincipal?.errorMessage}
+          hasError={errors.terminacionPuertaPrincipal?.hasError}
+          {...getOverrideProps(overrides, "terminacionPuertaPrincipal")}
+        ></TextField>
+        <TextField
+          id="terminacionPuertasInteriores"
+          label="Puertas interiores"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPuertasInteriores}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("terminacionPuertasInteriores", formData.terminacionPuertasInteriores)}
+          errorMessage={errors.terminacionPuertasInteriores?.errorMessage}
+          hasError={errors.terminacionPuertasInteriores?.hasError}
+          {...getOverrideProps(overrides, "terminacionPuertasInteriores")}
+        ></TextField>
+        <TextField
+          id="terminacionPuertasCloset"
+          label="Puertas closet"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPuertasCloset}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionPuertasCloset", formData.terminacionPuertasCloset)
+          }
+          errorMessage={errors.terminacionPuertasCloset?.errorMessage}
+          hasError={errors.terminacionPuertasCloset?.hasError}
+          {...getOverrideProps(overrides, "terminacionPuertasCloset")}
+        ></TextField>
+        <TextField
+          id="terminacionGabinetes"
+          label="Gabinetes"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionGabinetes}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionGabinetes", formData.terminacionGabinetes)
+          }
+          errorMessage={errors.terminacionGabinetes?.errorMessage}
+          hasError={errors.terminacionGabinetes?.hasError}
+          {...getOverrideProps(overrides, "terminacionGabinetes")}
+        ></TextField>
 
+        <TextField
+          id="terminacionTopeCocina"
+          label="Tope cocina"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionTopeCocina}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionTopeCocina", formData.terminacionTopeCocina)
+          }
+          errorMessage={errors.terminacionTopeCocina?.errorMessage}
+          hasError={errors.terminacionTopeCocina?.hasError}
+          {...getOverrideProps(overrides, "terminacionTopeCocina")}
+        ></TextField>
+        <TextField
+          id="terminacionTecho"
+          label="Techo"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionTecho}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionTecho", formData.terminacionTecho)
+          }
+          errorMessage={errors.terminacionTecho?.errorMessage}
+          hasError={errors.terminacionTecho?.hasError}
+          {...getOverrideProps(overrides, "terminacionTecho")}
+        ></TextField>
+        <TextField
+          id="terminacionCornisa"
+          label="Cornisa"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionCornisa}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionCornisa", formData.terminacionCornisa)
+          }
+          errorMessage={errors.terminacionCornisa?.errorMessage}
+          hasError={errors.terminacionCornisa?.hasError}
+          {...getOverrideProps(overrides, "terminacionCornisa")}
+        ></TextField>
+        <TextField
+          id="terminacionPlafones"
+          label="Plafones"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPlafones}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionPlafones", formData.terminacionPlafones)
+          }
+          errorMessage={errors.terminacionPlafones?.errorMessage}
+          hasError={errors.terminacionPlafones?.hasError}
+          {...getOverrideProps(overrides, "terminacionPlafones")}
+        ></TextField>
+        <TextField
+          id="terminacionVentanas"
+          label="Ventanas"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionVentanas}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionVentanas", formData.terminacionVentanas)
+          }
+          errorMessage={errors.terminacionVentanas?.errorMessage}
+          hasError={errors.terminacionVentanas?.hasError}
+          {...getOverrideProps(overrides, "terminacionVentanas")}
+        ></TextField>
+        <TextField
+          id="terminacionPasamanos"
+          label="Pasamanos"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.terminacionPasamanos}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("terminacionPasamanos", formData.terminacionPasamanos)
+          }
+          errorMessage={errors.terminacionPasamanos?.errorMessage}
+          hasError={errors.terminacionPasamanos?.hasError}
+          {...getOverrideProps(overrides, "terminacionPasamanos")}
+        ></TextField>
 
-<TextField
-        id="terminacionTopeCocina"
-        label="Terminacion tope cocina"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionTopeCocina}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionTopeCocina", formData.terminacionTopeCocina)
-        }
-        errorMessage={errors.terminacionTopeCocina?.errorMessage}
-        hasError={errors.terminacionTopeCocina?.hasError}
-        {...getOverrideProps(overrides, "terminacionTopeCocina")}
-      ></TextField>
-      <TextField
-        id="terminacionTecho"
-        label="Terminacion techo"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionTecho}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionTecho", formData.terminacionTecho)
-        }
-        errorMessage={errors.terminacionTecho?.errorMessage}
-        hasError={errors.terminacionTecho?.hasError}
-        {...getOverrideProps(overrides, "terminacionTecho")}
-      ></TextField>
-      <TextField
-        id="terminacionCornisa"
-        label="Terminacion cornisa"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionCornisa}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionCornisa", formData.terminacionCornisa)
-        }
-        errorMessage={errors.terminacionCornisa?.errorMessage}
-        hasError={errors.terminacionCornisa?.hasError}
-        {...getOverrideProps(overrides, "terminacionCornisa")}
-      ></TextField>
-      <TextField
-        id="terminacionPlafones"
-        label="Terminacion plafones"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPlafones}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionPlafones", formData.terminacionPlafones)
-        }
-        errorMessage={errors.terminacionPlafones?.errorMessage}
-        hasError={errors.terminacionPlafones?.hasError}
-        {...getOverrideProps(overrides, "terminacionPlafones")}
-      ></TextField>
-      <TextField
-        id="terminacionVentanas"
-        label="Terminacion ventanas"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionVentanas}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionVentanas", formData.terminacionVentanas)
-        }
-        errorMessage={errors.terminacionVentanas?.errorMessage}
-        hasError={errors.terminacionVentanas?.hasError}
-        {...getOverrideProps(overrides, "terminacionVentanas")}
-      ></TextField>
-      <TextField
-        id="terminacionPasamanos"
-        label="Terminacion pasamanos"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.terminacionPasamanos}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("terminacionPasamanos", formData.terminacionPasamanos)
-        }
-        errorMessage={errors.terminacionPasamanos?.errorMessage}
-        hasError={errors.terminacionPasamanos?.hasError}
-        {...getOverrideProps(overrides, "terminacionPasamanos")}
-      ></TextField>
+    </Grid>
+
+    <Heading level={sectionsHeadingLevel}>Levantamiento Fotográfico</Heading>
+
+    <Heading level={sectionsHeadingLevel}>Valor del Inmueble</Heading>
+
       <TextField
         id="areaBasicoTerreno"
         label="Area basico terreno"
@@ -1294,9 +1339,11 @@ export default function InformeTasacionCreateForm(props) {
         hasError={errors.valorInmueble?.hasError}
         {...getOverrideProps(overrides, "valorInmueble")}
       ></TextField>
-      <TextField
+
+      <Heading level={sectionsHeadingLevel}>Comentario Tasadores</Heading>
+
+      <TextAreaField
         id="comentario"
-        label="Comentario"
         isRequired={false}
         isReadOnly={false}
         value={formData.comentario}
@@ -1305,7 +1352,7 @@ export default function InformeTasacionCreateForm(props) {
         errorMessage={errors.comentario?.errorMessage}
         hasError={errors.comentario?.hasError}
         {...getOverrideProps(overrides, "comentario")}
-      ></TextField>
+      />
 
       
 
