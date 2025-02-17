@@ -13,6 +13,15 @@ import {
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createInformeTasacion } from "./graphql/mutations";
+import CurrencyInput from "react-currency-input-field";
+
+const currencyOptions = [
+  { code: "USD", symbol: "$" },
+  { code: "EUR", symbol: "€" },
+  { code: "GBP", symbol: "£" },
+  { code: "JPY", symbol: "¥" },
+];
+
 const client = generateClient();
 
 const initialValues = {
@@ -89,7 +98,24 @@ const initialValues = {
   comentario: "",
 };
 
+const CurrencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "DOP",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const NumericFormatter = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+  useGrouping: false,
+});
+
+
 export default function InformeTasacionCreateForm(props) {
+
+  
+
   const titleHeadingLevel = 3;
   const sectionsHeadingLevel = titleHeadingLevel + 1;
   const subSectionsHeadingLevel = sectionsHeadingLevel + 1;
@@ -110,6 +136,11 @@ export default function InformeTasacionCreateForm(props) {
   const [forma, setForma] = React.useState(initialValues.forma);
 
   const [errors, setErrors] = React.useState({});
+
+  const [currency, setCurrency] = React.useState("USD");
+
+  const totalArea = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
+
 
   const resetStateValues = () => {
     setFormData(initialValues);
@@ -227,6 +258,23 @@ export default function InformeTasacionCreateForm(props) {
     setFormData(updatedFields);
   };
 
+  const handleValueChange = (val) => {
+    setFormData((prev) => ({
+      ...prev,
+      montoDepreciacion: val || "", // Ensure it doesn't set `null`
+    }));
+  };
+
+  const handleCurrencyChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      currency: e.target.value,
+    }));
+  };
+  
+
+  
+
   return (
     <Grid
       as="form"
@@ -286,6 +334,29 @@ export default function InformeTasacionCreateForm(props) {
       {...getOverrideProps(overrides, "InformeTasacionCreateForm")}
       {...rest}
     >
+
+    <div>
+      <label>Amount:</label>
+      <CurrencyInput
+        id="currency-input"
+        name="currency"
+        placeholder="Enter amount"
+        decimalsLimit={2}
+        prefix={currencyOptions.find((c) => c.code === currency)?.symbol}
+        value={formData.montoDepreciacion}
+        onValueChange={handleFieldChange}
+      />
+
+      <label>Currency:</label>
+      <select value={currency} onChange={handleCurrencyChange}>
+        {currencyOptions.map((curr) => (
+          <option key={curr.code} value={curr.code}>
+            {curr.code}
+          </option>
+        ))}
+      </select>
+    </div>
+
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
       <TextField
@@ -1214,39 +1285,50 @@ export default function InformeTasacionCreateForm(props) {
     <Heading level={sectionsHeadingLevel}>Levantamiento Fotográfico</Heading>
 
     <Heading level={sectionsHeadingLevel}>Valor del Inmueble</Heading>
+      
+      <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+        <TextField
+          id="areaBasicoTerreno"
+          label="Área terreno"
+          isRequired={false}
+          isReadOnly={false}
+          type="number"
+          step="any"
+          value={formData.areaBasicoTerreno}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("areaBasicoTerreno", formData.areaBasicoTerreno)
+          }
+          errorMessage={errors.areaBasicoTerreno?.errorMessage}
+          hasError={errors.areaBasicoTerreno?.hasError}
+          {...getOverrideProps(overrides, "areaBasicoTerreno")}
+        ></TextField>
+        <TextField
+          id="costoMetroBasicoTerreno"
+          label="Costo metro cuadrado"
+          isRequired={false}
+          isReadOnly={false}
+          type="number"
+          step="any"
+          value={formData.costoMetroBasicoTerreno}
+          onChange={handleFieldChange}
+          onBlur={() =>
+            runValidationTasks("costoMetroBasicoTerreno", formData.costoMetroBasicoTerreno)
+          }
+          errorMessage={errors.costoMetroBasicoTerreno?.errorMessage}
+          hasError={errors.costoMetroBasicoTerreno?.hasError}
+          {...getOverrideProps(overrides, "costoMetroBasicoTerreno")}
+        ></TextField>
 
-      <TextField
-        id="areaBasicoTerreno"
-        label="Area basico terreno"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.areaBasicoTerreno}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("areaBasicoTerreno", formData.areaBasicoTerreno)
-        }
-        errorMessage={errors.areaBasicoTerreno?.errorMessage}
-        hasError={errors.areaBasicoTerreno?.hasError}
-        {...getOverrideProps(overrides, "areaBasicoTerreno")}
-      ></TextField>
-      <TextField
-        id="costoMetroBasicoTerreno"
-        label="Costo metro basico terreno"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.costoMetroBasicoTerreno}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("costoMetroBasicoTerreno", formData.costoMetroBasicoTerreno)
-        }
-        errorMessage={errors.costoMetroBasicoTerreno?.errorMessage}
-        hasError={errors.costoMetroBasicoTerreno?.hasError}
-        {...getOverrideProps(overrides, "costoMetroBasicoTerreno")}
-      ></TextField>
+        <TextField
+          label="Total"
+          value={totalArea}
+          isReadOnly
+          backgroundColor="#f3f3f3"
+          fontWeight="bold"
+        />
+
+      </Grid>
       <TextField
         id="areaBasicoConstruccion"
         label="Area basico construccion"
@@ -1382,6 +1464,11 @@ export default function InformeTasacionCreateForm(props) {
           ></Button>
         </Flex>
       </Flex>
+
+
+
     </Grid>
+
+    
   );
 }
