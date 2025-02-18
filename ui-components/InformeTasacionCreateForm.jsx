@@ -157,10 +157,17 @@ export default function InformeTasacionCreateForm(props) {
 
   const totalTerreno = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
   const totalConstruccion = formData.areaBasicoConstruccion * formData.costoMetroBasicoConstruccion;
+
   const totalParqueo = formData.areaParqueo * formData.costoMetroParqueo;
   const totalApartamento = formData.areaApartamento * formData.costoMetroApartamento;
   const totalTerraza = formData.areaTerraza * formData.costoMetroTerraza;
+  formData.valorInmueble = formData.areaParqueo * formData.costoMetroParqueo
+  + formData.areaApartamento * formData.costoMetroApartamento
+  + formData.areaTerraza * formData.costoMetroTerraza;
 
+  const totalInmuebleApartamento = formData.areaParqueo * formData.costoMetroParqueo
+  + formData.areaApartamento * formData.costoMetroApartamento
+  + formData.areaTerraza * formData.costoMetroTerraza;
 
   const resetStateValues = () => {
     setFormData(initialValues);
@@ -1602,7 +1609,7 @@ export default function InformeTasacionCreateForm(props) {
 
 
       {
-        tieneTerraza ? (
+        formData.tieneTerraza ? (
           <div>
             <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
               <div className="amplify-flex amplify-field amplify-textfield">
@@ -1656,18 +1663,16 @@ export default function InformeTasacionCreateForm(props) {
       }
 
       <TextField
-        id="valorInmueble"
         label="Valor inmueble"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.valorInmueble}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("valorInmueble", formData.valorInmueble)}
-        errorMessage={errors.valorInmueble?.errorMessage}
-        hasError={errors.valorInmueble?.hasError}
-        {...getOverrideProps(overrides, "valorInmueble")}
+        isReadOnly
+        value={`${
+          currencyOptions.find((c) => c.code == currency)?.symbol || ""
+        } ${Number(totalInmuebleApartamento).toLocaleString("en-US", { 
+          minimumFractionDigits: 2, 
+          maximumFractionDigits: 2 
+        })}`}
+        backgroundColor="#f3f3f3"
+        fontWeight="bold"
       ></TextField>
 
       <Heading level={sectionsHeadingLevel}>Comentario Tasadores</Heading>
