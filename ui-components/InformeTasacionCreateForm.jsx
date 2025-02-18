@@ -8,7 +8,8 @@ import {
   SwitchField,
   TextField,
   TextAreaField,
-  Heading
+  Heading,
+  SelectField
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
@@ -16,10 +17,8 @@ import { createInformeTasacion } from "./graphql/mutations";
 import CurrencyInput from "react-currency-input-field";
 
 const currencyOptions = [
-  { code: "USD", symbol: "$" },
-  { code: "EUR", symbol: "€" },
-  { code: "GBP", symbol: "£" },
-  { code: "JPY", symbol: "¥" },
+  { code: "DOP", symbol: "RD$", desc: "Peso dominicano"},
+  { code: "USD", symbol: "USD$", desc: "Dólar estadounidense" },
 ];
 
 const client = generateClient();
@@ -137,7 +136,7 @@ export default function InformeTasacionCreateForm(props) {
 
   const [errors, setErrors] = React.useState({});
 
-  const [currency, setCurrency] = React.useState("USD");
+  const [currency, setCurrency] = React.useState("DOP");
 
   const totalArea = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
 
@@ -258,21 +257,25 @@ export default function InformeTasacionCreateForm(props) {
     setFormData(updatedFields);
   };
 
+  const handleAreaChange = (e) => {
+    const { attributes, value, type, checked } = e.target;
+
+    const parsedValue = value.replace(/[^\d.]/g, '');
+    
+    let updatedFields = {
+      ...formData,
+      [attributes.id.value]: parsedValue,
+    };
+
+    setFormData(updatedFields);
+  };
+
   const handleValueChange = (val) => {
     setFormData((prev) => ({
       ...prev,
-      montoDepreciacion: val || "", // Ensure it doesn't set `null`
+      costoMetroBasicoTerreno: val || "", // Ensure it doesn't set `null`
     }));
   };
-
-  const handleCurrencyChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      currency: e.target.value,
-    }));
-  };
-  
-
   
 
   return (
@@ -334,28 +337,6 @@ export default function InformeTasacionCreateForm(props) {
       {...getOverrideProps(overrides, "InformeTasacionCreateForm")}
       {...rest}
     >
-
-    <div>
-      <label>Amount:</label>
-      <CurrencyInput
-        id="currency-input"
-        name="currency"
-        placeholder="Enter amount"
-        decimalsLimit={2}
-        prefix={currencyOptions.find((c) => c.code === currency)?.symbol}
-        value={formData.montoDepreciacion}
-        onValueChange={handleFieldChange}
-      />
-
-      <label>Currency:</label>
-      <select value={currency} onChange={handleCurrencyChange}>
-        {currencyOptions.map((curr) => (
-          <option key={curr.code} value={curr.code}>
-            {curr.code}
-          </option>
-        ))}
-      </select>
-    </div>
 
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
@@ -1285,50 +1266,72 @@ export default function InformeTasacionCreateForm(props) {
     <Heading level={sectionsHeadingLevel}>Levantamiento Fotográfico</Heading>
 
     <Heading level={sectionsHeadingLevel}>Valor del Inmueble</Heading>
+
+        <SelectField
+          label="Moneda"
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}>
+          
+          {currencyOptions.map((currency) => (
+            <option key={currency.code} value={currency.code}>
+              {currency.desc}
+            </option>
+          ))}
+        </SelectField>
       
       <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
-        <TextField
-          id="areaBasicoTerreno"
-          label="Área terreno"
-          isRequired={false}
-          isReadOnly={false}
-          type="number"
-          step="any"
-          value={formData.areaBasicoTerreno}
-          onChange={handleFieldChange}
-          onBlur={() =>
-            runValidationTasks("areaBasicoTerreno", formData.areaBasicoTerreno)
-          }
-          errorMessage={errors.areaBasicoTerreno?.errorMessage}
-          hasError={errors.areaBasicoTerreno?.hasError}
-          {...getOverrideProps(overrides, "areaBasicoTerreno")}
-        ></TextField>
-        <TextField
-          id="costoMetroBasicoTerreno"
-          label="Costo metro cuadrado"
-          isRequired={false}
-          isReadOnly={false}
-          type="number"
-          step="any"
-          value={formData.costoMetroBasicoTerreno}
-          onChange={handleFieldChange}
-          onBlur={() =>
-            runValidationTasks("costoMetroBasicoTerreno", formData.costoMetroBasicoTerreno)
-          }
-          errorMessage={errors.costoMetroBasicoTerreno?.errorMessage}
-          hasError={errors.costoMetroBasicoTerreno?.hasError}
-          {...getOverrideProps(overrides, "costoMetroBasicoTerreno")}
-        ></TextField>
+
+        <div className="amplify-flex amplify-field amplify-textfield">
+          <label className="amplify-label" htmlFor="areaBasicoTerreno">
+            Área terreno (m&sup2;)
+          </label>
+          <CurrencyInput
+            id="areaBasicoTerreno" 
+            name="areaBasicoTerreno"
+            className="amplify-input"
+            decimalsLimit={2}
+            value={formData.areaBasicoTerreno}
+            onChange={handleAreaChange}
+          >
+          </CurrencyInput>
+        </div>
+
+
+        <div className="amplify-flex amplify-field amplify-textfield">
+          <label className="amplify-label" htmlFor="costoMetroBasicoTerreno">
+            Costo metro cuadrado
+          </label>
+          
+          <CurrencyInput
+            id="costoMetroBasicoTerreno"
+            name="costoMetro"
+            label="Costo metro cuadrado"
+            className="amplify-input"
+            placeholder=""
+            decimalsLimit={2}
+            prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
+            value={formData.costoMetroBasicoTerreno}
+            onValueChange={handleValueChange}
+          />
+        </div>
+
 
         <TextField
           label="Total"
-          value={totalArea}
+          value={`${
+            currencyOptions.find((c) => c.code == currency)?.symbol || ""
+          } ${Number(totalArea).toLocaleString("en-US", { 
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2 
+          })}`}          
           isReadOnly
           backgroundColor="#f3f3f3"
           fontWeight="bold"
         />
 
       </Grid>
+
+      
       <TextField
         id="areaBasicoConstruccion"
         label="Area basico construccion"
