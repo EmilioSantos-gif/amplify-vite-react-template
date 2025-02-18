@@ -21,6 +21,15 @@ const currencyOptions = [
   { code: "USD", symbol: "USD$", desc: "Dólar estadounidense" },
 ];
 
+const tiposTasacion = [
+  "Apartamento",
+  "Casa",
+  "Solar",
+  "Villa",
+  "Town house",
+  "Promesa de venta"
+]
+
 const client = generateClient();
 
 const initialValues = {
@@ -95,6 +104,14 @@ const initialValues = {
   depreciacionMejoras: "",
   valorInmueble: "",
   comentario: "",
+  areaParqueo: "",
+  costoMetroParqueo: "",
+  areaApartamento: "",
+  costoMetroApartamento: "",
+  areaTerraza: "",
+  costoMetroTerraza: "",
+  tasaDolar: "",
+  tieneTerraza: false
 };
 
 const CurrencyFormatter = new Intl.NumberFormat("en-US", {
@@ -138,7 +155,11 @@ export default function InformeTasacionCreateForm(props) {
 
   const [currency, setCurrency] = React.useState("DOP");
 
-  const totalArea = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
+  const totalTerreno = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
+  const totalConstruccion = formData.areaBasicoConstruccion * formData.costoMetroBasicoConstruccion;
+  const totalParqueo = formData.areaParqueo * formData.costoMetroParqueo;
+  const totalApartamento = formData.areaApartamento * formData.costoMetroApartamento;
+  const totalTerraza = formData.areaTerraza * formData.costoMetroTerraza;
 
 
   const resetStateValues = () => {
@@ -257,7 +278,7 @@ export default function InformeTasacionCreateForm(props) {
     setFormData(updatedFields);
   };
 
-  const handleAreaChange = (e) => {
+  const handleDecimalInputChange = (e) => {
     const { attributes, value, type, checked } = e.target;
 
     const parsedValue = value.replace(/[^\d.]/g, '');
@@ -340,56 +361,69 @@ export default function InformeTasacionCreateForm(props) {
 
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
-      <TextField
-        id="condominio"
-        label="Condominio"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.condominio}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("condominio", formData.condominio)}
-        errorMessage={errors.condominio?.errorMessage}
-        hasError={errors.condominio?.hasError}
-        {...getOverrideProps(overrides, "condominio")}
-      ></TextField>
-      <TextField
-        id="bloque"
-        label="Bloque"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.bloque}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("bloque", formData.bloque)}
-        errorMessage={errors.bloque?.errorMessage}
-        hasError={errors.bloque?.hasError}
-        {...getOverrideProps(overrides, "bloque")}
-      ></TextField>
+      <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
+        <SelectField
+          label="Tipo tasacion"
+          id="tipoTasacion"
+          isRequired={true}
+          isReadOnly={false}
+          value={formData.tipoTasacion}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("tipoTasacion", formData.tipoTasacion)}
+          errorMessage={errors.tipoTasacion?.errorMessage}
+          hasError={errors.tipoTasacion?.hasError}
+          {...getOverrideProps(overrides, "tipoTasacion")}
+        >
+          <option key={""} value={""}>
+            {"---- Seleccione una opción ----"}
+            </option>
+          {tiposTasacion.map((tipo) => (
+            <option key={tipo} value={tipo}>
+            {tipo}
+            </option>
+          ))}
+        </SelectField>
 
-<TextField
-        id="pisos"
-        label="Pisos"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.pisos}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("pisos", formData.pisos)}
-        errorMessage={errors.pisos?.errorMessage}
-        hasError={errors.pisos?.hasError}
-        {...getOverrideProps(overrides, "pisos")}
-      ></TextField>
+        <TextField
+          id="condominio"
+          label="Condominio"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.condominio}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("condominio", formData.condominio)}
+          errorMessage={errors.condominio?.errorMessage}
+          hasError={errors.condominio?.hasError}
+          {...getOverrideProps(overrides, "condominio")}
+        ></TextField>
+        <TextField
+          id="bloque"
+          label="Bloque"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.bloque}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("bloque", formData.bloque)}
+          errorMessage={errors.bloque?.errorMessage}
+          hasError={errors.bloque?.hasError}
+          {...getOverrideProps(overrides, "bloque")}
+        ></TextField>
 
-      <TextField
-        id="tipo"
-        label="Tipo"
-        isRequired={false}
-        isReadOnly={false}
-        value={formData.tipo}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("tipo", formData.tipo)}
-        errorMessage={errors.tipo?.errorMessage}
-        hasError={errors.tipo?.hasError}
-        {...getOverrideProps(overrides, "tipo")}
-      ></TextField>
+        <TextField
+          id="pisos"
+          label="Pisos"
+          isRequired={false}
+          isReadOnly={false}
+          value={formData.pisos}
+          onChange={handleFieldChange}
+          onBlur={() => runValidationTasks("pisos", formData.pisos)}
+          errorMessage={errors.pisos?.errorMessage}
+          hasError={errors.pisos?.hasError}
+          {...getOverrideProps(overrides, "pisos")}
+        ></TextField>
+
+      </Grid>
+
 
       <TextField
         id="entidadBancaria"
@@ -443,19 +477,20 @@ export default function InformeTasacionCreateForm(props) {
       ></TextField>
 
       <TextField
-        label="Tipo tasacion"
-        id="tipoTasacion"
+        id="tipo"
+        label="Tipo"
         isRequired={false}
         isReadOnly={false}
-        value={formData.tipoTasacion}
+        value={formData.tipo}
         onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("tipoTasacion", formData.tipoTasacion)}
-        errorMessage={errors.tipoTasacion?.errorMessage}
-        hasError={errors.tipoTasacion?.hasError}
-        {...getOverrideProps(overrides, "tipoTasacion")}
+        onBlur={() => runValidationTasks("tipo", formData.tipo)}
+        errorMessage={errors.tipo?.errorMessage}
+        hasError={errors.tipo?.hasError}
+        {...getOverrideProps(overrides, "tipo")}
       ></TextField>
 
-<TextField
+
+      <TextField
         id="ubicacion"
         label="Ubicacion"
         isRequired={false}
@@ -1278,49 +1313,207 @@ export default function InformeTasacionCreateForm(props) {
             </option>
           ))}
         </SelectField>
+
+      {
+        false? (
+          <div>
+            <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="areaBasicoTerreno">
+                  Área terreno (m&sup2;)
+                </label>
+                <CurrencyInput
+                  id="areaBasicoTerreno" 
+                  name="areaBasicoTerreno"
+                  className="amplify-input"
+                  decimalsLimit={2}
+                  value={formData.areaBasicoTerreno}
+                  onChange={handleDecimalInputChange}
+                >
+                </CurrencyInput>
+              </div>
+
+
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="costoMetroBasicoTerreno">
+                  Costo metro cuadrado
+                </label>
+                
+                <CurrencyInput
+                  id="costoMetroBasicoTerreno"
+                  name="costoMetro"
+                  label="Costo metro cuadrado"
+                  className="amplify-input"
+                  placeholder=""
+                  decimalsLimit={2}
+                  prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
+                  value={formData.costoMetroBasicoTerreno}
+                  onChange={handleDecimalInputChange}
+                />
+              </div>
+
+
+              <TextField
+                label="Total terreno"
+                value={`${
+                  currencyOptions.find((c) => c.code == currency)?.symbol || ""
+                } ${Number(totalTerreno).toLocaleString("en-US", { 
+                  minimumFractionDigits: 2, 
+                  maximumFractionDigits: 2 
+                })}`}          
+                isReadOnly
+                backgroundColor="#f3f3f3"
+                fontWeight="bold"
+              />
+
+            </Grid>
+
+            <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="areaBasicoConstruccion">
+                  Área construcción (m&sup2;)
+                </label>
+                <CurrencyInput
+                  id="areaBasicoConstruccion" 
+                  name="areaBasicoConstruccion"
+                  className="amplify-input"
+                  decimalsLimit={2}
+                  value={formData.areaBasicoConstruccion}
+                  onChange={handleDecimalInputChange}
+                >
+                </CurrencyInput>
+              </div>
+
+
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="costoMetroBasicoConstruccion">
+                  Costo metro cuadrado
+                </label>
+                
+                <CurrencyInput
+                  id="costoMetroBasicoConstruccion"
+                  name="costoMetroBasicoConstruccion"
+                  label="Costo metro cuadrado"
+                  className="amplify-input"
+                  placeholder=""
+                  decimalsLimit={2}
+                  prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
+                  value={formData.costoMetroBasicoConstruccion}
+                  onChange={handleDecimalInputChange}
+                />
+              </div>
+
+              <TextField
+                label="Total construcción"
+                value={`${
+                  currencyOptions.find((c) => c.code == currency)?.symbol || ""
+                } ${Number(totalConstruccion).toLocaleString("en-US", { 
+                  minimumFractionDigits: 2, 
+                  maximumFractionDigits: 2 
+                })}`}          
+                isReadOnly
+                backgroundColor="#f3f3f3"
+                fontWeight="bold"
+              />
+            </Grid>
+
+            <TextField
+              id="montoDepreciacion"
+              label="Monto depreciacion"
+              isRequired={false}
+              isReadOnly={false}
+              type="number"
+              step="any"
+              value={formData.montoDepreciacion}
+              onChange={handleFieldChange}
+              onBlur={() =>
+                runValidationTasks("montoDepreciacion", formData.montoDepreciacion)
+              }
+              errorMessage={errors.montoDepreciacion?.errorMessage}
+              hasError={errors.montoDepreciacion?.hasError}
+              {...getOverrideProps(overrides, "montoDepreciacion")}
+            ></TextField>
+            <TextField
+              id="montoMejoras"
+              label="Monto mejoras"
+              isRequired={false}
+              isReadOnly={false}
+              type="number"
+              step="any"
+              value={formData.montoMejoras}
+              onChange={handleFieldChange}
+              onBlur={() => runValidationTasks("montoMejoras", formData.montoMejoras)}
+              errorMessage={errors.montoMejoras?.errorMessage}
+              hasError={errors.montoMejoras?.hasError}
+              {...getOverrideProps(overrides, "montoMejoras")}
+            ></TextField>
+            <TextField
+              id="depreciacionMejoras"
+              label="Depreciacion mejoras"
+              isRequired={false}
+              isReadOnly={false}
+              type="number"
+              step="any"
+              value={formData.depreciacionMejoras}
+              onChange={handleFieldChange}
+              onBlur={() =>
+                runValidationTasks("depreciacionMejoras", formData.depreciacionMejoras)
+              }
+              errorMessage={errors.depreciacionMejoras?.errorMessage}
+              hasError={errors.depreciacionMejoras?.hasError}
+              {...getOverrideProps(overrides, "depreciacionMejoras")}
+            ></TextField>
+          </div>
+        ) : ""
+      }
       
+      
+      {/*  Cálculos de apartamento */}
+
       <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
 
         <div className="amplify-flex amplify-field amplify-textfield">
-          <label className="amplify-label" htmlFor="areaBasicoTerreno">
-            Área terreno (m&sup2;)
+          <label className="amplify-label" htmlFor="areaParqueo">
+            Área parqueo (m&sup2;)
           </label>
           <CurrencyInput
-            id="areaBasicoTerreno" 
-            name="areaBasicoTerreno"
+            id="areaParqueo" 
+            name="areaParqueo"
             className="amplify-input"
             decimalsLimit={2}
-            value={formData.areaBasicoTerreno}
-            onChange={handleAreaChange}
+            value={formData.areaParqueo}
+            onChange={handleDecimalInputChange}
           >
           </CurrencyInput>
         </div>
 
 
         <div className="amplify-flex amplify-field amplify-textfield">
-          <label className="amplify-label" htmlFor="costoMetroBasicoTerreno">
+          <label className="amplify-label" htmlFor="costoMetroParqueo">
             Costo metro cuadrado
           </label>
           
           <CurrencyInput
-            id="costoMetroBasicoTerreno"
-            name="costoMetro"
+            id="costoMetroParqueo"
+            name="costoMetroParqueo"
             label="Costo metro cuadrado"
             className="amplify-input"
             placeholder=""
             decimalsLimit={2}
             prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
-            value={formData.costoMetroBasicoTerreno}
-            onValueChange={handleValueChange}
+            value={formData.costoMetroParqueo}
+            onChange={handleDecimalInputChange}
           />
         </div>
 
 
         <TextField
-          label="Total"
+          label="Total area parqueo"
           value={`${
             currencyOptions.find((c) => c.code == currency)?.symbol || ""
-          } ${Number(totalArea).toLocaleString("en-US", { 
+          } ${Number(totalParqueo).toLocaleString("en-US", { 
             minimumFractionDigits: 2, 
             maximumFractionDigits: 2 
           })}`}          
@@ -1331,85 +1524,137 @@ export default function InformeTasacionCreateForm(props) {
 
       </Grid>
 
-      
-      <TextField
-        id="areaBasicoConstruccion"
-        label="Area basico construccion"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.areaBasicoConstruccion}
+      <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+
+        <div className="amplify-flex amplify-field amplify-textfield">
+          <label className="amplify-label" htmlFor="areaApartamento">
+            Área apartamento (m&sup2;)
+          </label>
+          <CurrencyInput
+            id="areaApartamento" 
+            name="areaApartamento"
+            className="amplify-input"
+            decimalsLimit={2}
+            value={formData.areaApartamento}
+            onChange={handleDecimalInputChange}
+          >
+          </CurrencyInput>
+        </div>
+
+
+        <div className="amplify-flex amplify-field amplify-textfield">
+          <label className="amplify-label" htmlFor="costoMetroApartamento">
+            Costo metro cuadrado
+          </label>
+          
+          <CurrencyInput
+            id="costoMetroApartamento"
+            name="costoMetroApartamento"
+            label="Costo metro cuadrado"
+            className="amplify-input"
+            placeholder=""
+            decimalsLimit={2}
+            prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
+            value={formData.costoMetroApartamento}
+            onChange={handleDecimalInputChange}
+          />
+        </div>
+
+        <TextField
+          label="Total area apartamento"
+          value={`${
+            currencyOptions.find((c) => c.code == currency)?.symbol || ""
+          } ${Number(totalApartamento).toLocaleString("en-US", { 
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2 
+          })}`}          
+          isReadOnly
+          backgroundColor="#f3f3f3"
+          fontWeight="bold"
+        />
+
+      </Grid>
+
+
+
+      <Heading level={subSectionsHeadingLevel}>
+        Cálculo amenidades
+      </Heading>
+
+      <SwitchField
+        id="tieneTerraza"
+        labelPosition="end"
+        label="Terraza"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={formData.tieneTerraza}
         onChange={handleFieldChange}
         onBlur={() =>
-          runValidationTasks("areaBasicoConstruccion", formData.areaBasicoConstruccion)
+          runValidationTasks(
+            "tieneTerraza",
+            formData.tieneTerraza
+          )
         }
-        errorMessage={errors.areaBasicoConstruccion?.errorMessage}
-        hasError={errors.areaBasicoConstruccion?.hasError}
-        {...getOverrideProps(overrides, "areaBasicoConstruccion")}
-      ></TextField>
-      <TextField
-        id="costoMetroBasicoConstruccion"
-        label="Costo metro basico construccion"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.costoMetroBasicoConstruccion}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("costoMetroBasicoConstruccion", formData.costoMetroBasicoConstruccion)
-        }
-        errorMessage={errors.costoMetroBasicoConstruccion?.errorMessage}
-        hasError={errors.costoMetroBasicoConstruccion?.hasError}
-        {...getOverrideProps(overrides, "costoMetroBasicoConstruccion")}
-      ></TextField>
-      <TextField
-        id="montoDepreciacion"
-        label="Monto depreciacion"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.montoDepreciacion}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("montoDepreciacion", formData.montoDepreciacion)
-        }
-        errorMessage={errors.montoDepreciacion?.errorMessage}
-        hasError={errors.montoDepreciacion?.hasError}
-        {...getOverrideProps(overrides, "montoDepreciacion")}
-      ></TextField>
-      <TextField
-        id="montoMejoras"
-        label="Monto mejoras"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.montoMejoras}
-        onChange={handleFieldChange}
-        onBlur={() => runValidationTasks("montoMejoras", formData.montoMejoras)}
-        errorMessage={errors.montoMejoras?.errorMessage}
-        hasError={errors.montoMejoras?.hasError}
-        {...getOverrideProps(overrides, "montoMejoras")}
-      ></TextField>
-      <TextField
-        id="depreciacionMejoras"
-        label="Depreciacion mejoras"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={formData.depreciacionMejoras}
-        onChange={handleFieldChange}
-        onBlur={() =>
-          runValidationTasks("depreciacionMejoras", formData.depreciacionMejoras)
-        }
-        errorMessage={errors.depreciacionMejoras?.errorMessage}
-        hasError={errors.depreciacionMejoras?.hasError}
-        {...getOverrideProps(overrides, "depreciacionMejoras")}
-      ></TextField>
+        errorMessage={errors.tieneTerraza?.errorMessage}
+        hasError={errors.tieneTerraza?.hasError}
+        {...getOverrideProps(overrides, "tieneTerraza")}
+      ></SwitchField>
+
+
+      {
+        tieneTerraza ? (
+          <div>
+            <Grid templateColumns="repeat(3, 1fr)" gap="1rem">
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="areaTerraza">
+                  Área terraza (m&sup2;)
+                </label>
+                <CurrencyInput
+                  id="areaTerraza" 
+                  name="areaTerraza"
+                  className="amplify-input"
+                  decimalsLimit={2}
+                  value={formData.areaTerraza}
+                  onChange={handleDecimalInputChange}
+                >
+                </CurrencyInput>
+              </div>
+
+              <div className="amplify-flex amplify-field amplify-textfield">
+                <label className="amplify-label" htmlFor="costoMetroTerraza">
+                  Costo metro cuadrado
+                </label>
+                
+                <CurrencyInput
+                  id="costoMetroTerraza"
+                  name="costoMetroTerraza"
+                  label="Costo metro cuadrado"
+                  className="amplify-input"
+                  placeholder=""
+                  decimalsLimit={2}
+                  prefix={currencyOptions.find((c) => c.code == currency)?.symbol + " "}
+                  value={formData.costoMetroTerraza}
+                  onChange={handleDecimalInputChange}
+                />
+              </div>
+
+              <TextField
+                label="Total area terraza"
+                value={`${
+                  currencyOptions.find((c) => c.code == currency)?.symbol || ""
+                } ${Number(totalTerraza).toLocaleString("en-US", { 
+                  minimumFractionDigits: 2, 
+                  maximumFractionDigits: 2 
+                })}`}          
+                isReadOnly
+                backgroundColor="#f3f3f3"
+                fontWeight="bold"
+              />
+            </Grid>
+          </div>
+        ) : ""
+      }
+
       <TextField
         id="valorInmueble"
         label="Valor inmueble"
