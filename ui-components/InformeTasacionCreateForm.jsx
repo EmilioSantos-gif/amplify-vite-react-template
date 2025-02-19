@@ -15,6 +15,7 @@ import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createInformeTasacion } from "./graphql/mutations";
 import CurrencyInput from "react-currency-input-field";
+import { useNavigate, Link } from "react-router-dom";
 
 const currencyOptions = [
   { code: "DOP", symbol: "RD$", desc: "Peso dominicano"},
@@ -366,6 +367,10 @@ export default function InformeTasacionCreateForm(props) {
       {...rest}
     >
 
+      <Link to="/resumen" state={ {form: formData} }>
+        Go to Resumen
+      </Link>
+
       <Heading level={titleHeadingLevel}>Datos de la Tasación</Heading>
 
       <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
@@ -383,7 +388,7 @@ export default function InformeTasacionCreateForm(props) {
         >
           <option key={""} value={""}>
             {"---- Seleccione una opción ----"}
-            </option>
+          </option>
           {tiposTasacion.map((tipo) => (
             <option key={tipo} value={tipo}>
             {tipo}
