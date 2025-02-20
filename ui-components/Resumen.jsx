@@ -31,81 +31,29 @@ return (
         data? (
             <div>
                 <Heading level={4}>Generalidades</Heading>
-                <TextField
-                    label="Fecha Tasacion"
-                    value={data.form.fechaTasacion || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Service Desk"
-                    value={data.form.serviceDesk || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Tipo Tasacion"
-                    value={data.form.tipoTasacion || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Ubicacion"
-                    value={data.form.ubicacion || "N/A"}
-                    isReadOnly
-                />
+                <Label>Fecha Tasacion: {data.form.fechaTasacion || "N/A"}</Label>
+                <Label>Service Desk: {data.form.serviceDesk || "N/A"}</Label>
+                <Label>Tipo Tasacion: {data.form.tipoTasacion || "N/A"}</Label>
+                <Label>Ubicacion: {data.form.ubicacion || "N/A"}</Label>
 
                 <Heading level={4}>Aspectos del Solicitante</Heading>
-                <TextField
-                    label="Propietario"
-                    value={data.form.propietario || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Nombre Solicitante"
-                    value={data.form.nombreSolicitante || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Apellido Solicitante"
-                    value={data.form.apellidoSolicitante || "N/A"}
-                    isReadOnly
-                />
+                <Label>Propietario: {data.form.propietario || "N/A"}</Label>
+                <Label>Nombre Solicitante: {data.form.nombreSolicitante || "N/A"}</Label>
+                <Label>Apellido Solicitante: {data.form.apellidoSolicitante || "N/A"}</Label>
 
                 <Heading level={4}>Aspectos Legales</Heading>
-                <TextField
-                    label="Número de Certificación de Título"
-                    value={data.form.numeroTitulo || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Constancia Venta"
-                    value={data.form.constanciaVenta || "N/A"}
-                    isReadOnly
-                />
+                <Label>Número de Certificación de Título: {data.form.numeroTitulo || "N/A"}</Label>
+                <Label>Constancia Venta: {data.form.constanciaVenta || "N/A"}</Label>
 
                 <Heading level={4}>Características del Sector</Heading>
-                <TextField
-                    label="Localidad"
-                    value={data.form.localidad || "N/A"}
-                    isReadOnly
-                />
-                <TextField
-                    label="Desarrollo"
-                    value={data.form.desarrollo || "N/A"}
-                    isReadOnly
-                />
+                <Label>Localidad: {data.form.localidad || "N/A"}</Label>
+                <Label>Desarrollo: {data.form.desarrollo || "N/A"}</Label>
 
                 <Heading level={4}>Valor del Inmueble</Heading>
-                <TextField
-                    label="Valor Inmueble"
-                    value={data.form.valorInmueble || "N/A"}
-                    isReadOnly
-                />
+                <Label>Valor Inmueble: {data.form.valorInmueble || "N/A"}</Label>
 
                 <Heading level={4}>Comentario Tasadores</Heading>
-                <TextAreaField
-                    label="Comentario"
-                    value={data.form.comentario || "N/A"}
-                    isReadOnly
-                />
+                <Label>Comentario: {data.form.comentario || "N/A"}</Label>
             </div>
         ) : (
             <Label>No data</Label>
