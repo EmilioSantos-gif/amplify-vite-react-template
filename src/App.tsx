@@ -3,7 +3,7 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient, SelectionSet } from "aws-amplify/data";
 import { Heading, SelectField, useAuthenticator, Grid, Card} from '@aws-amplify/ui-react';
 
-import { Resumen, InformeTasacionCreateForm } from '../ui-components';
+import { Resumen, InformeTasacionCreateForm, InformeTasacionList } from '../ui-components';
 
 import { BrowserRouter as Router, Routes, Route, Link, Switch } from "react-router-dom";
 
@@ -94,7 +94,8 @@ function App() {
 
           <Routes>
             <Route path="/resumen" element={<Resumen />} />
-            <Route path="/" element={<InformeTasacionCreateForm />} />
+            <Route path="/" element={<InformeTasacionList />} />
+            <Route path="/create" element={<InformeTasacionCreateForm />} />
           </Routes>
         </Card>
 
