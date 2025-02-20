@@ -8,31 +8,34 @@ import {
     TextField,
     TextAreaField,
     Heading,
-    SelectField
+    SelectField,
+    Label
   } from "@aws-amplify/ui-react";
 
   import { useLocation } from "react-router-dom";
 
 
 export default function Resumen(props) {
-
-    const location = useLocation();
+  const location = useLocation();
   const data = location.state;
+
 
 return (
     <Grid
         rowGap="15px"
         columnGap="15px"
-        padding="200px">
-      <Heading level={5}>Datos de la Tasación</Heading>
+        padding="20px"
+        marginLeft="100px" >
+      <Heading level={3}>Resumen de la Tasación</Heading>
       {
         data? (
-            <p>{data.form?.tipoTasacion}</p>
+            <div>
+                
+            </div>
         ) : (
-            <p>No data</p>
+            <Label>No data</Label>
         )
       }
     </Grid>
 );
-
 }
