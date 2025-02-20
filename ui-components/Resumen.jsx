@@ -19,6 +19,7 @@ export default function Resumen(props) {
   const location = useLocation();
   const data = location.state;
 
+  const sectionsHeadingSize = 3;
   const attributesHeadingSize = 6;
 
 
@@ -32,8 +33,8 @@ return (
       <Heading level={3}>Resumen de la Tasación</Heading>
       {
         data? (
-            <div>
-                <Heading level={3}>Generalidades</Heading>
+            <Grid width="800px" rowGap="1rem">
+                <Heading level={sectionsHeadingSize}>Generalidades</Heading>
                 <Grid templateColumns="1fr 1fr" rowGap="0.5rem">
                     <Heading level={attributesHeadingSize}>Fecha Tasación</Heading>
                     <Label>{data.form?.fechaTasacion || "N/A"}</Label>
@@ -45,7 +46,7 @@ return (
                     <Label>{data.form?.ubicacion || "N/A"}</Label>
                 </Grid>
 
-                <Heading level={3}>Aspectos del Solicitante</Heading>
+                <Heading level={sectionsHeadingSize}>Aspectos del Solicitante</Heading>
                 <Grid templateColumns="1fr 1fr" rowGap="0.5rem">
                     <Heading level={attributesHeadingSize}>Propietario</Heading>
                     <Label>{data.form?.propietario || "N/A"}</Label>
@@ -55,7 +56,7 @@ return (
                     <Label>{data.form?.apellidoSolicitante || "N/A"}</Label>
                 </Grid>
 
-                <Heading level={3}>Aspectos Legales</Heading>
+                <Heading level={sectionsHeadingSize}>Aspectos Legales</Heading>
                 <Grid templateColumns="1fr 1fr" rowGap="0.5rem">
                     <Heading level={attributesHeadingSize}>Número de Certificación de Título</Heading>
                     <Label>{data.form?.numeroTitulo || "N/A"}</Label>
@@ -63,7 +64,7 @@ return (
                     <Label>{data.form?.constanciaVenta || "N/A"}</Label>
                 </Grid>
 
-                <Heading level={3}>Características del Sector</Heading>
+                <Heading level={sectionsHeadingSize}>Características del Sector</Heading>
                 <Grid templateColumns="1fr 1fr" rowGap="0.5rem">
                     <Heading level={attributesHeadingSize}>Localidad</Heading>
                     <Label>{data.form?.localidad || "N/A"}</Label>
@@ -71,17 +72,17 @@ return (
                     <Label>{data.form?.desarrollo || "N/A"}</Label>
                 </Grid>
 
-                <Heading level={3}>Valor del Inmueble</Heading>
+                <Heading level={sectionsHeadingSize}>Valor del Inmueble</Heading>
                 <Grid templateColumns="1fr 1fr" rowGap="0.5rem">
                     <Heading level={attributesHeadingSize}>Valor Inmueble</Heading>
                     <Label>{data.form?.valorInmueble || "N/A"}</Label>
                 </Grid>
 
-                <Heading level={3}>Comentario Tasadores</Heading>
+                <Heading level={sectionsHeadingSize}>Comentario Tasadores</Heading>
                 <Grid templateColumns="1fr" rowGap="0.5rem">
                     <Label>{data.form?.comentario || "N/A"}</Label>
                 </Grid>
-            </div>
+            </Grid>
         ) : (
             <Label>No data</Label>
         )
