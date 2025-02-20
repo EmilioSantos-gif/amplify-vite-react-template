@@ -17,6 +17,9 @@ import { createInformeTasacion, updateInformeTasacion } from "./graphql/mutation
 import CurrencyInput from "react-currency-input-field";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+
+
 const currencyOptions = [
   { code: "DOP", symbol: "RD$", desc: "Peso dominicano"},
   { code: "USD", symbol: "USD$", desc: "Dólar estadounidense" },
@@ -161,9 +164,6 @@ export default function InformeTasacionCreateForm(props) {
     const { data } = await client.models.InformeTasacion.get({ id });
     setFormData(data);
   };
-  const [area, setArea] = React.useState(initialValues.area);
-  const [forma, setForma] = React.useState(initialValues.forma);
-
   const [errors, setErrors] = React.useState({});
 
   const [currency, setCurrency] = React.useState("DOP");

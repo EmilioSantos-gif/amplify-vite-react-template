@@ -28,7 +28,7 @@ return (
         rowGap="15px"
         columnGap="15px"
         padding="20px"
-        marginLeft="100px"
+        marginLeft="20px"
         width="800px" >
       <Heading level={3}>Resumen de la Tasación</Heading>
       {
