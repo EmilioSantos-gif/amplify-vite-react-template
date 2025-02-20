@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import { generateClient, SelectionSet } from "aws-amplify/data";
 import { Heading, SelectField, useAuthenticator, Grid, Card} from '@aws-amplify/ui-react';
 
 import { Resumen, InformeTasacionCreateForm } from '../ui-components';
@@ -12,14 +12,22 @@ const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [informes, setInformes] = useState<Array<Schema["InformeTasacion"]["type"]>>([]);
+
   
   const { user, signOut } = useAuthenticator();
 
+  const [tasacion, setTasacion] = useState<Schema["InformeTasacion"]["type"]>();
+
+
   useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
+    fetchInformes();
   }, []);
+
+  const fetchInformes = async () => {
+    const { data: informeTasacion} = await client.models.InformeTasacion.get({id: "e2f1b5fe-46c5-4fed-a7e0-1b56bc3fcc5a"});
+    setTasacion(informeTasacion);
+  }
 
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
@@ -62,6 +70,20 @@ function App() {
           columnStart="2"
           columnEnd="-1">
           <h1>Header</h1>
+
+          <h1>My todos</h1>
+          <button onClick={createTodo}>+ new</button>
+          <ul>
+            {todos.map((todo) => (
+              <li key={todo.id}>{todo.content}</li>
+            ))}
+          </ul>
+
+          {tasacion ? (
+            <p>{tasacion.apellidoSolicitante}</p>
+          ) : "No tasacion data"
+        }
+
         </Card>
 
 
