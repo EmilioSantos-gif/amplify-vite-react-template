@@ -17,7 +17,7 @@ export default function InformeTasacionList() {
 
   const fetchInformes = async () => {
     const { data } = await client.models.InformeTasacion.list();
-    setInformes(data.items);
+    setInformes(data);
   };
 
   const handleView = (id) => {
@@ -36,9 +36,9 @@ export default function InformeTasacionList() {
       width="100%"
     >
       <Heading level={3}>Lista de Informes de Tasación</Heading>
-      {informes.map((informe) => (
+      {informes?.map((informe) => (
         <Card key={informe.id} padding="10px" marginBottom="10px">
-          <Heading level={5}>{informe.nombreSolicitante}</Heading>
+          <Heading level={5}>{informe.id}</Heading>
           <Button onClick={() => handleView(informe.id)}>View</Button>
           <Button onClick={() => handleEdit(informe.id)}>Edit</Button>
         </Card>
