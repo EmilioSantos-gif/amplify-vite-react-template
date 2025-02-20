@@ -96,6 +96,7 @@ function App() {
             <Route path="/resumen" element={<Resumen />} />
             <Route path="/" element={<InformeTasacionList />} />
             <Route path="/create" element={<InformeTasacionCreateForm />} />
+            <Route path="/create/:id" element={<InformeTasacionCreateForm />} />
           </Routes>
         </Card>
 

@@ -13,9 +13,9 @@ import {
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { createInformeTasacion } from "./graphql/mutations";
+import { createInformeTasacion, updateInformeTasacion } from "./graphql/mutations";
 import CurrencyInput from "react-currency-input-field";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 const currencyOptions = [
   { code: "DOP", symbol: "RD$", desc: "Peso dominicano"},
@@ -148,7 +148,19 @@ export default function InformeTasacionCreateForm(props) {
     ...rest
   } = props;
 
+  const { id } = useParams();
   const [formData, setFormData] = React.useState(initialValues);
+
+  useEffect(() => {
+    if (id) {
+      fetchInforme(id);
+    }
+  }, [id]);
+
+  const fetchInforme = async (id) => {
+    const { data } = await client.models.InformeTasacion.get({ id });
+    setFormData(data);
+  };
   const [area, setArea] = React.useState(initialValues.area);
   const [forma, setForma] = React.useState(initialValues.forma);
 
@@ -342,14 +354,26 @@ export default function InformeTasacionCreateForm(props) {
               formData[key] = null;
             }
           });
-          await client.graphql({
-            query: createInformeTasacion.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                ...formData,
+          if (id) {
+            await client.graphql({
+              query: updateInformeTasacion.replaceAll("__typename", ""),
+              variables: {
+                input: {
+                  id,
+                  ...formData,
+                },
               },
-            },
-          });
+            });
+          } else {
+            await client.graphql({
+              query: createInformeTasacion.replaceAll("__typename", ""),
+              variables: {
+                input: {
+                  ...formData,
+                },
+              },
+            });
+          }
           if (onSuccess) {
             onSuccess(formData);
           }

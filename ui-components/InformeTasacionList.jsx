@@ -25,7 +25,7 @@ export default function InformeTasacionList() {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit/${id}`);
+    navigate(`/create/${id}`);
   };
 
   return (
