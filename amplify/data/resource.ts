@@ -91,6 +91,17 @@ const schema = a.schema({
       valorInmueble: a.float(),
 
       comentario: a.string(),
+
+      areaParqueo: a.boolean(),
+      costoMetroParqueo: a.float(),
+      areaApartamento: a.float(),
+      costoMetroApartamento: a.float(),
+      areaTerraza: a.float(),
+      costoMetroTerraza: a.float(),
+      tasaDolar: a.float(),
+      tieneTerraza: a.boolean()
+
+
     })
     .authorization((allow) => [allow.owner()]), // Restricts access to record owners
 

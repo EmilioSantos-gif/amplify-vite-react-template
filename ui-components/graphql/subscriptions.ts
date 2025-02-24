@@ -83,6 +83,14 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
+      areaParqueo
+      costoMetroParqueo
+      areaApartamento
+      costoMetroApartamento
+      areaTerraza
+      costoMetroTerraza
+      tasaDolar
+      tieneTerraza
       __typename
     }
   }
@@ -183,6 +191,14 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
+      areaParqueo
+      costoMetroParqueo
+      areaApartamento
+      costoMetroApartamento
+      areaTerraza
+      costoMetroTerraza
+      tasaDolar
+      tieneTerraza
       __typename
     }
   }
@@ -283,6 +299,14 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
+      areaParqueo
+      costoMetroParqueo
+      areaApartamento
+      costoMetroApartamento
+      areaTerraza
+      costoMetroTerraza
+      tasaDolar
+      tieneTerraza
       __typename
     }
   }

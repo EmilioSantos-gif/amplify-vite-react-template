@@ -1620,6 +1620,7 @@ export default function InformeTasacionCreateForm(props) {
       <SwitchField
         id="tieneTerraza"
         labelPosition="end"
+        isRequired={false}
         label="Terraza"
         defaultChecked={false}
         isDisabled={false}

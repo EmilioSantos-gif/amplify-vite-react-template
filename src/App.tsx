@@ -71,19 +71,6 @@ function App() {
           columnEnd="-1">
           <h1>Header</h1>
 
-          <h1>My todos</h1>
-          <button onClick={createTodo}>+ new</button>
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>{todo.content}</li>
-            ))}
-          </ul>
-
-          {tasacion ? (
-            <p>{tasacion.apellidoSolicitante}</p>
-          ) : "No tasacion data"
-        }
-
         </Card>
 
 
