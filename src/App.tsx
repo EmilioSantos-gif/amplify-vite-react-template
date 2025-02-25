@@ -7,6 +7,11 @@ import { Resumen, InformeTasacionCreateForm, InformeTasacionList } from '../ui-c
 
 import { BrowserRouter as Router, Routes, Route, Link, Switch } from "react-router-dom";
 
+import { getUrl, downloadData } from 'aws-amplify/storage';
+
+//import PizZip from "pizzip";
+//import Docxtemplater from "docxtemplater";
+
 
 const client = generateClient<Schema>();
 
@@ -35,6 +40,39 @@ function App() {
   
   function deleteTodo(id: string) {
     client.models.Todo.delete({id});
+  }
+
+  async function sayHello() {
+    const promise = client.queries.sayHello({
+      name: "Amplify",
+    });
+
+    promise.then((data) => {
+      const greeting = data.data;
+      console.log(greeting);
+    });
+
+    const linkToStorageFile = await getUrl({
+      path: "templates/appartments/INFORME-APARTAMENTO.docx",
+    });
+
+    console.log('signed URL: ', linkToStorageFile.url);
+    console.log('URL expires at: ', linkToStorageFile.expiresAt);
+
+    downloadData({
+      path: "templates/appartments/INFORME-APARTAMENTO.docx",
+    }).result.then(async (data) => {
+      console.log(data);
+
+      let blobDocument = data.body;
+
+      const arrayBuffer = await blobDocument.arrayBuffer();
+
+      //const zip = new PizZip(arrayBuffer);
+      //const doc = new Docxtemplater(zip);
+
+    });
+        
   }
 
   return (
@@ -70,7 +108,12 @@ function App() {
           columnStart="2"
           columnEnd="-1">
           <h1>Header</h1>
-
+          <button 
+            type="button"
+            onClick={sayHello}
+          >
+            Saludar con Lambda
+          </button>
         </Card>
 
 
