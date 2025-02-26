@@ -9,8 +9,13 @@ import { BrowserRouter as Router, Routes, Route, Link, Switch } from "react-rout
 
 import { getUrl, downloadData } from 'aws-amplify/storage';
 
-//import PizZip from "pizzip";
-//import Docxtemplater from "docxtemplater";
+import AppBar from '@mui/material/AppBar';
+
+
+import PizZip from "pizzip";
+import Docxtemplater from "docxtemplater";
+import { saveAs } from "file-saver";
+
 
 
 const client = generateClient<Schema>();
@@ -61,6 +66,7 @@ function App() {
 
     downloadData({
       path: "templates/appartments/INFORME-APARTAMENTO.docx",
+      cacheControl: 'no-cache'
     }).result.then(async (data) => {
       console.log(data);
 
@@ -68,14 +74,41 @@ function App() {
 
       const arrayBuffer = await blobDocument.arrayBuffer();
 
-      //const zip = new PizZip(arrayBuffer);
-      //const doc = new Docxtemplater(zip);
+      const zip = new PizZip(arrayBuffer);
+      const doc = new Docxtemplater(zip, {
+        paragraphLoop: true,
+        linebreaks: true,
+      });
+
+      //Modifiy document
+
+      doc.render({
+        fechaTasacion: "26 de febrero",
+        personaSolicitante: "Emilio Santos",
+        primerApellido: "Santos",
+        tipoTasacion: "Apartamento",
+        edificioNo: "10",
+        condominio: "20",
+        direccionInmueble: "La Javilla"
+      })
+
+      //Download document
+
+      const out = doc.getZip().generate({
+        type: "blob",
+        mimeType:
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      });
+
+      saveAs(out, "UpdatedDocument.docx");
 
     });
         
   }
 
   return (
+
+    <div>
 
       <Grid
         paddingLeft="0"
@@ -108,12 +141,6 @@ function App() {
           columnStart="2"
           columnEnd="-1">
           <h1>Header</h1>
-          <button 
-            type="button"
-            onClick={sayHello}
-          >
-            Saludar con Lambda
-          </button>
         </Card>
 
 
@@ -137,6 +164,7 @@ function App() {
           <p>Footer</p>
         </Card>
       </Grid>
+      </div>
   );
 }
 export default App;
