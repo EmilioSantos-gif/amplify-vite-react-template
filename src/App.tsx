@@ -110,60 +110,13 @@ function App() {
 
     <div>
 
-      <Grid
-        paddingLeft="0"
-        paddingTop="0"
-        templateColumns="1fr 1fr 1fr"  // Sidebar (nav) + Main content
-        templateRows="1fr 3fr 1fr"  // Header, Main, Footer
-        gap="1rem"
-        height="100vh" // Full viewport height
-        padding="1rem"
-      >
-        {/* Navigation */}
-
-        <Card
-          paddingTop="0"
-          rowStart="1"
-          rowEnd="-1"
-          columnStart="1"
-          columnEnd="2">
-          <nav>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Services</a></li>
-            </ul>
-          </nav>
-        </Card>
-
-        {/* Header */}
-        <Card
-          columnStart="2"
-          columnEnd="-1">
-          <h1>Header</h1>
-        </Card>
-
-
-        {/* Main Content */}
-        <Card
-          columnStart="2"
-          columnEnd="-1">
-
           <Routes>
             <Route path="/resumen" element={<Resumen />} />
             <Route path="/" element={<InformeTasacionList />} />
             <Route path="/create" element={<InformeTasacionCreateForm />} />
             <Route path="/create/:id" element={<InformeTasacionCreateForm />} />
           </Routes>
-        </Card>
 
-        {/* Footer */}
-        <Card
-          columnStart="2"
-          columnEnd="-1">
-          <p>Footer</p>
-        </Card>
-      </Grid>
       </div>
   );
 }
