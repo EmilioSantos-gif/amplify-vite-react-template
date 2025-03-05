@@ -22,7 +22,7 @@ export default function InformeTasacionList() {
   };
 
   const handleView = (id) => {
-    navigate(`/resumen/${id}`);
+    navigate(`/resumen`, { state: { id } });
   };
 
   const handleEdit = (id) => {
