@@ -14,7 +14,6 @@ import {
 
   import { useLocation } from "react-router-dom";
 
-
 export default function Resumen(props) {
   const location = useLocation();
   const data = location.state;

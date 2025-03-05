@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Button, Heading } from "@aws-amplify/ui-react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const client = generateClient();
 
@@ -19,10 +19,6 @@ export default function InformeTasacionList() {
   const fetchInformes = async () => {
     const { data } = await client.models.InformeTasacion.list();
     setInformes(data);
-  };
-
-  const handleView = (id) => {
-    navigate(`/resumen`, { state: { id } });
   };
 
   const handleEdit = (id) => {
@@ -53,7 +49,9 @@ export default function InformeTasacionList() {
                 <TableCell>{informe.ubicacion || "N/A"}</TableCell>
                 <TableCell>{informe.entidadBancaria || "N/A"}</TableCell>
                 <TableCell>
-                  <Button onClick={() => handleView(informe.id)} variation="link">View</Button>
+                  <Link className="amplify-button amplify-button--link" to="/resumen" state={ {form: informe} }>
+                    Ver
+                  </Link>
                   <Button onClick={() => handleEdit(informe.id)} variation="primary">Edit</Button>
                 </TableCell>
               </TableRow>
