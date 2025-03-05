@@ -325,6 +325,7 @@ export default function InformeTasacionCreateForm(props) {
       rowGap="15px"
       columnGap="15px"
       padding="20px"
+      maxWidth="800px"
       onSubmit={async (event) => {
         event.preventDefault();
 
