@@ -1347,7 +1347,7 @@ export default function InformeTasacionCreateForm(props) {
 
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
         <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          Tasación actualizada correctamente.
+          Tasación guardada correctamente.
         </MuiAlert>
       </Snackbar>
     </Grid>
