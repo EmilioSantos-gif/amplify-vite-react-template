@@ -18,7 +18,7 @@ import CurrencyInput from "react-currency-input-field";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
-import { downloadFile } from "./utils/downloadFile";
+import { downloadInforme } from "./utils/downloads";
 
 
 const currencyOptions = [
@@ -1750,12 +1750,9 @@ export default function InformeTasacionCreateForm(props) {
         </Flex>
         <Button
           children="Download"
-          onClick={() => downloadFile('informe.txt', JSON.stringify(formData, null, 2))}
+          onClick={() => downloadInforme(formData)}
         />
       </Flex>
-
-
-
     </Grid>
 
     
