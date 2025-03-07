@@ -1,5 +1,6 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
-import { sayHello } from "../functions/say-hello/resource"
+//import { sayHello } from "../functions/say-hello/resource"
+//import { downloadInforme } from "../functions/download-informe/resource"
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -93,7 +94,7 @@ const schema = a.schema({
 
       comentario: a.string(),
 
-      areaParqueo: a.boolean(),
+      areaParqueo: a.string(),
       costoMetroParqueo: a.float(),
       areaApartamento: a.float(),
       costoMetroApartamento: a.float(),
@@ -106,7 +107,7 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.owner()]), // Restricts access to record owners
 
-      
+    /*
     sayHello: a
     .query()
     .arguments({
@@ -115,7 +116,17 @@ const schema = a.schema({
     .returns(a.string())
     .handler(a.handler.function(sayHello))
     .authorization((allow) => allow.authenticated()),
-    
+
+    downloadInforme: a
+    .query()
+    .arguments({
+      tipoTasacion: a.string(),
+      tasacion: a.string(),
+    })
+    .returns(a.string())
+    .handler(a.handler.function(downloadInforme))
+    .authorization((allow) => allow.authenticated()),
+    */
 });
 
 export type Schema = ClientSchema<typeof schema>;

@@ -97,6 +97,14 @@ export default function InformeTasacionUpdateForm(props) {
     depreciacionMejoras: "",
     valorInmueble: "",
     comentario: "",
+    areaParqueo: "",
+    costoMetroParqueo: "",
+    areaApartamento: "",
+    costoMetroApartamento: "",
+    areaTerraza: "",
+    costoMetroTerraza: "",
+    tasaDolar: "",
+    tieneTerraza: false,
   };
   const [fechaTasacion, setFechaTasacion] = React.useState(
     initialValues.fechaTasacion
@@ -260,6 +268,28 @@ export default function InformeTasacionUpdateForm(props) {
     initialValues.valorInmueble
   );
   const [comentario, setComentario] = React.useState(initialValues.comentario);
+  const [areaParqueo, setAreaParqueo] = React.useState(
+    initialValues.areaParqueo
+  );
+  const [costoMetroParqueo, setCostoMetroParqueo] = React.useState(
+    initialValues.costoMetroParqueo
+  );
+  const [areaApartamento, setAreaApartamento] = React.useState(
+    initialValues.areaApartamento
+  );
+  const [costoMetroApartamento, setCostoMetroApartamento] = React.useState(
+    initialValues.costoMetroApartamento
+  );
+  const [areaTerraza, setAreaTerraza] = React.useState(
+    initialValues.areaTerraza
+  );
+  const [costoMetroTerraza, setCostoMetroTerraza] = React.useState(
+    initialValues.costoMetroTerraza
+  );
+  const [tasaDolar, setTasaDolar] = React.useState(initialValues.tasaDolar);
+  const [tieneTerraza, setTieneTerraza] = React.useState(
+    initialValues.tieneTerraza
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = informeTasacionRecord
@@ -336,6 +366,14 @@ export default function InformeTasacionUpdateForm(props) {
     setDepreciacionMejoras(cleanValues.depreciacionMejoras);
     setValorInmueble(cleanValues.valorInmueble);
     setComentario(cleanValues.comentario);
+    setAreaParqueo(cleanValues.areaParqueo);
+    setCostoMetroParqueo(cleanValues.costoMetroParqueo);
+    setAreaApartamento(cleanValues.areaApartamento);
+    setCostoMetroApartamento(cleanValues.costoMetroApartamento);
+    setAreaTerraza(cleanValues.areaTerraza);
+    setCostoMetroTerraza(cleanValues.costoMetroTerraza);
+    setTasaDolar(cleanValues.tasaDolar);
+    setTieneTerraza(cleanValues.tieneTerraza);
     setErrors({});
   };
   const [informeTasacionRecord, setInformeTasacionRecord] = React.useState(
@@ -428,6 +466,14 @@ export default function InformeTasacionUpdateForm(props) {
     depreciacionMejoras: [],
     valorInmueble: [],
     comentario: [],
+    areaParqueo: [],
+    costoMetroParqueo: [],
+    areaApartamento: [],
+    costoMetroApartamento: [],
+    areaTerraza: [],
+    costoMetroTerraza: [],
+    tasaDolar: [],
+    tieneTerraza: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -526,6 +572,14 @@ export default function InformeTasacionUpdateForm(props) {
           depreciacionMejoras: depreciacionMejoras ?? null,
           valorInmueble: valorInmueble ?? null,
           comentario: comentario ?? null,
+          areaParqueo: areaParqueo ?? null,
+          costoMetroParqueo: costoMetroParqueo ?? null,
+          areaApartamento: areaApartamento ?? null,
+          costoMetroApartamento: costoMetroApartamento ?? null,
+          areaTerraza: areaTerraza ?? null,
+          costoMetroTerraza: costoMetroTerraza ?? null,
+          tasaDolar: tasaDolar ?? null,
+          tieneTerraza: tieneTerraza ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -658,6 +712,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.fechaTasacion ?? value;
@@ -752,6 +814,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.serviceDesk ?? value;
@@ -846,6 +916,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.tipoTasacion ?? value;
@@ -940,6 +1018,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.pisos ?? value;
@@ -1034,6 +1120,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.tipo ?? value;
@@ -1128,6 +1222,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.entidadBancaria ?? value;
@@ -1222,6 +1324,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.tipoTopologia ?? value;
@@ -1316,6 +1426,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.ubicacion ?? value;
@@ -1410,6 +1528,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.ubicacionTerreno ?? value;
@@ -1504,6 +1630,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.propietario ?? value;
@@ -1598,6 +1732,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.nombreSolicitante ?? value;
@@ -1694,6 +1836,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.apellidoSolicitante ?? value;
@@ -1790,6 +1940,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.condominio ?? value;
@@ -1884,6 +2042,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.direccionInmueble ?? value;
@@ -1980,6 +2146,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.bloque ?? value;
@@ -2074,6 +2248,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.etapa ?? value;
@@ -2168,6 +2350,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.manzana ?? value;
@@ -2262,6 +2452,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.edificioNo ?? value;
@@ -2356,6 +2554,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.tipoEdificio ?? value;
@@ -2450,6 +2656,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.numeroTitulo ?? value;
@@ -2544,6 +2758,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.constanciaVenta ?? value;
@@ -2638,6 +2860,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.designacionCatastral ?? value;
@@ -2734,6 +2964,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.libroNo ?? value;
@@ -2828,6 +3066,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.folioNo ?? value;
@@ -2922,6 +3168,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.parcela ?? value;
@@ -3016,6 +3270,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.solar ?? value;
@@ -3110,6 +3372,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.manzanaLegal ?? value;
@@ -3204,6 +3474,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.dc ?? value;
@@ -3298,6 +3576,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.localidad ?? value;
@@ -3392,6 +3678,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.desarrollo ?? value;
@@ -3486,6 +3780,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.tipologiaVecindario ?? value;
@@ -3582,6 +3884,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.claseSocial ?? value;
@@ -3676,6 +3986,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.aceras ?? value;
@@ -3770,6 +4088,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.contenes ?? value;
@@ -3864,6 +4190,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.callesAsfaltadas ?? value;
@@ -3958,6 +4292,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.alcantarillado ?? value;
@@ -4052,6 +4394,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.aguaPotable ?? value;
@@ -4146,6 +4496,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.alumbradoElectrico ?? value;
@@ -4242,6 +4600,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.telecomunicaciones ?? value;
@@ -4338,6 +4704,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.transportePublico ?? value;
@@ -4434,6 +4808,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.otrosInfraestructura ?? value;
@@ -4534,6 +4916,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.area ?? value;
@@ -4628,6 +5018,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.forma ?? value;
@@ -4722,6 +5120,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.topografia ?? value;
@@ -4816,6 +5222,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.edad ?? value;
@@ -4914,6 +5328,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.nivelEdificacion ?? value;
@@ -5008,6 +5430,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.descripcionInterior ?? value;
@@ -5104,6 +5534,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPisosInteriores ?? value;
@@ -5203,6 +5641,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPisosExteriores ?? value;
@@ -5302,6 +5748,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionHuellas ?? value;
@@ -5398,6 +5852,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionMuros ?? value;
@@ -5492,6 +5954,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionRevestimiento ?? value;
@@ -5591,6 +6061,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPuertaPrincipal ?? value;
@@ -5690,6 +6168,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPuertasInteriores ?? value;
@@ -5789,6 +6275,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPuertasCloset ?? value;
@@ -5888,6 +6382,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionGabinetes ?? value;
@@ -5984,6 +6486,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionTopeCocina ?? value;
@@ -6080,6 +6590,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionTecho ?? value;
@@ -6174,6 +6692,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionCornisa ?? value;
@@ -6270,6 +6796,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPlafones ?? value;
@@ -6366,6 +6900,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionVentanas ?? value;
@@ -6462,6 +7004,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.terminacionPasamanos ?? value;
@@ -6562,6 +7112,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.areaBasicoTerreno ?? value;
@@ -6662,6 +7220,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.costoMetroBasicoTerreno ?? value;
@@ -6762,6 +7328,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.areaBasicoConstruccion ?? value;
@@ -6862,6 +7436,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.costoMetroBasicoConstruccion ?? value;
@@ -6965,6 +7547,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.montoDepreciacion ?? value;
@@ -7065,6 +7655,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.montoMejoras ?? value;
@@ -7163,6 +7761,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras: value,
               valorInmueble,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.depreciacionMejoras ?? value;
@@ -7263,6 +7869,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble: value,
               comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.valorInmueble ?? value;
@@ -7357,6 +7971,14 @@ export default function InformeTasacionUpdateForm(props) {
               depreciacionMejoras,
               valorInmueble,
               comentario: value,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
             };
             const result = onChange(modelFields);
             value = result?.comentario ?? value;
@@ -7371,6 +7993,852 @@ export default function InformeTasacionUpdateForm(props) {
         hasError={errors.comentario?.hasError}
         {...getOverrideProps(overrides, "comentario")}
       ></TextField>
+      <TextField
+        label="Area parqueo"
+        isRequired={false}
+        isReadOnly={false}
+        value={areaParqueo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo: value,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.areaParqueo ?? value;
+          }
+          if (errors.areaParqueo?.hasError) {
+            runValidationTasks("areaParqueo", value);
+          }
+          setAreaParqueo(value);
+        }}
+        onBlur={() => runValidationTasks("areaParqueo", areaParqueo)}
+        errorMessage={errors.areaParqueo?.errorMessage}
+        hasError={errors.areaParqueo?.hasError}
+        {...getOverrideProps(overrides, "areaParqueo")}
+      ></TextField>
+      <TextField
+        label="Costo metro parqueo"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={costoMetroParqueo}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo: value,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.costoMetroParqueo ?? value;
+          }
+          if (errors.costoMetroParqueo?.hasError) {
+            runValidationTasks("costoMetroParqueo", value);
+          }
+          setCostoMetroParqueo(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("costoMetroParqueo", costoMetroParqueo)
+        }
+        errorMessage={errors.costoMetroParqueo?.errorMessage}
+        hasError={errors.costoMetroParqueo?.hasError}
+        {...getOverrideProps(overrides, "costoMetroParqueo")}
+      ></TextField>
+      <TextField
+        label="Area apartamento"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={areaApartamento}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento: value,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.areaApartamento ?? value;
+          }
+          if (errors.areaApartamento?.hasError) {
+            runValidationTasks("areaApartamento", value);
+          }
+          setAreaApartamento(value);
+        }}
+        onBlur={() => runValidationTasks("areaApartamento", areaApartamento)}
+        errorMessage={errors.areaApartamento?.errorMessage}
+        hasError={errors.areaApartamento?.hasError}
+        {...getOverrideProps(overrides, "areaApartamento")}
+      ></TextField>
+      <TextField
+        label="Costo metro apartamento"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={costoMetroApartamento}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento: value,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.costoMetroApartamento ?? value;
+          }
+          if (errors.costoMetroApartamento?.hasError) {
+            runValidationTasks("costoMetroApartamento", value);
+          }
+          setCostoMetroApartamento(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("costoMetroApartamento", costoMetroApartamento)
+        }
+        errorMessage={errors.costoMetroApartamento?.errorMessage}
+        hasError={errors.costoMetroApartamento?.hasError}
+        {...getOverrideProps(overrides, "costoMetroApartamento")}
+      ></TextField>
+      <TextField
+        label="Area terraza"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={areaTerraza}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza: value,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.areaTerraza ?? value;
+          }
+          if (errors.areaTerraza?.hasError) {
+            runValidationTasks("areaTerraza", value);
+          }
+          setAreaTerraza(value);
+        }}
+        onBlur={() => runValidationTasks("areaTerraza", areaTerraza)}
+        errorMessage={errors.areaTerraza?.errorMessage}
+        hasError={errors.areaTerraza?.hasError}
+        {...getOverrideProps(overrides, "areaTerraza")}
+      ></TextField>
+      <TextField
+        label="Costo metro terraza"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={costoMetroTerraza}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza: value,
+              tasaDolar,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.costoMetroTerraza ?? value;
+          }
+          if (errors.costoMetroTerraza?.hasError) {
+            runValidationTasks("costoMetroTerraza", value);
+          }
+          setCostoMetroTerraza(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("costoMetroTerraza", costoMetroTerraza)
+        }
+        errorMessage={errors.costoMetroTerraza?.errorMessage}
+        hasError={errors.costoMetroTerraza?.hasError}
+        {...getOverrideProps(overrides, "costoMetroTerraza")}
+      ></TextField>
+      <TextField
+        label="Tasa dolar"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={tasaDolar}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar: value,
+              tieneTerraza,
+            };
+            const result = onChange(modelFields);
+            value = result?.tasaDolar ?? value;
+          }
+          if (errors.tasaDolar?.hasError) {
+            runValidationTasks("tasaDolar", value);
+          }
+          setTasaDolar(value);
+        }}
+        onBlur={() => runValidationTasks("tasaDolar", tasaDolar)}
+        errorMessage={errors.tasaDolar?.errorMessage}
+        hasError={errors.tasaDolar?.hasError}
+        {...getOverrideProps(overrides, "tasaDolar")}
+      ></TextField>
+      <SwitchField
+        label="Tiene terraza"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={tieneTerraza}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              fechaTasacion,
+              serviceDesk,
+              tipoTasacion,
+              pisos,
+              tipo,
+              entidadBancaria,
+              tipoTopologia,
+              ubicacion,
+              ubicacionTerreno,
+              propietario,
+              nombreSolicitante,
+              apellidoSolicitante,
+              condominio,
+              direccionInmueble,
+              bloque,
+              etapa,
+              manzana,
+              edificioNo,
+              tipoEdificio,
+              numeroTitulo,
+              constanciaVenta,
+              designacionCatastral,
+              libroNo,
+              folioNo,
+              parcela,
+              solar,
+              manzanaLegal,
+              dc,
+              localidad,
+              desarrollo,
+              tipologiaVecindario,
+              claseSocial,
+              aceras,
+              contenes,
+              callesAsfaltadas,
+              alcantarillado,
+              aguaPotable,
+              alumbradoElectrico,
+              telecomunicaciones,
+              transportePublico,
+              otrosInfraestructura,
+              area,
+              forma,
+              topografia,
+              edad,
+              nivelEdificacion,
+              descripcionInterior,
+              terminacionPisosInteriores,
+              terminacionPisosExteriores,
+              terminacionHuellas,
+              terminacionMuros,
+              terminacionRevestimiento,
+              terminacionPuertaPrincipal,
+              terminacionPuertasInteriores,
+              terminacionPuertasCloset,
+              terminacionGabinetes,
+              terminacionTopeCocina,
+              terminacionTecho,
+              terminacionCornisa,
+              terminacionPlafones,
+              terminacionVentanas,
+              terminacionPasamanos,
+              areaBasicoTerreno,
+              costoMetroBasicoTerreno,
+              areaBasicoConstruccion,
+              costoMetroBasicoConstruccion,
+              montoDepreciacion,
+              montoMejoras,
+              depreciacionMejoras,
+              valorInmueble,
+              comentario,
+              areaParqueo,
+              costoMetroParqueo,
+              areaApartamento,
+              costoMetroApartamento,
+              areaTerraza,
+              costoMetroTerraza,
+              tasaDolar,
+              tieneTerraza: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.tieneTerraza ?? value;
+          }
+          if (errors.tieneTerraza?.hasError) {
+            runValidationTasks("tieneTerraza", value);
+          }
+          setTieneTerraza(value);
+        }}
+        onBlur={() => runValidationTasks("tieneTerraza", tieneTerraza)}
+        errorMessage={errors.tieneTerraza?.errorMessage}
+        hasError={errors.tieneTerraza?.hasError}
+        {...getOverrideProps(overrides, "tieneTerraza")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

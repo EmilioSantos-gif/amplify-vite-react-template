@@ -367,12 +367,13 @@ export default function InformeTasacionCreateForm(props) {
             }
           });
           if (id) {
+            const {createdAt, updatedAt, owner, ...filteredFormData} = formData;
             await client.graphql({
               query: updateInformeTasacion.replaceAll("__typename", ""),
               variables: {
                 input: {
                   id,
-                  ...formData,
+                  ...filteredFormData,
                 },
               },
             });

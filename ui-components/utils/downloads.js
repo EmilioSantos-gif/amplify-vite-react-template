@@ -13,7 +13,7 @@ export const downloadFile = (filename, content) => {
     document.body.removeChild(element);
 };
 
-export const downloadInforme = () => {
+export const downloadInforme = (tasacion) => {
 
     downloadData({
         path: "templates/appartments/INFORME-APARTAMENTO.docx"
@@ -33,13 +33,13 @@ export const downloadInforme = () => {
         //Modifiy document
 
         doc.render({
-            fechaTasacion: "26 de febrero",
-            personaSolicitante: "Emilio Santos",
-            primerApellido: "Santos",
-            tipoTasacion: "Apartamento",
-            edificioNo: "10",
-            condominio: "20",
-            direccionInmueble: "La Javilla"
+            fechaTasacion: tasacion.fechaTasacion,
+            personaSolicitante: `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`,
+            primerApellido: tasacion.apellidoSolicitante,
+            tipoTasacion: tasacion.tipoTasacion,
+            edificioNo: tasacion.edificioNo,
+            condominio: tasacion.condominio,
+            direccionInmueble: tasacion.direccionInmueble
         })
 
         //Download document

@@ -14,8 +14,11 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       alumbradoElectrico
       apellidoSolicitante
       area
+      areaApartamento
       areaBasicoConstruccion
       areaBasicoTerreno
+      areaParqueo
+      areaTerraza
       bloque
       callesAsfaltadas
       claseSocial
@@ -23,8 +26,11 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       condominio
       constanciaVenta
       contenes
+      costoMetroApartamento
       costoMetroBasicoConstruccion
       costoMetroBasicoTerreno
+      costoMetroParqueo
+      costoMetroTerraza
       createdAt
       dc
       depreciacionMejoras
@@ -56,6 +62,7 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       propietario
       serviceDesk
       solar
+      tasaDolar
       telecomunicaciones
       terminacionCornisa
       terminacionGabinetes
@@ -72,6 +79,7 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       terminacionTecho
       terminacionTopeCocina
       terminacionVentanas
+      tieneTerraza
       tipo
       tipoEdificio
       tipoTasacion
@@ -83,14 +91,6 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
-      areaParqueo
-      costoMetroParqueo
-      areaApartamento
-      costoMetroApartamento
-      areaTerraza
-      costoMetroTerraza
-      tasaDolar
-      tieneTerraza
       __typename
     }
   }
@@ -122,8 +122,11 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       alumbradoElectrico
       apellidoSolicitante
       area
+      areaApartamento
       areaBasicoConstruccion
       areaBasicoTerreno
+      areaParqueo
+      areaTerraza
       bloque
       callesAsfaltadas
       claseSocial
@@ -131,8 +134,11 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       condominio
       constanciaVenta
       contenes
+      costoMetroApartamento
       costoMetroBasicoConstruccion
       costoMetroBasicoTerreno
+      costoMetroParqueo
+      costoMetroTerraza
       createdAt
       dc
       depreciacionMejoras
@@ -164,6 +170,7 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       propietario
       serviceDesk
       solar
+      tasaDolar
       telecomunicaciones
       terminacionCornisa
       terminacionGabinetes
@@ -180,6 +187,7 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       terminacionTecho
       terminacionTopeCocina
       terminacionVentanas
+      tieneTerraza
       tipo
       tipoEdificio
       tipoTasacion
@@ -191,14 +199,6 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
-      areaParqueo
-      costoMetroParqueo
-      areaApartamento
-      costoMetroApartamento
-      areaTerraza
-      costoMetroTerraza
-      tasaDolar
-      tieneTerraza
       __typename
     }
   }
@@ -230,8 +230,11 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       alumbradoElectrico
       apellidoSolicitante
       area
+      areaApartamento
       areaBasicoConstruccion
       areaBasicoTerreno
+      areaParqueo
+      areaTerraza
       bloque
       callesAsfaltadas
       claseSocial
@@ -239,8 +242,11 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       condominio
       constanciaVenta
       contenes
+      costoMetroApartamento
       costoMetroBasicoConstruccion
       costoMetroBasicoTerreno
+      costoMetroParqueo
+      costoMetroTerraza
       createdAt
       dc
       depreciacionMejoras
@@ -272,6 +278,7 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       propietario
       serviceDesk
       solar
+      tasaDolar
       telecomunicaciones
       terminacionCornisa
       terminacionGabinetes
@@ -288,6 +295,7 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       terminacionTecho
       terminacionTopeCocina
       terminacionVentanas
+      tieneTerraza
       tipo
       tipoEdificio
       tipoTasacion
@@ -299,14 +307,6 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       ubicacionTerreno
       updatedAt
       valorInmueble
-      areaParqueo
-      costoMetroParqueo
-      areaApartamento
-      costoMetroApartamento
-      areaTerraza
-      costoMetroTerraza
-      tasaDolar
-      tieneTerraza
       __typename
     }
   }

@@ -87,6 +87,14 @@ export declare type InformeTasacionCreateFormInputValues = {
     depreciacionMejoras?: number;
     valorInmueble?: number;
     comentario?: string;
+    areaParqueo?: string;
+    costoMetroParqueo?: number;
+    areaApartamento?: number;
+    costoMetroApartamento?: number;
+    areaTerraza?: number;
+    costoMetroTerraza?: number;
+    tasaDolar?: number;
+    tieneTerraza?: boolean;
 };
 export declare type InformeTasacionCreateFormValidationValues = {
     fechaTasacion?: ValidationFunction<string>;
@@ -160,6 +168,14 @@ export declare type InformeTasacionCreateFormValidationValues = {
     depreciacionMejoras?: ValidationFunction<number>;
     valorInmueble?: ValidationFunction<number>;
     comentario?: ValidationFunction<string>;
+    areaParqueo?: ValidationFunction<string>;
+    costoMetroParqueo?: ValidationFunction<number>;
+    areaApartamento?: ValidationFunction<number>;
+    costoMetroApartamento?: ValidationFunction<number>;
+    areaTerraza?: ValidationFunction<number>;
+    costoMetroTerraza?: ValidationFunction<number>;
+    tasaDolar?: ValidationFunction<number>;
+    tieneTerraza?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type InformeTasacionCreateFormOverridesProps = {
@@ -235,6 +251,14 @@ export declare type InformeTasacionCreateFormOverridesProps = {
     depreciacionMejoras?: PrimitiveOverrideProps<TextFieldProps>;
     valorInmueble?: PrimitiveOverrideProps<TextFieldProps>;
     comentario?: PrimitiveOverrideProps<TextFieldProps>;
+    areaParqueo?: PrimitiveOverrideProps<TextFieldProps>;
+    costoMetroParqueo?: PrimitiveOverrideProps<TextFieldProps>;
+    areaApartamento?: PrimitiveOverrideProps<TextFieldProps>;
+    costoMetroApartamento?: PrimitiveOverrideProps<TextFieldProps>;
+    areaTerraza?: PrimitiveOverrideProps<TextFieldProps>;
+    costoMetroTerraza?: PrimitiveOverrideProps<TextFieldProps>;
+    tasaDolar?: PrimitiveOverrideProps<TextFieldProps>;
+    tieneTerraza?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type InformeTasacionCreateFormProps = React.PropsWithChildren<{
     overrides?: InformeTasacionCreateFormOverridesProps | undefined | null;

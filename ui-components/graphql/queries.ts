@@ -11,8 +11,11 @@ export const getInformeTasacion = /* GraphQL */ `
       alumbradoElectrico
       apellidoSolicitante
       area
+      areaApartamento
       areaBasicoConstruccion
       areaBasicoTerreno
+      areaParqueo
+      areaTerraza
       bloque
       callesAsfaltadas
       claseSocial
@@ -20,8 +23,11 @@ export const getInformeTasacion = /* GraphQL */ `
       condominio
       constanciaVenta
       contenes
+      costoMetroApartamento
       costoMetroBasicoConstruccion
       costoMetroBasicoTerreno
+      costoMetroParqueo
+      costoMetroTerraza
       createdAt
       dc
       depreciacionMejoras
@@ -53,6 +59,7 @@ export const getInformeTasacion = /* GraphQL */ `
       propietario
       serviceDesk
       solar
+      tasaDolar
       telecomunicaciones
       terminacionCornisa
       terminacionGabinetes
@@ -69,6 +76,7 @@ export const getInformeTasacion = /* GraphQL */ `
       terminacionTecho
       terminacionTopeCocina
       terminacionVentanas
+      tieneTerraza
       tipo
       tipoEdificio
       tipoTasacion
@@ -114,8 +122,11 @@ export const listInformeTasacions = /* GraphQL */ `
         alumbradoElectrico
         apellidoSolicitante
         area
+        areaApartamento
         areaBasicoConstruccion
         areaBasicoTerreno
+        areaParqueo
+        areaTerraza
         bloque
         callesAsfaltadas
         claseSocial
@@ -123,8 +134,11 @@ export const listInformeTasacions = /* GraphQL */ `
         condominio
         constanciaVenta
         contenes
+        costoMetroApartamento
         costoMetroBasicoConstruccion
         costoMetroBasicoTerreno
+        costoMetroParqueo
+        costoMetroTerraza
         createdAt
         dc
         depreciacionMejoras
@@ -156,6 +170,7 @@ export const listInformeTasacions = /* GraphQL */ `
         propietario
         serviceDesk
         solar
+        tasaDolar
         telecomunicaciones
         terminacionCornisa
         terminacionGabinetes
@@ -172,6 +187,7 @@ export const listInformeTasacions = /* GraphQL */ `
         terminacionTecho
         terminacionTopeCocina
         terminacionVentanas
+        tieneTerraza
         tipo
         tipoEdificio
         tipoTasacion

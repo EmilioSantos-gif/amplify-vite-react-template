@@ -49,10 +49,14 @@ export default function InformeTasacionList() {
                 <TableCell>{informe.ubicacion || "N/A"}</TableCell>
                 <TableCell>{informe.entidadBancaria || "N/A"}</TableCell>
                 <TableCell>
+                  {/*
+                  
                   <Link className="amplify-button amplify-button--link" to="/resumen" state={ {form: informe} }>
                     Ver
                   </Link>
-                  <Button onClick={() => handleEdit(informe.id)} variation="primary">Edit</Button>
+                  */}
+                  <Button onClick={() => handleEdit(informe.id)} variation="link">Ver</Button>
+                  <Button onClick={() => handleEdit(informe.id)} variation="primary">Editar</Button>
                 </TableCell>
               </TableRow>
             ))}

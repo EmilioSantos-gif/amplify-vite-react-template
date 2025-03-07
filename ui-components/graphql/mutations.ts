@@ -241,7 +241,6 @@ export const updateInformeTasacion = /* GraphQL */ `
       contenes
       costoMetroBasicoConstruccion
       costoMetroBasicoTerreno
-      createdAt
       dc
       depreciacionMejoras
       desarrollo
@@ -266,7 +265,6 @@ export const updateInformeTasacion = /* GraphQL */ `
       nombreSolicitante
       numeroTitulo
       otrosInfraestructura
-      owner
       parcela
       pisos
       propietario
@@ -297,7 +295,6 @@ export const updateInformeTasacion = /* GraphQL */ `
       transportePublico
       ubicacion
       ubicacionTerreno
-      updatedAt
       valorInmueble
       areaParqueo
       costoMetroParqueo
