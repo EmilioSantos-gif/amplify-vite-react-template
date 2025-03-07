@@ -13,6 +13,46 @@ export const downloadFile = (filename, content) => {
     document.body.removeChild(element);
 };
 
+export const downloadPresentacion = (tasacion) => {
+
+    downloadData({
+        path: "templates/appartments/PRESENTACION-APARTAMENTO.docx"
+    }).result.then(async(data) => {
+
+        let blobDocument = data.body;
+
+        const arrayBuffer = await blobDocument.arrayBuffer();
+
+        const zip = new PizZip(arrayBuffer);
+        const doc = new Docxtemplater(zip, {
+            paragraphLoop: true,
+            linebreaks: true,
+        });
+
+        //Modifiy document
+        let personaSolicitante = `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`;
+
+        doc.render({
+            tipoTasacion: tasacion.tipoTasacion,
+            edificioNo: tasacion.edificioNo,
+            propietario: tasacion.propietario,
+            personaSolicitante: personaSolicitante,
+            entidadBancaria: tasacion.entidadBancaria,
+            direccionInmueble: tasacion.direccionInmueble,
+            fechaTasacion: tasacion.fechaTasacion
+        })
+
+        //Download document
+
+        const out = doc.getZip().generate({
+            type: "blob",
+            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+
+        saveAs(out, `Presentacion de tasacion - ${personaSolicitante}.docx`);
+    });
+}
+
 export const downloadInforme = (tasacion) => {
 
     downloadData({
@@ -32,9 +72,11 @@ export const downloadInforme = (tasacion) => {
 
         //Modifiy document
 
+        let personaSolicitante = `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`;
+
         doc.render({
             fechaTasacion: tasacion.fechaTasacion,
-            personaSolicitante: `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`,
+            personaSolicitante: personaSolicitante,
             primerApellido: tasacion.apellidoSolicitante,
             tipoTasacion: tasacion.tipoTasacion,
             edificioNo: tasacion.edificioNo,
@@ -49,6 +91,6 @@ export const downloadInforme = (tasacion) => {
             mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         });
 
-        saveAs(out, "UpdatedDocument.docx");
+        saveAs(out, `Informe de tasacion - ${personaSolicitante}.docx`);
     });
 }

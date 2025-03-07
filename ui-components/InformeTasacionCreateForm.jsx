@@ -20,7 +20,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { downloadInforme } from "./utils/downloads";
+import { downloadInforme, downloadPresentacion } from "./utils/downloads";
 
 
 const currencyOptions = [
@@ -1766,8 +1766,12 @@ export default function InformeTasacionCreateForm(props) {
           ></Button>
         </Flex>
         <Button
-          children="Download"
+          children="Descargar informe"
           onClick={() => downloadInforme(formData)}
+        />
+        <Button
+          children="Descargar presentación"
+          onClick={() => downloadPresentacion(formData)}
         />
       </Flex>
     </Grid>
