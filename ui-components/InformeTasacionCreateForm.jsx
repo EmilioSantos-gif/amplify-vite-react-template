@@ -171,9 +171,11 @@ export default function InformeTasacionCreateForm(props) {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
   const handleSnackbarClose = (event, reason) => {
+    /*
     if (reason === 'clickaway') {
       return;
     }
+    */
     setSnackbarOpen(false);
   };
 
@@ -402,7 +404,7 @@ export default function InformeTasacionCreateForm(props) {
       {...rest}
     >
 
-      <Link to="/resumen" state={ {form: formData} }>
+      <Link hidden={true} to="/resumen" state={ {form: formData} }>
         Go to Resumen
       </Link>
 
@@ -1345,7 +1347,7 @@ export default function InformeTasacionCreateForm(props) {
 
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
         <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          Tasacion was successfully saved!
+          Tasación actualizada correctamente.
         </MuiAlert>
       </Snackbar>
     </Grid>
