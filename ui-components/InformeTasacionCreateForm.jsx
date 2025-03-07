@@ -135,14 +135,12 @@ const NumericFormatter = new Intl.NumberFormat("en-US", {
 
 export default function InformeTasacionCreateForm(props) {
 
-  
-
   const titleHeadingLevel = 3;
   const sectionsHeadingLevel = titleHeadingLevel + 1;
   const subSectionsHeadingLevel = sectionsHeadingLevel + 1;
 
   const {
-    clearOnSuccess = true,
+    clearOnSuccess = false,
     onSuccess,
     onError,
     onSubmit,
