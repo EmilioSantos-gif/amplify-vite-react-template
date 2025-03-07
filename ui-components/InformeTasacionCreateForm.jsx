@@ -18,6 +18,8 @@ import CurrencyInput from "react-currency-input-field";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { downloadInforme } from "./utils/downloads";
 
 
@@ -166,6 +168,14 @@ export default function InformeTasacionCreateForm(props) {
   const [errors, setErrors] = React.useState({});
 
   const [currency, setCurrency] = React.useState("DOP");
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
 
   const totalTerreno = formData.areaBasicoTerreno * formData.costoMetroBasicoTerreno;
   const totalConstruccion = formData.areaBasicoConstruccion * formData.costoMetroBasicoConstruccion;
@@ -374,6 +384,7 @@ export default function InformeTasacionCreateForm(props) {
               },
             });
           }
+          setSnackbarOpen(true);
           if (onSuccess) {
             onSuccess(formData);
           }
@@ -1332,6 +1343,11 @@ export default function InformeTasacionCreateForm(props) {
           {...getOverrideProps(overrides, "terminacionPasamanos")}
         ></TextField>
 
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+          Tasacion was successfully saved!
+        </MuiAlert>
+      </Snackbar>
     </Grid>
 
     <Heading level={sectionsHeadingLevel}>Levantamiento Fotográfico</Heading>
