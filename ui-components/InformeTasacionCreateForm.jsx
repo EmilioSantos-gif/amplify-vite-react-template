@@ -9,7 +9,8 @@ import {
   TextField,
   TextAreaField,
   Heading,
-  SelectField
+  SelectField,
+  Label
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
@@ -211,8 +212,7 @@ export default function InformeTasacionCreateForm(props) {
     ubicacion: [],
     ubicacionTerreno: [],
     propietario: [],
-    nombreSolicitante: [],
-    apellidoSolicitante: [],
+    solicitantes: [],
     condominio: [],
     direccionInmueble: [],
     bloque: [],
@@ -330,6 +330,8 @@ export default function InformeTasacionCreateForm(props) {
       ...formData,                                                                                                                                                      
       [attributes.id.value]: type === "checkbox" ? checked : value,                                                                                                     
     };
+
+    setFormData(updatedFields);
   }
 
   const handleDecimalInputChange = (e) => {
@@ -420,6 +422,7 @@ export default function InformeTasacionCreateForm(props) {
         } catch (err) {
           if (onError) {
             const messages = err.errors.map((e) => e.message).join("\n");
+            console.log(messages);
             onError(formData, messages);
           }
         }
@@ -539,10 +542,7 @@ export default function InformeTasacionCreateForm(props) {
         isReadOnly={false}
         value={formData.serviceDesk}
         // onChange={handleFieldChange}
-        onChange={(e) => {
-          let value = e.target.value;
-          setFormData({ ...formData, serviceDesk: value });
-        }}
+        onChange={handleFieldChange}
         onBlur={() => runValidationTasks("serviceDesk", formData.serviceDesk)}
         errorMessage={errors.serviceDesk?.errorMessage}
         hasError={errors.serviceDesk?.hasError}
@@ -593,9 +593,8 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "propietario")}
       ></TextField>
 
-      <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
         {(formData.solicitantes || []).map((solicitante, index) => (
-          <Grid key={index} templateColumns="repeat(2, 1fr)" gap="1rem">
+          <Grid key={index} templateColumns="3fr 3fr 0.5fr" gap="1rem">
             <TextField
               label={`Nombre solicitante ${index + 1}`}
               value={solicitante.nombre}
@@ -603,7 +602,7 @@ export default function InformeTasacionCreateForm(props) {
                 handleSolicitanteChange(index, "nombre", e.target.value)
               }
               onBlur={() =>
-                runValidationTasks(`solicitantes[${index}].nombre`, solicitante.nombre)
+                runValidationTasks(`solicitantes`, solicitante.nombre)
               }
               errorMessage={errors.solicitantes?.[index]?.nombre?.errorMessage}
               hasError={errors.solicitantes?.[index]?.nombre?.hasError}
@@ -615,21 +614,24 @@ export default function InformeTasacionCreateForm(props) {
                 handleSolicitanteChange(index, "apellido", e.target.value)
               }
               onBlur={() =>
-                runValidationTasks(`solicitantes[${index}].apellido`, solicitante.apellido)
+                runValidationTasks(`solicitantes`, solicitante.apellido)
               }
               errorMessage={errors.solicitantes?.[index]?.apellido?.errorMessage}
               hasError={errors.solicitantes?.[index]?.apellido?.hasError}
             />
-            <Button
-              onClick={() => removeSolicitante(index)}
-              disabled={formData.solicitantes.length === 1}
-            >
-              Remove
-            </Button>
+            <div className="amplify-flex amplify-field amplify-textfield">
+              <Label htmlFor="" >&#8203;</Label>
+              <Button
+                colorTheme="error"
+                onClick={() => removeSolicitante(index)}
+                disabled={formData.solicitantes.length === 1}
+              >
+                Borrar
+              </Button>
+            </div>
           </Grid>
         ))}
-        <Button onClick={addSolicitante}>Add Solicitante</Button>
-      </Grid>
+      <Button variation="primary" colorTheme="info" onClick={addSolicitante}>Agregar solicitante</Button>
       
       <TextAreaField
         id="direccionInmueble"
@@ -1772,7 +1774,7 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Clear"
+          children="Limpiar"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
@@ -1785,7 +1787,7 @@ export default function InformeTasacionCreateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Submit"
+            children="Grabar"
             type="submit"
             variation="primary"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}
