@@ -320,6 +320,15 @@ export default function InformeTasacionCreateForm(props) {
     setFormData(updatedFields);
   };
 
+  const handleFieldChange = (e) => {                                                                                                                                    
+    const { attributes, value, type, checked } = e.target;                                                                                                              
+                                                                                                                                                                        
+    let updatedFields = {                                                                                                                                               
+      ...formData,                                                                                                                                                      
+      [attributes.id.value]: type === "checkbox" ? checked : value,                                                                                                     
+    };
+  }
+
   const handleDecimalInputChange = (e) => {
     const { attributes, value, type, checked } = e.target;
 
