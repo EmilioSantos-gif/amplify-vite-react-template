@@ -50,8 +50,7 @@ const initialValues = {
   ubicacion: "",
   ubicacionTerreno: "",
   propietario: "",
-  nombreSolicitante: "",
-  apellidoSolicitante: "",
+  solicitantes: [{ nombre: "", apellido: "" }],
   condominio: "",
   direccionInmueble: "",
   bloque: "",
@@ -289,13 +288,25 @@ export default function InformeTasacionCreateForm(props) {
     return validationResponse;
   };
 
-  const handleFieldChange = (e) => {
-    const { attributes, value, type, checked } = e.target;
+  const handleSolicitanteChange = (index, field, value) => {
+    const updatedSolicitantes = formData.solicitantes.map((solicitante, i) =>
+      i === index ? { ...solicitante, [field]: value } : solicitante
+    );
+    setFormData({ ...formData, solicitantes: updatedSolicitantes });
+  };
 
-    let updatedFields = {
+  const addSolicitante = () => {
+    setFormData({
       ...formData,
-      [attributes.id.value]: type === "checkbox" ? checked : value,
-    };
+      solicitantes: [...formData.solicitantes, { nombre: "", apellido: "" }],
+    });
+  };
+
+  const removeSolicitante = (index) => {
+    const updatedSolicitantes = formData.solicitantes.filter(
+      (_, i) => i !== index
+    );
+    setFormData({ ...formData, solicitantes: updatedSolicitantes });
 
     // if (onChange) {
     //   const result = onChange(updatedFields);
@@ -571,37 +582,41 @@ export default function InformeTasacionCreateForm(props) {
       ></TextField>
 
       <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
-        <TextField
-          id="nombreSolicitante"
-          label="Nombre solicitante"
-          isRequired={false}
-          isReadOnly={false}
-          value={formData.nombreSolicitante}
-          onChange={handleFieldChange}
-          onBlur={() =>
-            runValidationTasks("nombreSolicitante", formData.nombreSolicitante)
-          }
-          errorMessage={errors.nombreSolicitante?.errorMessage}
-          hasError={errors.nombreSolicitante?.hasError}
-          {...getOverrideProps(overrides, "nombreSolicitante")}
-        ></TextField>
-        <TextField
-          id="apellidoSolicitante"
-          label="Apellido solicitante"
-          isRequired={false}
-          isReadOnly={false}
-          value={formData.apellidoSolicitante}
-          onChange={handleFieldChange}
-          onBlur={() =>
-            runValidationTasks(
-              "apellidoSolicitante",
-              formData.apellidoSolicitante
-            )
-          }
-          errorMessage={errors.apellidoSolicitante?.errorMessage}
-          hasError={errors.apellidoSolicitante?.hasError}
-          {...getOverrideProps(overrides, "apellidoSolicitante")}
-        ></TextField>
+        {formData.solicitantes.map((solicitante, index) => (
+          <Grid key={index} templateColumns="repeat(2, 1fr)" gap="1rem">
+            <TextField
+              label={`Nombre solicitante ${index + 1}`}
+              value={solicitante.nombre}
+              onChange={(e) =>
+                handleSolicitanteChange(index, "nombre", e.target.value)
+              }
+              onBlur={() =>
+                runValidationTasks(`solicitantes[${index}].nombre`, solicitante.nombre)
+              }
+              errorMessage={errors.solicitantes?.[index]?.nombre?.errorMessage}
+              hasError={errors.solicitantes?.[index]?.nombre?.hasError}
+            />
+            <TextField
+              label={`Apellido solicitante ${index + 1}`}
+              value={solicitante.apellido}
+              onChange={(e) =>
+                handleSolicitanteChange(index, "apellido", e.target.value)
+              }
+              onBlur={() =>
+                runValidationTasks(`solicitantes[${index}].apellido`, solicitante.apellido)
+              }
+              errorMessage={errors.solicitantes?.[index]?.apellido?.errorMessage}
+              hasError={errors.solicitantes?.[index]?.apellido?.hasError}
+            />
+            <Button
+              onClick={() => removeSolicitante(index)}
+              disabled={formData.solicitantes.length === 1}
+            >
+              Remove
+            </Button>
+          </Grid>
+        ))}
+        <Button onClick={addSolicitante}>Add Solicitante</Button>
       </Grid>
       
       <TextAreaField
