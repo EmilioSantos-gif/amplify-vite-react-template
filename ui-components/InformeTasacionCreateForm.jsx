@@ -152,7 +152,10 @@ export default function InformeTasacionCreateForm(props) {
   } = props;
 
   const { id } = useParams();
-  const [formData, setFormData] = React.useState(initialValues);
+  const [formData, setFormData] = React.useState({
+    ...initialValues,
+    solicitantes: initialValues.solicitantes || [{ nombre: "", apellido: "" }],
+  });
 
   useEffect(() => {
     if (id) {
@@ -296,10 +299,10 @@ export default function InformeTasacionCreateForm(props) {
   };
 
   const addSolicitante = () => {
-    setFormData({
-      ...formData,
-      solicitantes: [...formData.solicitantes, { nombre: "", apellido: "" }],
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      solicitantes: [...(prevFormData.solicitantes || []), { nombre: "", apellido: "" }],
+    }));
   };
 
   const removeSolicitante = (index) => {
