@@ -591,7 +591,7 @@ export default function InformeTasacionCreateForm(props) {
       ></TextField>
 
       <Grid templateColumns="repeat(2, 1fr)" gap="1rem">
-        {formData.solicitantes.map((solicitante, index) => (
+        {(formData.solicitantes || []).map((solicitante, index) => (
           <Grid key={index} templateColumns="repeat(2, 1fr)" gap="1rem">
             <TextField
               label={`Nombre solicitante ${index + 1}`}
