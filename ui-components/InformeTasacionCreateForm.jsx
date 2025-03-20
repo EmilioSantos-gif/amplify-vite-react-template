@@ -420,9 +420,9 @@ export default function InformeTasacionCreateForm(props) {
             resetStateValues();
           }
         } catch (err) {
+          console.log(err);
           if (onError) {
             const messages = err.errors.map((e) => e.message).join("\n");
-            console.log(messages);
             onError(formData, messages);
           }
         }

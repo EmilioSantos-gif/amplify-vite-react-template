@@ -9,7 +9,6 @@ export const getInformeTasacion = /* GraphQL */ `
       aguaPotable
       alcantarillado
       alumbradoElectrico
-      apellidoSolicitante
       area
       areaApartamento
       areaBasicoConstruccion
@@ -50,7 +49,7 @@ export const getInformeTasacion = /* GraphQL */ `
       montoDepreciacion
       montoMejoras
       nivelEdificacion
-      nombreSolicitante
+      solicitantes
       numeroTitulo
       otrosInfraestructura
       owner
@@ -120,7 +119,6 @@ export const listInformeTasacions = /* GraphQL */ `
         aguaPotable
         alcantarillado
         alumbradoElectrico
-        apellidoSolicitante
         area
         areaApartamento
         areaBasicoConstruccion
@@ -161,7 +159,7 @@ export const listInformeTasacions = /* GraphQL */ `
         montoDepreciacion
         montoMejoras
         nivelEdificacion
-        nombreSolicitante
+        solicitantes
         numeroTitulo
         otrosInfraestructura
         owner

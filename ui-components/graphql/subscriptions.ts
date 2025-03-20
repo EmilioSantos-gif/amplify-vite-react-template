@@ -12,7 +12,6 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       aguaPotable
       alcantarillado
       alumbradoElectrico
-      apellidoSolicitante
       area
       areaApartamento
       areaBasicoConstruccion
@@ -53,7 +52,7 @@ export const onCreateInformeTasacion = /* GraphQL */ `
       montoDepreciacion
       montoMejoras
       nivelEdificacion
-      nombreSolicitante
+      solicitantes
       numeroTitulo
       otrosInfraestructura
       owner
@@ -120,7 +119,6 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       aguaPotable
       alcantarillado
       alumbradoElectrico
-      apellidoSolicitante
       area
       areaApartamento
       areaBasicoConstruccion
@@ -161,7 +159,7 @@ export const onDeleteInformeTasacion = /* GraphQL */ `
       montoDepreciacion
       montoMejoras
       nivelEdificacion
-      nombreSolicitante
+      solicitantes
       numeroTitulo
       otrosInfraestructura
       owner
@@ -228,7 +226,6 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       aguaPotable
       alcantarillado
       alumbradoElectrico
-      apellidoSolicitante
       area
       areaApartamento
       areaBasicoConstruccion
@@ -269,7 +266,7 @@ export const onUpdateInformeTasacion = /* GraphQL */ `
       montoDepreciacion
       montoMejoras
       nivelEdificacion
-      nombreSolicitante
+      solicitantes
       numeroTitulo
       otrosInfraestructura
       owner
