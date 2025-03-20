@@ -24,10 +24,20 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
 
+## Run frontend in dev
+
+rpm run dev
+
 ## Sandbox
 
 npx ampx sandbox
 
+(Updates sandbox resources)
+
 # Aws login
 
 aws sso login
+
+# Generate forms
+
+npx ampx generate forms

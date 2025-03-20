@@ -166,8 +166,15 @@ export default function InformeTasacionCreateForm(props) {
 
   const fetchInforme = async (id) => {
     const { data } = await client.models.InformeTasacion.get({ id });
+
+    let arregloSolicitantes = data.solicitantes.map(solicitante => JSON.parse(solicitante));
+  
     setFormData(data);
+    setSolicitantes(arregloSolicitantes);
   };
+
+  const [solicitantes, setSolicitantes] = React.useState([{nombre: "", apellido: ""}]);
+
   const [errors, setErrors] = React.useState({});
 
   const [currency, setCurrency] = React.useState("DOP");
@@ -292,24 +299,26 @@ export default function InformeTasacionCreateForm(props) {
   };
 
   const handleSolicitanteChange = (index, field, value) => {
-    const updatedSolicitantes = formData.solicitantes.map((solicitante, i) =>
+    const updatedSolicitantes = solicitantes.map((solicitante, i) =>
       i === index ? { ...solicitante, [field]: value } : solicitante
     );
-    setFormData({ ...formData, solicitantes: updatedSolicitantes });
+
+    setSolicitantes(updatedSolicitantes);
+    //setFormData({ ...formData, solicitantes: updatedSolicitantes });
   };
 
   const addSolicitante = () => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      solicitantes: [...(prevFormData.solicitantes || []), { nombre: "", apellido: "" }],
-    }));
+    const nuevoSolicitante  = { nombre: "", apellido: "" };
+    setSolicitantes(solicitantes => [...solicitantes, nuevoSolicitante])
   };
 
   const removeSolicitante = (index) => {
-    const updatedSolicitantes = formData.solicitantes.filter(
+    const updatedSolicitantes = solicitantes.filter(
       (_, i) => i !== index
     );
-    setFormData({ ...formData, solicitantes: updatedSolicitantes });
+
+    setSolicitantes(updatedSolicitantes);
+    //setFormData({ ...formData, solicitantes: updatedSolicitantes });
 
     // if (onChange) {
     //   const result = onChange(updatedFields);
@@ -320,7 +329,7 @@ export default function InformeTasacionCreateForm(props) {
     //   runValidationTasks(name, value);
     // }
 
-    setFormData(updatedFields);
+    //setFormData(updatedFields);
   };
 
   const handleFieldChange = (e) => {                                                                                                                                    
@@ -393,6 +402,13 @@ export default function InformeTasacionCreateForm(props) {
           });
           if (id) {
             const {createdAt, updatedAt, owner, ...filteredFormData} = formData;
+
+            let solicitantesFormateados = [];
+
+            solicitantesFormateados = solicitantes.map((solicitante) => JSON.stringify(solicitante));
+            
+            filteredFormData.solicitantes = solicitantesFormateados;
+
             await client.graphql({
               query: updateInformeTasacion.replaceAll("__typename", ""),
               variables: {
@@ -593,7 +609,7 @@ export default function InformeTasacionCreateForm(props) {
         {...getOverrideProps(overrides, "propietario")}
       ></TextField>
 
-        {(formData.solicitantes || []).map((solicitante, index) => (
+        {(solicitantes || []).map((solicitante, index) => (
           <Grid key={index} templateColumns="3fr 3fr 0.5fr" gap="1rem">
             <TextField
               label={`Nombre solicitante ${index + 1}`}
@@ -624,7 +640,7 @@ export default function InformeTasacionCreateForm(props) {
               <Button
                 colorTheme="error"
                 onClick={() => removeSolicitante(index)}
-                disabled={formData.solicitantes.length === 1}
+                disabled={solicitantes.length === 1}
               >
                 Borrar
               </Button>

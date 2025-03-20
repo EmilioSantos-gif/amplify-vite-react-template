@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { InformeTasacion } from "./graphql/types";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -27,8 +27,7 @@ export declare type InformeTasacionUpdateFormInputValues = {
     ubicacion?: string;
     ubicacionTerreno?: string;
     propietario?: string;
-    nombreSolicitante?: string;
-    apellidoSolicitante?: string;
+    solicitantes?: string[];
     condominio?: string;
     direccionInmueble?: string;
     bloque?: string;
@@ -108,8 +107,7 @@ export declare type InformeTasacionUpdateFormValidationValues = {
     ubicacion?: ValidationFunction<string>;
     ubicacionTerreno?: ValidationFunction<string>;
     propietario?: ValidationFunction<string>;
-    nombreSolicitante?: ValidationFunction<string>;
-    apellidoSolicitante?: ValidationFunction<string>;
+    solicitantes?: ValidationFunction<string>;
     condominio?: ValidationFunction<string>;
     direccionInmueble?: ValidationFunction<string>;
     bloque?: ValidationFunction<string>;
@@ -191,8 +189,7 @@ export declare type InformeTasacionUpdateFormOverridesProps = {
     ubicacion?: PrimitiveOverrideProps<TextFieldProps>;
     ubicacionTerreno?: PrimitiveOverrideProps<TextFieldProps>;
     propietario?: PrimitiveOverrideProps<TextFieldProps>;
-    nombreSolicitante?: PrimitiveOverrideProps<TextFieldProps>;
-    apellidoSolicitante?: PrimitiveOverrideProps<TextFieldProps>;
+    solicitantes?: PrimitiveOverrideProps<TextAreaFieldProps>;
     condominio?: PrimitiveOverrideProps<TextFieldProps>;
     direccionInmueble?: PrimitiveOverrideProps<TextFieldProps>;
     bloque?: PrimitiveOverrideProps<TextFieldProps>;

@@ -2,17 +2,179 @@
 "use client";
 import * as React from "react";
 import {
+  Badge,
   Button,
+  Divider,
   Flex,
   Grid,
+  Icon,
+  ScrollView,
   SwitchField,
+  Text,
+  TextAreaField,
   TextField,
+  useTheme,
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getInformeTasacion } from "./graphql/queries";
 import { updateInformeTasacion } from "./graphql/mutations";
 const client = generateClient();
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+  runValidationTasks,
+  errorMessage,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const {
+    tokens: {
+      components: {
+        fieldmessages: { error: errorStyles },
+      },
+    },
+  } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    const { hasError } = runValidationTasks();
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+          {errorMessage && hasError && (
+            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
+              {errorMessage}
+            </Text>
+          )}
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button size="small" variation="link" onClick={addItem}>
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function InformeTasacionUpdateForm(props) {
   const {
     id: idProp,
@@ -36,8 +198,7 @@ export default function InformeTasacionUpdateForm(props) {
     ubicacion: "",
     ubicacionTerreno: "",
     propietario: "",
-    nombreSolicitante: "",
-    apellidoSolicitante: "",
+    solicitantes: [],
     condominio: "",
     direccionInmueble: "",
     bloque: "",
@@ -130,11 +291,8 @@ export default function InformeTasacionUpdateForm(props) {
   const [propietario, setPropietario] = React.useState(
     initialValues.propietario
   );
-  const [nombreSolicitante, setNombreSolicitante] = React.useState(
-    initialValues.nombreSolicitante
-  );
-  const [apellidoSolicitante, setApellidoSolicitante] = React.useState(
-    initialValues.apellidoSolicitante
+  const [solicitantes, setSolicitantes] = React.useState(
+    initialValues.solicitantes
   );
   const [condominio, setCondominio] = React.useState(initialValues.condominio);
   const [direccionInmueble, setDireccionInmueble] = React.useState(
@@ -305,8 +463,8 @@ export default function InformeTasacionUpdateForm(props) {
     setUbicacion(cleanValues.ubicacion);
     setUbicacionTerreno(cleanValues.ubicacionTerreno);
     setPropietario(cleanValues.propietario);
-    setNombreSolicitante(cleanValues.nombreSolicitante);
-    setApellidoSolicitante(cleanValues.apellidoSolicitante);
+    setSolicitantes(cleanValues.solicitantes ?? []);
+    setCurrentSolicitantesValue("");
     setCondominio(cleanValues.condominio);
     setDireccionInmueble(cleanValues.direccionInmueble);
     setBloque(cleanValues.bloque);
@@ -394,6 +552,9 @@ export default function InformeTasacionUpdateForm(props) {
     queryData();
   }, [idProp, informeTasacionModelProp]);
   React.useEffect(resetStateValues, [informeTasacionRecord]);
+  const [currentSolicitantesValue, setCurrentSolicitantesValue] =
+    React.useState("");
+  const solicitantesRef = React.createRef();
   const validations = {
     fechaTasacion: [],
     serviceDesk: [],
@@ -405,8 +566,7 @@ export default function InformeTasacionUpdateForm(props) {
     ubicacion: [],
     ubicacionTerreno: [],
     propietario: [],
-    nombreSolicitante: [],
-    apellidoSolicitante: [],
+    solicitantes: [{ type: "JSON" }],
     condominio: [],
     direccionInmueble: [],
     bloque: [],
@@ -511,8 +671,7 @@ export default function InformeTasacionUpdateForm(props) {
           ubicacion: ubicacion ?? null,
           ubicacionTerreno: ubicacionTerreno ?? null,
           propietario: propietario ?? null,
-          nombreSolicitante: nombreSolicitante ?? null,
-          apellidoSolicitante: apellidoSolicitante ?? null,
+          solicitantes: solicitantes ?? null,
           condominio: condominio ?? null,
           direccionInmueble: direccionInmueble ?? null,
           bloque: bloque ?? null,
@@ -651,8 +810,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -753,8 +911,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -855,8 +1012,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -957,8 +1113,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1059,8 +1214,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1161,8 +1315,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1263,8 +1416,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1365,8 +1517,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion: value,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1467,8 +1618,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno: value,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1569,8 +1719,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario: value,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -1652,13 +1801,9 @@ export default function InformeTasacionUpdateForm(props) {
         hasError={errors.propietario?.hasError}
         {...getOverrideProps(overrides, "propietario")}
       ></TextField>
-      <TextField
-        label="Nombre solicitante"
-        isRequired={false}
-        isReadOnly={false}
-        value={nombreSolicitante}
-        onChange={(e) => {
-          let { value } = e.target;
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
           if (onChange) {
             const modelFields = {
               fechaTasacion,
@@ -1671,8 +1816,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante: value,
-              apellidoSolicitante,
+              solicitantes: values,
               condominio,
               direccionInmueble,
               bloque,
@@ -1742,124 +1886,45 @@ export default function InformeTasacionUpdateForm(props) {
               tieneTerraza,
             };
             const result = onChange(modelFields);
-            value = result?.nombreSolicitante ?? value;
+            values = result?.solicitantes ?? values;
           }
-          if (errors.nombreSolicitante?.hasError) {
-            runValidationTasks("nombreSolicitante", value);
-          }
-          setNombreSolicitante(value);
+          setSolicitantes(values);
+          setCurrentSolicitantesValue("");
         }}
-        onBlur={() =>
-          runValidationTasks("nombreSolicitante", nombreSolicitante)
+        currentFieldValue={currentSolicitantesValue}
+        label={"Solicitantes"}
+        items={solicitantes}
+        hasError={errors?.solicitantes?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("solicitantes", currentSolicitantesValue)
         }
-        errorMessage={errors.nombreSolicitante?.errorMessage}
-        hasError={errors.nombreSolicitante?.hasError}
-        {...getOverrideProps(overrides, "nombreSolicitante")}
-      ></TextField>
-      <TextField
-        label="Apellido solicitante"
-        isRequired={false}
-        isReadOnly={false}
-        value={apellidoSolicitante}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              fechaTasacion,
-              serviceDesk,
-              tipoTasacion,
-              pisos,
-              tipo,
-              entidadBancaria,
-              tipoTopologia,
-              ubicacion,
-              ubicacionTerreno,
-              propietario,
-              nombreSolicitante,
-              apellidoSolicitante: value,
-              condominio,
-              direccionInmueble,
-              bloque,
-              etapa,
-              manzana,
-              edificioNo,
-              tipoEdificio,
-              numeroTitulo,
-              constanciaVenta,
-              designacionCatastral,
-              libroNo,
-              folioNo,
-              parcela,
-              solar,
-              manzanaLegal,
-              dc,
-              localidad,
-              desarrollo,
-              tipologiaVecindario,
-              claseSocial,
-              aceras,
-              contenes,
-              callesAsfaltadas,
-              alcantarillado,
-              aguaPotable,
-              alumbradoElectrico,
-              telecomunicaciones,
-              transportePublico,
-              otrosInfraestructura,
-              area,
-              forma,
-              topografia,
-              edad,
-              nivelEdificacion,
-              descripcionInterior,
-              terminacionPisosInteriores,
-              terminacionPisosExteriores,
-              terminacionHuellas,
-              terminacionMuros,
-              terminacionRevestimiento,
-              terminacionPuertaPrincipal,
-              terminacionPuertasInteriores,
-              terminacionPuertasCloset,
-              terminacionGabinetes,
-              terminacionTopeCocina,
-              terminacionTecho,
-              terminacionCornisa,
-              terminacionPlafones,
-              terminacionVentanas,
-              terminacionPasamanos,
-              areaBasicoTerreno,
-              costoMetroBasicoTerreno,
-              areaBasicoConstruccion,
-              costoMetroBasicoConstruccion,
-              montoDepreciacion,
-              montoMejoras,
-              depreciacionMejoras,
-              valorInmueble,
-              comentario,
-              areaParqueo,
-              costoMetroParqueo,
-              areaApartamento,
-              costoMetroApartamento,
-              areaTerraza,
-              costoMetroTerraza,
-              tasaDolar,
-              tieneTerraza,
-            };
-            const result = onChange(modelFields);
-            value = result?.apellidoSolicitante ?? value;
+        errorMessage={errors?.solicitantes?.errorMessage}
+        setFieldValue={setCurrentSolicitantesValue}
+        inputFieldRef={solicitantesRef}
+        defaultFieldValue={""}
+      >
+        <TextAreaField
+          label="Solicitantes"
+          isRequired={false}
+          isReadOnly={false}
+          value={currentSolicitantesValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.solicitantes?.hasError) {
+              runValidationTasks("solicitantes", value);
+            }
+            setCurrentSolicitantesValue(value);
+          }}
+          onBlur={() =>
+            runValidationTasks("solicitantes", currentSolicitantesValue)
           }
-          if (errors.apellidoSolicitante?.hasError) {
-            runValidationTasks("apellidoSolicitante", value);
-          }
-          setApellidoSolicitante(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("apellidoSolicitante", apellidoSolicitante)
-        }
-        errorMessage={errors.apellidoSolicitante?.errorMessage}
-        hasError={errors.apellidoSolicitante?.hasError}
-        {...getOverrideProps(overrides, "apellidoSolicitante")}
-      ></TextField>
+          errorMessage={errors.solicitantes?.errorMessage}
+          hasError={errors.solicitantes?.hasError}
+          ref={solicitantesRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "solicitantes")}
+        ></TextAreaField>
+      </ArrayField>
       <TextField
         label="Condominio"
         isRequired={false}
@@ -1879,8 +1944,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio: value,
               direccionInmueble,
               bloque,
@@ -1981,8 +2045,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble: value,
               bloque,
@@ -2085,8 +2148,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque: value,
@@ -2187,8 +2249,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2289,8 +2350,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2391,8 +2451,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2493,8 +2552,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2595,8 +2653,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2697,8 +2754,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2799,8 +2855,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -2903,8 +2958,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3005,8 +3059,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3107,8 +3160,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3209,8 +3261,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3311,8 +3362,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3413,8 +3463,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3515,8 +3564,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3617,8 +3665,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3719,8 +3766,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3823,8 +3869,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -3925,8 +3970,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4027,8 +4071,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4129,8 +4172,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4231,8 +4273,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4333,8 +4374,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4435,8 +4475,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4539,8 +4578,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4643,8 +4681,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4747,8 +4784,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4855,8 +4891,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -4957,8 +4992,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5059,8 +5093,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5161,8 +5194,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5267,8 +5299,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5369,8 +5400,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5473,8 +5503,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5580,8 +5609,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5687,8 +5715,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5791,8 +5818,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -5893,8 +5919,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6000,8 +6025,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6107,8 +6131,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6214,8 +6237,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6321,8 +6343,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6425,8 +6446,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6529,8 +6549,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6631,8 +6650,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6735,8 +6753,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6839,8 +6856,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -6943,8 +6959,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7051,8 +7066,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7159,8 +7173,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7267,8 +7280,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7375,8 +7387,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7486,8 +7497,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7594,8 +7604,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7700,8 +7709,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7808,8 +7816,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -7910,8 +7917,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8012,8 +8018,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8118,8 +8123,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8226,8 +8230,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8332,8 +8335,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8440,8 +8442,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8546,8 +8547,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8654,8 +8654,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
@@ -8756,8 +8755,7 @@ export default function InformeTasacionUpdateForm(props) {
               ubicacion,
               ubicacionTerreno,
               propietario,
-              nombreSolicitante,
-              apellidoSolicitante,
+              solicitantes,
               condominio,
               direccionInmueble,
               bloque,
