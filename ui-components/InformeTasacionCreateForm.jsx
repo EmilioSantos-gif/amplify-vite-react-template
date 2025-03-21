@@ -392,7 +392,7 @@ export default function InformeTasacionCreateForm(props) {
           return;
         }
         if (onSubmit) {
-          formData = onSubmit(formData);
+          setFormData(onSubmit(formData));
         }
         try {
           Object.entries(formData).forEach(([key, value]) => {

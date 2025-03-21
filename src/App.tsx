@@ -5,8 +5,13 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Routes, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, CssBaseline, Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+
 import Sidebar from '../ui-components/Sidebar';
-import { Resumen, InformeTasacionCreateForm, InformeTasacionList } from '../ui-components';
+
+import Resumen from '../ui-components/Resumen';
+
+import InformeTasacionCreateForm from '../ui-components/InformeTasacionCreateForm';
+import InformeTasacionList from '../ui-components/InformeTasacionList';
 
 const client = generateClient<Schema>();
 

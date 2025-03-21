@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Button, Heading } from "@aws-amplify/ui-react";
@@ -17,6 +16,7 @@ export default function InformeTasacionList() {
   }, []);
 
   const fetchInformes = async () => {
+    // @ts-ignore
     const { data } = await client.models.InformeTasacion.list();
     setInformes(data);
   };

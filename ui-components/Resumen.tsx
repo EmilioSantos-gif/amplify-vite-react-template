@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import {
     Grid,
     Heading,
@@ -8,7 +7,7 @@ import {
 
   import { useLocation } from "react-router-dom";
 
-export default function Resumen(props) {
+const Resumen = () => {
   const location = useLocation();
   const data = location.state;
 
@@ -250,3 +249,5 @@ return (
     </Grid>
 );
 }
+
+export default Resumen;
