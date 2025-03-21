@@ -43,7 +43,7 @@ export default function InformeTasacionList() {
           <TableBody>
             {informes?.map((informe) => (
               <TableRow key={informe.id}>
-                <TableCell>{informe.nombreSolicitante}</TableCell>
+                <TableCell>{informe.propietario}</TableCell>
                 <TableCell>{informe.fechaTasacion || "N/A"}</TableCell>
                 <TableCell>{informe.tipoTasacion || "N/A"}</TableCell>
                 <TableCell>{informe.ubicacion || "N/A"}</TableCell>

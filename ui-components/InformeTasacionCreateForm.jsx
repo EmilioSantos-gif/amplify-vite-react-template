@@ -400,30 +400,31 @@ export default function InformeTasacionCreateForm(props) {
               formData[key] = null;
             }
           });
+
+          let solicitantesFormateados = [];
+          solicitantesFormateados = solicitantes.map((solicitante) => JSON.stringify(solicitante));
+      
+          
           if (id) {
             const {createdAt, updatedAt, owner, ...filteredFormData} = formData;
-
-            let solicitantesFormateados = [];
-
-            solicitantesFormateados = solicitantes.map((solicitante) => JSON.stringify(solicitante));
-            
-            filteredFormData.solicitantes = solicitantesFormateados;
-
             await client.graphql({
               query: updateInformeTasacion.replaceAll("__typename", ""),
               variables: {
                 input: {
                   id,
                   ...filteredFormData,
+                  solicitantes: solicitantesFormateados
                 },
               },
             });
           } else {
+            
             await client.graphql({
               query: createInformeTasacion.replaceAll("__typename", ""),
               variables: {
                 input: {
                   ...formData,
+                  solicitantes: solicitantesFormateados
                 },
               },
             });
@@ -1219,7 +1220,7 @@ export default function InformeTasacionCreateForm(props) {
         ></TextField>
         <TextField
           id="terminacionHuellas"
-          label="Hellas"
+          label="Huellas"
           isRequired={false}
           isReadOnly={false}
           value={formData.terminacionHuellas}
