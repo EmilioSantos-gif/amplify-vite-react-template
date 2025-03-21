@@ -1,4 +1,3 @@
-import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
 import { Home, Info, ContactMail } from '@mui/icons-material';
 import { Link } from 'react-router-dom';

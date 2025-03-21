@@ -1,9 +1,8 @@
-import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, CssBaseline, Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from '../ui-components/Sidebar';
