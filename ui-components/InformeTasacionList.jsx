@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Button, Heading } from "@aws-amplify/ui-react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const client = generateClient();
 
