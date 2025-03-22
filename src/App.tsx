@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import { useAuthenticator } from '@aws-amplify/ui-react';
+//import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Routes, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, CssBaseline, Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,7 +16,7 @@ import InformeTasacionList from '../ui-components/InformeTasacionList';
 const client = generateClient<Schema>();
 
 function App() {
-  const { user, signOut } = useAuthenticator();
+  //const { user, signOut } = useAuthenticator();
 
   useEffect(() => {
     fetchInformes();
