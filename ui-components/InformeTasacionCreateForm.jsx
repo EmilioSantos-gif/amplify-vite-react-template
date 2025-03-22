@@ -1815,7 +1815,7 @@ export default function InformeTasacionCreateForm(props) {
         </Flex>
         <Button
           children="Descargar informe"
-          onClick={() => downloadInforme(formData)}
+          onClick={() => downloadInforme(formData, solicitantes)}
         />
         <Button
           children="Descargar presentación"

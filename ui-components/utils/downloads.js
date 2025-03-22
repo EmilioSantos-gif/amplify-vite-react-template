@@ -58,7 +58,7 @@ export const downloadPresentacion = (tasacion, solicitantes) => {
     });
 }
 
-export const downloadInforme = (tasacion) => {
+export const downloadInforme = (tasacion, solicitantes) => {
 
     downloadData({
         path: "templates/appartments/INFORME-APARTAMENTO.docx"
@@ -77,7 +77,8 @@ export const downloadInforme = (tasacion) => {
 
         //Modifiy document
 
-        let personaSolicitante = `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`;
+        let personaSolicitante = `${solicitantes[0]?.nombre} ${solicitantes[0]?.apellido}`;
+
 
         doc.render({
             fechaTasacion: tasacion.fechaTasacion,
