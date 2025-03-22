@@ -516,8 +516,7 @@ export default function InformeTasacionCreateForm(props) {
         ></TextField>
 
       </Grid>
-
-
+        
       <TextField
         id="entidadBancaria"
         label="Entidad bancaria"
@@ -773,6 +772,7 @@ export default function InformeTasacionCreateForm(props) {
           }
           errorMessage={errors.designacionCatastral?.errorMessage}
           hasError={errors.designacionCatastral?.hasError}
+          maxLength={20}
           {...getOverrideProps(overrides, "designacionCatastral")}
         ></TextField>
         <TextField
@@ -785,6 +785,7 @@ export default function InformeTasacionCreateForm(props) {
           onBlur={() => runValidationTasks("libroNo", formData.libroNo)}
           errorMessage={errors.libroNo?.errorMessage}
           hasError={errors.libroNo?.hasError}
+          maxLength={4}
           {...getOverrideProps(overrides, "libroNo")}
         ></TextField>
         <TextField
@@ -797,7 +798,8 @@ export default function InformeTasacionCreateForm(props) {
           onBlur={() => runValidationTasks("folioNo", formData.folioNo)}
           errorMessage={errors.folioNo?.errorMessage}
           hasError={errors.folioNo?.hasError}
-          {...getOverrideProps(overrides, "folioNo")}
+          maxLength={3}
+          {...getOverrideProps(overrides, "fo lioNo")}
         ></TextField>
 
       </Grid>
