@@ -13,7 +13,7 @@ export const downloadFile = (filename, content) => {
     document.body.removeChild(element);
 };
 
-export const downloadPresentacion = (tasacion) => {
+export const downloadPresentacion = (tasacion, solicitantes) => {
 
     downloadData({
         path: "templates/appartments/PRESENTACION-APARTAMENTO.docx"
@@ -30,7 +30,7 @@ export const downloadPresentacion = (tasacion) => {
         });
 
         //Modifiy document
-        let personaSolicitante = `${tasacion.nombreSolicitante} ${tasacion.apellidoSolicitante}`;
+        let personaSolicitante = `${solicitantes[0]?.nombre} ${solicitantes[0]?.apellido}`;
 
         doc.render({
             tipoTasacion: tasacion.tipoTasacion,
