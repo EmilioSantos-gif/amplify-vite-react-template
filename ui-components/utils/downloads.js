@@ -50,6 +50,11 @@ export const downloadPresentacion = (tasacion) => {
         });
 
         saveAs(out, `Presentacion de tasacion - ${personaSolicitante}.docx`);
+    })
+    .catch((err) => {
+        // Handle any error that occurs in the promise chain
+        console.error("Error processing the document or downloading:", err);
+        alert("Hubo un error al procesar el documento o descargar el archivo. Intenta nuevamente.");
     });
 }
 
@@ -92,5 +97,10 @@ export const downloadInforme = (tasacion) => {
         });
 
         saveAs(out, `Informe de tasacion - ${personaSolicitante}.docx`);
+    })
+    .catch((err) => {
+        // Handle any error that occurs in the promise chain
+        console.error("Error processing the document or downloading:", err);
+        alert("Hubo un error al procesar el documento o descargar el archivo. Intenta nuevamente.");
     });
 }

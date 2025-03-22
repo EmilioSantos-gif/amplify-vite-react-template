@@ -41,11 +41,13 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              My App
+              Aplicación de Tasaciones
             </Typography>
+            {/*
             <IconButton color="inherit" onClick={signOut}>
               {user?.username}
             </IconButton>
+            */}
           </Toolbar>
         </AppBar>
         <Sidebar />

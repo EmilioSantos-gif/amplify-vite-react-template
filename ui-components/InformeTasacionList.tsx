@@ -27,17 +27,17 @@ export default function InformeTasacionList() {
 
   return (
     <div style={{ padding: "20px", width: "100%" }}>
-      <Heading level={3} marginBottom="20px">Lista de Informes de Tasación</Heading>
+      <Heading level={3} marginBottom="20px">Informes de Tasación Registrados</Heading>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Nombre Solicitante</TableCell>
-              <TableCell>Fecha Tasación</TableCell>
-              <TableCell>Tipo Tasación</TableCell>
-              <TableCell>Ubicación</TableCell>
-              <TableCell>Entidad Bancaria</TableCell>
-              <TableCell>Actions</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Nombre Solicitante</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Fecha Tasación</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Tipo Tasación</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Ubicación</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Entidad Bancaria</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
